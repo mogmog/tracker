@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import shortid from "shortid";
 
-import NullView from "./../Cards/NullView/NullView";
+import NullCard from "../Cards/NullCard/NullCard";
 
 class CardLoader extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class CardLoader extends Component {
 
     this.state = {
       loadedComponents: [],
-      components: <NullView key={shortid.generate()} />
+      components: <NullCard key={shortid.generate()} />
     };
   }
 
@@ -28,7 +28,7 @@ class CardLoader extends Component {
       })
       .catch(error => {
         this.setState({
-          component: <NullView key={shortid.generate()} />
+          component: <NullCard key={shortid.generate()} />
         });
       });
   };
