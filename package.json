@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "precommit": "npm run lint-staged",
-    "start": "cross-env ESLINT=none roadhog dev",
-    "start:no-proxy": "cross-env NO_PROXY=true ESLINT=none roadhog dev",
+    "start": "cross-env ESLINT=none NO_PROXY=true roadhog dev",
+    "start:proxy": "cross-env ESLINT=none roadhog dev",
     "build": "cross-env ESLINT=none roadhog build",
     "site": "roadhog-api-doc static && gh-pages -d dist",
     "analyze": "cross-env ANALYZE=true roadhog build",
@@ -51,6 +51,7 @@
     "react-fittext": "^1.0.0",
     "react-mapbox-gl": "^3.8.0",
     "rollbar": "^2.3.4",
+    "shortid": "^2.2.8",
     "url-polyfill": "^1.0.10"
   },
   "devDependencies": {

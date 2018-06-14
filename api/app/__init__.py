@@ -26,7 +26,7 @@ from flask_bcrypt import Bcrypt
 # initialize db
 db = SQLAlchemy()
 
-from app.ng_event_models import Card, Page, PageCard, Store, NYPD
+from app.ng_event_models import Card, Page, PageCard, Store, NYPD, CardPosition
 from app.user_models import User, Session, Favourite
 
 loggedinuser = 0
@@ -75,13 +75,12 @@ def create_app(config_name):
 
         print (session.userId)
         user = User.get_all().filter(User.id == session.userId).first()
-        print (user.favourites)
 
         res = user.serialise()
 
         res['favourites'] = []
-        for fav in user.favourites:
-         res['favourites'].append(Card.get_all().filter(Card.id == fav.cardId).first().serialise())
+        #for fav in user.favourites:
+        # res['favourites'].append(Card.get_all().filter(Card.id == fav.cardId).first().serialise())
 
 
 
@@ -99,6 +98,16 @@ def create_app(config_name):
 
       return make_response(jsonify({ 'list' : results })), 200
 
+    @app.route('/api/real/cardpositions', methods=['GET', 'POST'])
+    def getCardPositions():
+      url = request.data.get('url', "/dashboard/analysis")
+      page = Page.query.filter(Page.url == url).first()
+
+      #get all cards for this page
+      cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).all()
+      dict = {int(k):v.card for k,v in  ([ (x.position), x] for x in cardpositions) }
+
+      return make_response(jsonify(dict)), 200
 
     @app.route('/api/real/favourites', methods=['GET'])
     def getFavourites():

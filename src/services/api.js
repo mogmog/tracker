@@ -65,19 +65,19 @@ export async function queryFakeList(params) {
 }
 
 export async function fakeAccountLogin(params) {
-  return request('/api/login/account', {
+  return request('/api/real/login/account', {
     method: 'POST',
     body: params,
   });
 }
 
 export async function fakeRegister(params) {
-  return request('/api/register', {
+  return request('/api/real/register', {
     method: 'POST',
     body: params,
   });
 }
 
 export async function queryNotices() {
-  return request('/api/notices');
+  return request('/api/real/notices');
 }

@@ -7,15 +7,15 @@ const menuData = [
     path: 'dashboard',
     children: [
       {
-        name: '分析页',
+        name: 'Analysis',
         path: 'analysis',
       },
       {
-        name: '监控页',
+        name: 'Monitor',
         path: 'monitor',
       },
       {
-        name: '工作台',
+        name: 'Workplace',
         path: 'workplace',
         // hideInBreadcrumb: true,
         // hideInMenu: true,

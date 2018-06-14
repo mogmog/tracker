@@ -62,6 +62,33 @@ class PageCard(db.Model):
     def serialise(self):
         return  { 'id': self.id, 'component': self.component, 'enabled' : self.enabled, 'user' : self.user.serialise() }
 
+
+
+class CardPosition(db.Model):
+    __tablename__ = 'cardposition'
+    id =  db.Column('id', db.Integer, primary_key=True)
+    pageId = db.Column('pageId', db.Integer, db.ForeignKey('page.id'))
+    page = db.relationship("Page")
+
+    userId = db.Column('userId', db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship("User")
+
+    card = db.Column('card', db.String)
+    position = db.Column('position', db.Integer)
+
+    def save(self):
+      db.session.add(self)
+      db.session.commit()
+
+    @staticmethod
+    def get_all():
+        return CardPosition.query
+
+    def serialise(self):
+        return  { 'id': self.id, 'card': self.card, 'page' : self.page.serialise(), 'position': self.position}
+
+
+
 class Page(db.Model):
     __tablename__ = 'page'
     id = db.Column(db.Integer, primary_key=True)
@@ -78,15 +105,14 @@ class Page(db.Model):
     def serialise(self):
 
         cards_json = []
-        cards = self.cards
+        cards = []
 
         for _ in cards:
                 cards_json.append(_.serialise())
 
         return  {
                    'id': self.id,
-                   'url' : self.url,
-                   'cards' : cards_json
+                   'url' : self.url
                 }
 
 
