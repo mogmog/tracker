@@ -109,11 +109,18 @@ class BasicLayout extends React.PureComponent {
     });
     this.props.dispatch({
       type: 'user/fetchCurrent',
+    }).then(user => {
+
+      this.props.dispatch({
+        type: 'cardpositions/fetchcardpositions',
+        payload : {userId : this.props.currentUser.userid}
+      });
+
+
     });
 
-    this.props.dispatch({
-      type: 'cardpositions/fetchcardpositions',
-    });
+
+
 
   }
 
@@ -124,6 +131,7 @@ class BasicLayout extends React.PureComponent {
       if (oldprops.location.pathname !== this.props.location.pathname) {
         this.props.dispatch({
           type: 'cardpositions/fetchcardpositions',
+          payload : {userId : this.props.currentUser.userid}
         });
       }
 

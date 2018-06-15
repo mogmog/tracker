@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReactMapboxGl, {GeoJSONLayer, Layer, Source, Feature, Marker, Popup} from 'react-mapbox-gl';
-import mapboxgl from 'mapbox-gl';
 import geojsonExtent from '@mapbox/geojson-extent';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -27,9 +26,6 @@ export default class extends Component {
   render() {
 
     const geojson = districts;
-
-    console.log(geojson);
-
 
     return (
       <Map

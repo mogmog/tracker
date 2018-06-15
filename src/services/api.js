@@ -71,6 +71,13 @@ export async function fakeAccountLogin(params) {
   });
 }
 
+export async function fakeAccountLogout(params) {
+  return request('/api/real/logout', {
+    method: 'POST',
+    body: params,
+  });
+}
+
 export async function fakeRegister(params) {
   return request('/api/real/register', {
     method: 'POST',

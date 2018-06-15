@@ -14,7 +14,7 @@ class CardLoader extends Component {
   }
 
   componentDidMount() {
-    const component = this.props.component || 'TableView';
+    const component = this.props.component || 'NullCard';
     this.addView(component);
   }
 
@@ -27,6 +27,9 @@ class CardLoader extends Component {
         });
       })
       .catch(error => {
+
+        console.log(error);
+
         this.setState({
           component: <NullCard key={shortid.generate()} />
         });

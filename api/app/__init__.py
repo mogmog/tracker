@@ -101,10 +101,11 @@ def create_app(config_name):
     @app.route('/api/real/cardpositions', methods=['GET', 'POST'])
     def getCardPositions():
       url = request.data.get('url', "/dashboard/analysis")
+      userId = request.data.get('userId', 0)
       page = Page.query.filter(Page.url == url).first()
 
       #get all cards for this page
-      cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).all()
+      cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId).all()
       dict = {int(k):v.card for k,v in  ([ (x.position), x] for x in cardpositions) }
 
       return make_response(jsonify(dict)), 200

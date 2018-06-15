@@ -31,9 +31,9 @@ const { TabPane } = Tabs;
 
 import NumberInfo from 'components/NumberInfo';
 
-const TableView = ({ data }) => {
+const TabChartCard = ({ data }) => {
 
-  const activeKey = 0, offlineData = [];
+  const activeKey = '0', offlineData = [];
 
   for (let i = 0; i < 10; i += 1) {
     offlineData.push({
@@ -98,7 +98,7 @@ const TableView = ({ data }) => {
     </Card>
   );
 };
-export default TableView;
+export default TabChartCard;
 
 
 

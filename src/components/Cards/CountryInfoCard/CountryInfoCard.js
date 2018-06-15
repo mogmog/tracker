@@ -30,7 +30,7 @@ class CountryInfoCard extends Component {
 
     return (<ChartCard
       bordered={false}
-      action={<Icon type="arrows-alt" style={{'font-size' : '12px'}} onClick={this.handleCancel.bind(this)} />}
+      action={<Icon type="arrows-alt" style={{'fontSize' : '12px'}} onClick={this.handleCancel.bind(this)} />}
       title="Estonia"
       footer={<Field label="Population" value={numeral(1234).format('0,0')}/>}
       contentHeight={150}

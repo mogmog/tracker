@@ -62,24 +62,58 @@ export default class Analysis extends Component {
 
       <Fragment>
 
-        <Row gutter={24}>
-          <Col {...topColResponsiveProps}>
-            <CardLoader component={positions[0]} data={data}/>
+        <Row>
+
+
+          <Col span={18}>
+
+            <Row gutter={24}>
+
+              {/*first row of small cards*/}
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[0]} data={data}/>
+              </Col>
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[1]} data={data}/>
+              </Col>
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[2]} data={data}/>
+              </Col>
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[3]} data={data}/>
+              </Col>
+            </Row>
+
+            {/*second row of small cards*/}
+            <Row gutter={24}>
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[6]} data={data}/>
+              </Col>
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[7]} data={data}/>
+              </Col>
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[8]} data={data}/>
+              </Col>
+              <Col {...topColResponsiveProps}>
+                <CardLoader component={positions[9]} data={data}/>
+              </Col>
+            </Row>
+
+            {/*wider cards*/}
+            <CardLoader component={positions[10]} data={data}/>
+
+            <CardLoader component={positions[11]} data={data}/>
+
           </Col>
-          <Col {...topColResponsiveProps}>
-            <CardLoader component={positions[1]} data={data}/>
+
+          <Col span={5} push={1}>
+            {/*right hand side bar */}
+            <CardLoader component={positions[12]} data={data}/>
           </Col>
-          <Col {...topColResponsiveProps}>
-            <CardLoader component={positions[2]} data={data}/>
-          </Col>
-          <Col {...topColResponsiveProps}>
-            <CardLoader component={positions[3]} data={data}/>
-          </Col>
+
+
         </Row>
-
-        <CardLoader component={positions[4]} data={data}/>
-
-        <CardLoader component={positions[5]} data={data}/>
 
       </Fragment>
     );

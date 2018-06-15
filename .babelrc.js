@@ -1,6 +1,14 @@
 const path = require('path');
 
 module.exports = {
+
+  build: {
+    extend (config) {
+      console.log("build!");
+      config.plugins = config.plugins.filter((plugin) => plugin.constructor.name !== 'UglifyJsPlugin')
+    }
+  },
+
   plugins: [
     [
       'module-resolver',
@@ -9,6 +17,9 @@ module.exports = {
           components: path.join(__dirname, './src/components'),
         },
       },
+    ],
+    [
+
     ],
     [
       'import',

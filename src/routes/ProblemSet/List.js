@@ -36,9 +36,9 @@ const formatWan = val => {
 }))
 export default class FilterCardList extends PureComponent {
   componentDidMount() {
-    this.props.dispatch({
-      type: 'problemset/fetch',
-    });
+    // this.props.dispatch({
+    //   type: 'problemset/fetch',
+    // });
   }
 
   render() {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReactMapboxGl, {GeoJSONLayer, Layer, Source, Feature, Marker, Popup} from 'react-mapbox-gl';
-import mapboxgl from 'mapbox-gl';
 import geojsonExtent from '@mapbox/geojson-extent';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -14,8 +13,6 @@ export default class extends Component {
 
    componentDidUpdate() {
      if (this.map) {
-
-       console.log(geo.features);
 
        this.map.fitBounds(geojsonExtent(geo), {
          padding: 5,
