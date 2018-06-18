@@ -2,7 +2,8 @@ import React, { Fragment } from 'react';
 
 import {
   Row,
-  Col
+  Col,
+  Divider
 } from 'antd';
 
 import CardLoader from "../../components/CardLoader/CardLoader";
@@ -68,7 +69,10 @@ class ClassicDashboard extends React.PureComponent {
             {/*wider cards*/}
             <CardLoader component={positions[10]} data={data}/>
 
+            <Divider/>
             <CardLoader component={positions[11]} data={data}/>
+            <Divider/>
+            <CardLoader component={positions[13]} data={data}/>
 
           </Col>
 

@@ -53,19 +53,10 @@ class ScrollingNarrartive extends React.PureComponent {
 
             <Row>
               <Col>
-                <CardLoader component={positions[0]} data={data}/>
+                <WorldMapCard country={this.state.country}/>
+                {/* <CardLoader component={positions[4]} data={data} country={this.state.country}/>*/}
               </Col>
             </Row>
-
-            <Divider/>
-
-            <Row>
-              <Col>
-                <CardLoader component={positions[1]} data={data}/>
-              </Col>
-            </Row>
-
-            <Divider/>
 
             <Row>
               <Col>
@@ -75,12 +66,7 @@ class ScrollingNarrartive extends React.PureComponent {
 
             <Divider/>
 
-            <Row>
-              <Col>
-                <WorldMapCard country={this.state.country}/>
-               {/* <CardLoader component={positions[4]} data={data} country={this.state.country}/>*/}
-              </Col>
-            </Row>
+
 
 
           </Col>

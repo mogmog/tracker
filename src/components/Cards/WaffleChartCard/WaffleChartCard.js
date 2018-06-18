@@ -47,13 +47,13 @@ class WaffleChartCard extends Component {
       title="Something"
       footer={<Field label="Blah" value={`${numeral(12423).format('0,0')}`} />}
     >
-      <Chart width={1000} height={400} padding={[20, 60, 80, 10]} scale={scale} data={dv}>
+      <Chart width={360} height={400} padding={[20, 60, 80, 20]} scale={scale} data={dv}>
         <Geom
           type="point"
           position="x*y"
           color="name"
           shape={['name', name => ['path', pathMap[name]]]}
-          size={32} />
+          size={20} />
       </Chart>
     </ChartCard>);
   }
