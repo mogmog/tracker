@@ -21,7 +21,7 @@ class ClassicDashboard extends React.PureComponent {
       sm: 24,
       md: 12,
       lg: 12,
-      xl: 6,
+      xl: 12,
       style: { marginBottom: 48 },
     };
 
@@ -35,18 +35,11 @@ class ClassicDashboard extends React.PureComponent {
 
             <Row gutter={24}>
 
-              {/*first row of small cards*/}
               <Col {...topColResponsiveProps}>
                 <CardLoader component={positions[0]} data={data}/>
               </Col>
               <Col {...topColResponsiveProps}>
                 <CardLoader component={positions[1]} data={data}/>
-              </Col>
-              <Col {...topColResponsiveProps}>
-                <CardLoader component={positions[2]} data={data}/>
-              </Col>
-              <Col {...topColResponsiveProps}>
-                <CardLoader component={positions[3]} data={data}/>
               </Col>
             </Row>
 
