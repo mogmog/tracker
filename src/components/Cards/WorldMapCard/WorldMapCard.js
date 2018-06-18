@@ -21,10 +21,6 @@ class WorldMapCard extends Component {
     this.setState({zoomto : [1,2]})
   }
 
-  componentDidUpdate() {
-    console.log(this.props);
-  }
-
   render() {
 
     const targetTime = new Date().getTime() + 3900000;

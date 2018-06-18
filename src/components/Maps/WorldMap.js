@@ -11,6 +11,10 @@ const Map = ReactMapboxGl({
 
 export default class extends Component {
 
+  shouldComponentUpdate() {
+    return true;
+  }
+
    componentDidUpdate() {
      if (this.map) {
 

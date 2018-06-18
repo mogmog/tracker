@@ -22,6 +22,7 @@ class ScrollingNarrartive extends React.PureComponent {
 
   dosomething(param) {
     this.setState({country : param.name });
+    this.forceUpdate();
   }
 
   render() {
