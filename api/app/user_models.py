@@ -81,6 +81,12 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userName = db.Column(db.String(255))
+
+    #from app.ng_event_models import Layout
+
+    layoutId = db.Column('layoutId', db.Integer, db.ForeignKey('layout.id'))
+    layout = db.relationship("Layout")
+
     favourites = db.relationship("Favourite")
 
 
@@ -117,6 +123,7 @@ class User(db.Model):
                    'userid': self.id,
                    'notifyCount': 3,
                    'isAdmin' : True,
+                   'layout' : self.layout.serialise(),
                    'name' : self.userName,
                    'avatar': 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
                    'favourites' : results

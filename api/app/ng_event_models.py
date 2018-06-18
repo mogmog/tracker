@@ -70,6 +70,10 @@ class CardPosition(db.Model):
     pageId = db.Column('pageId', db.Integer, db.ForeignKey('page.id'))
     page = db.relationship("Page")
 
+    layoutId = db.Column('layoutId', db.Integer, db.ForeignKey('layout.id'))
+    layout = db.relationship("Layout")
+
+
     userId = db.Column('userId', db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 
@@ -118,6 +122,25 @@ class Page(db.Model):
 
 
 
+class Layout(db.Model):
+    __tablename__ = 'layout'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+
+    def save(self):
+      db.session.add(self)
+      db.session.commit()
+
+    @staticmethod
+    def get_all():
+        return Layout.query
+
+    def serialise(self):
+
+        return  {
+                   'id': self.id,
+                   'name' : self.name
+                }
 
 class Card(db.Model):
     __tablename__ = 'cards'

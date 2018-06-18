@@ -23,7 +23,7 @@ class CardLoader extends Component {
     import(`./../Cards/${viewName}/${viewName}.js`)
       .then(Component => {
         this.setState({
-          component: <Component.default key={shortid.generate()} data={this.props.data} />
+          component: <Component.default actions={this.props.actions} key={shortid.generate()} country={this.props.country} data={this.props.data} />
         });
       })
       .catch(error => {

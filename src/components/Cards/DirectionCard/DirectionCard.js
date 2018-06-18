@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { Button } from 'antd';
 import numeral from 'numeral';
 
 import Trend from 'components/Trend';
@@ -17,13 +17,18 @@ class DirectionCard extends Component {
     this.state = {};
   }
 
+  openModal() {
+    alert("!");
+  }
+
   render() {
     const { data } = this.props;
 
     return (<ChartCard
       bordered={true}
-      title={data.title}
-      footer={<Field label="Blah" value={`${numeral(12423).format('0,0')}`} />}
+      title={'Syrian propaganda'}
+      action={<Button onClick={this.openModal.bind(this)}>View</Button>}
+      footer={[]}
       contentHeight={150}
     >
       <span style={{zoom : 3}}>
