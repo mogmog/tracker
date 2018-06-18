@@ -28,6 +28,7 @@ class CardLoader extends Component {
       })
       .catch(error => {
 
+        alert(`Error loading card ${viewName}`);
         console.log(error);
 
         this.setState({
