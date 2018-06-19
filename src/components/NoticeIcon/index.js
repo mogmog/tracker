@@ -83,7 +83,7 @@ export default class NoticeIcon extends PureComponent {
     }
     const popoverProps = {};
     if ('popupVisible' in this.props) {
-      popoverProps.visible = this.props.popupVisible;
+      popoverProps.editvisible = this.props.popupVisible;
     }
     return (
       <Popover

@@ -20,8 +20,6 @@ class NarrativeSummaryCard extends Component {
   render() {
     const { data } = this.props;
 
-    console.log(data);
-
     return (<ChartCard
       bordered={false}
       title={data.title}

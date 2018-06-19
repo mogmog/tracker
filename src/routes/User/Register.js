@@ -109,16 +109,16 @@ export default class Register extends Component {
     if (!value) {
       this.setState({
         help: '请输入密码！',
-        visible: !!value,
+        editvisible: !!value,
       });
       callback('error');
     } else {
       this.setState({
         help: '',
       });
-      if (!this.state.visible) {
+      if (!this.state.editvisible) {
         this.setState({
-          visible: !!value,
+          editvisible: !!value,
         });
       }
       if (value.length < 6) {
@@ -191,7 +191,7 @@ export default class Register extends Component {
               }
               overlayStyle={{ width: 240 }}
               placement="right"
-              visible={this.state.visible}
+              visible={this.state.editvisible}
             >
               {getFieldDecorator('password', {
                 rules: [

@@ -206,6 +206,19 @@ def create_app(config_name):
 
       return make_response(jsonify({ 'list' : results })), 200
 
+    @app.route('/api/real/cards/save', methods=['POST'])
+    def save_card():
+
+      id   = str(request.data.get('id', ''))
+      card = Card.get_all().filter(Card.id == id).one()
+      card.data = request.data.get('data', {})
+      card.save()
+
+      results = []
+
+      return make_response(jsonify({ 'list' : results })), 200
+
+
 
     @app.route('/api/real/cards/<id>', methods=['GET'])
     def get_card(id):

@@ -9,7 +9,6 @@ import ScrollingNarrartive from "../../layouts/CardLayouts/ScrollingNarrative";
   cardpositions,
   card,
   user,
-  loading: loading.effects['chart/fetch'],
 }))
 
 export default class Analysis extends Component {

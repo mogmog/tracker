@@ -16,8 +16,11 @@ class ClassicDashboard extends React.PureComponent {
 
     const {card, cardpositions } = this.props;
 
+
     const positions     = cardpositions.cardpositions;
     const questioncards = card.questioncards;
+
+    console.log(positions.list);
 
     const groupedByPos = _.reduce(positions.list , function(obj, position) {
       obj[position.position] = position
@@ -58,11 +61,11 @@ class ClassicDashboard extends React.PureComponent {
             <Row gutter={24}>
 
               <Col {...topColResponsiveProps}>
-                <CardLoader component={groupedByPos[0].card.component} data={groupedByPos[0].card.data}/>
+                <CardLoader component={groupedByPos[0].card.component} data={groupedByPos[0].card.data} dispatch={this.props.dispatch}/>
               </Col>
              <Col {...topColResponsiveProps}>
-               <CardJSONEditor component={groupedByPos[1].card.component} data={groupedByPos[1].card.data}>
-                <CardLoader component={groupedByPos[1].card.component} data={groupedByPos[1].card.data}/>
+               <CardJSONEditor card={groupedByPos[1].card} dispatch={this.props.dispatch}>
+                <CardLoader component={groupedByPos[1].card.component} data={groupedByPos[1].card.data} dispatch={this.props.dispatch}/>
                </CardJSONEditor>
               </Col>
             </Row>
