@@ -77,7 +77,9 @@ class CardPosition(db.Model):
     userId = db.Column('userId', db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 
-    card = db.Column('card', db.String)
+    cardId = db.Column('cardId', db.Integer, db.ForeignKey('cards.id'))
+    card = db.relationship("Card")
+
     position = db.Column('position', db.Integer)
 
     def save(self):
@@ -89,7 +91,8 @@ class CardPosition(db.Model):
         return CardPosition.query
 
     def serialise(self):
-        return  { 'id': self.id, 'card': self.card, 'page' : self.page.serialise(), 'position': self.position}
+        print (self.card)
+        return  { 'id': self.id, 'card': self.card.serialise(), 'page' : self.page.serialise(), 'position': self.position}
 
 
 
@@ -146,7 +149,6 @@ class Card(db.Model):
     __tablename__ = 'cards'
 
     id = db.Column(db.Integer, primary_key=True)
-    order = db.Column(db.Integer)
 
     component = db.Column(db.String(255))
 
@@ -184,8 +186,7 @@ class Card(db.Model):
                    'id': self.id,
                    'component' : self.component,
                    'key' : self.key,
-                   'data' : self.data,
-                   'order' : self.order
+                   'data' : self.data
                 }
 
 

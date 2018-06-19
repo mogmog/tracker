@@ -20,21 +20,24 @@ class NarrativeSummaryCard extends Component {
   render() {
     const { data } = this.props;
 
+    console.log(data);
+
     return (<ChartCard
       bordered={false}
-      title="Narrative Summary"
+      title={data.title}
     >
       <Row>
+
         <Col span={8}>
-          <NumberInfo subTitle="Something" total="92%" />
+          <NumberInfo subTitle={data.values[0].title} total={data.values[0].value} />
         </Col>
 
         <Col span={8}>
-          <NumberInfo subTitle="Else" total="92%" />
+          <NumberInfo subTitle={data.values[1].title} total={data.values[1].value} />
         </Col>
 
         <Col span={8}>
-          <NumberInfo subTitle="Entirely" total="92%" />
+          <NumberInfo subTitle={data.values[2].title} total={data.values[2].value} />
         </Col>
 
       </Row>

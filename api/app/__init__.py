@@ -106,9 +106,15 @@ def create_app(config_name):
 
       #get all cards for this page
       cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId).all()
-      dict = {int(k):v.card for k,v in  ([ (x.position), x] for x in cardpositions) }
+      #dict = {int(k):v.card for k,v in  ([ (x.position), x] for x in cardpositions) }
 
-      return make_response(jsonify(dict)), 200
+      results = []
+      for cardposition in cardpositions:
+              results.append(cardposition.serialise())
+
+      return make_response(jsonify({ 'list' : results })), 200
+
+      #return make_response(jsonify(dict)), 200
 
     @app.route('/api/real/favourites', methods=['GET'])
     def getFavourites():
@@ -184,7 +190,7 @@ def create_app(config_name):
       type = request.data.get('type', '')
       id   = str(request.data.get('id', ''))
 
-      sql = text('select id from cards where component IN ( SELECT component FROM pagecard JOIN page ON (pagecard.\"pageId\" = page.id AND pagecard.\"userId\" = ' + str(userid) + ' AND pagecard.enabled = \'Y\') WHERE url = \'' + url + '\') and key->> \'type\' = \'' + type + '\' and key->>\'id\' = \'' + id + '\'')
+      sql = text('select id from cards where key->> \'type\' = \'' + type + '\' and key->>\'id\' = \'' + id + '\'')
       print (sql)
       result = db.engine.execute(sql)
 
@@ -192,7 +198,7 @@ def create_app(config_name):
       for row in result:
           cardids.append(row[0])
 
-      cards = Card.get_all().filter(Card.id.in_(cardids)).order_by(Card.order).all()
+      cards = Card.get_all().filter(Card.id.in_(cardids)).all()
 
       results = []
       for card in cards:
@@ -204,7 +210,7 @@ def create_app(config_name):
     @app.route('/api/real/cards/<id>', methods=['GET'])
     def get_card(id):
 
-      cards = Card.get_all().filter(Card.id == id).order_by(Card.order).all()
+      cards = Card.get_all().filter(Card.id == id).all()
 
       results = []
       for card in cards:

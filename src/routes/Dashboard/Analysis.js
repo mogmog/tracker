@@ -4,15 +4,26 @@ import { connect } from 'dva';
 import ClassicDashboard from "../../layouts/CardLayouts/ClassicDashboard";
 import ScrollingNarrartive from "../../layouts/CardLayouts/ScrollingNarrative";
 
-@connect(({ chart, loading, cardpositions, user }) => ({
+@connect(({ chart, loading, cardpositions, card, user }) => ({
   chart,
   cardpositions,
+  card,
   user,
   loading: loading.effects['chart/fetch'],
 }))
 
 export default class Analysis extends Component {
   state = { };
+
+  componentDidMount() {
+
+    const {dispatch} = this.props;
+
+    dispatch({
+      type: 'card/fetchquestioncards',
+      payload: {'type': 'question', 'id': 1}
+    });
+  }
 
   render() {
 
