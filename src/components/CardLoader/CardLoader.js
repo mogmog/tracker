@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import CountryInfoCard      from './../Cards/CountryInfoCard/CountryInfoCard';
 import NarrativeSummaryCard from './../Cards/NarrativeSummaryCard/NarrativeSummaryCard';
+import NarrativeCard from './../Cards/NarrativeCard/NarrativeCard';
 
 export default class extends Component {
 
@@ -15,16 +16,17 @@ export default class extends Component {
     const mappings = {
       'CountryInfoCard' : CountryInfoCard,
       'NarrativeSummaryCard' : NarrativeSummaryCard,
+      'NarrativeCard' : NarrativeCard
 
     }
 
-    const Card = mappings[this.props.component];
+    const Card = mappings[this.props.card.component];
 
     if (!Card) return null;
 
     return (
       <div>
-        <Card data={this.props.data }/>
+        <Card data={this.props.card.data }/>
       </div>
     );
   }

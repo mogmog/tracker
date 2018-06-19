@@ -61,30 +61,37 @@ class ClassicDashboard extends React.PureComponent {
             <Row gutter={24}>
 
               <Col {...topColResponsiveProps}>
-                <CardLoader component={groupedByPos[0].card.component} data={groupedByPos[0].card.data} dispatch={this.props.dispatch}/>
+                <CardLoader card={groupedByPos[0].card} />
               </Col>
              <Col {...topColResponsiveProps}>
                <CardJSONEditor card={groupedByPos[1].card} dispatch={this.props.dispatch}>
-                <CardLoader component={groupedByPos[1].card.component} data={groupedByPos[1].card.data} dispatch={this.props.dispatch}/>
+                <CardLoader card={groupedByPos[1].card} />
                </CardJSONEditor>
               </Col>
             </Row>
 
-            {/*second row of small cards*/}
-            {/*<Row gutter={24}>
+            <Row gutter={24}>
               <Col {...secondColResponsiveProps}>
-                <CardLoader component={positions[6]} data={data}/>
+                <CardJSONEditor card={groupedByPos[2].card} dispatch={this.props.dispatch}>
+                  <CardLoader card={groupedByPos[2].card} />
+                </CardJSONEditor>
               </Col>
               <Col {...secondColResponsiveProps}>
-                <CardLoader component={positions[7]} data={data}/>
+                <CardJSONEditor card={groupedByPos[3].card} dispatch={this.props.dispatch}>
+                  <CardLoader card={groupedByPos[3].card} />
+                </CardJSONEditor>
               </Col>
               <Col {...secondColResponsiveProps}>
-                <CardLoader component={positions[8]} data={data}/>
+                <CardJSONEditor card={groupedByPos[4].card} dispatch={this.props.dispatch}>
+                  <CardLoader card={groupedByPos[4].card} />
+                </CardJSONEditor>
               </Col>
               <Col {...secondColResponsiveProps}>
-                <CardLoader component={positions[9]} data={data}/>
+                <CardJSONEditor card={groupedByPos[5].card} dispatch={this.props.dispatch}>
+                  <CardLoader card={groupedByPos[5].card} />
+                </CardJSONEditor>
               </Col>
-            </Row>*/}
+            </Row>
 
             {/*wider cards*/}
           {/*  <CardLoader component={positions[10]} data={data}/>

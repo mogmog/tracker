@@ -11,29 +11,6 @@ var CodeMirror = require('react-codemirror');
 
 require('codemirror/lib/codemirror.css');
 
-
-const schema = {
-  "type": "object",
-  "required" : ["title", "direction", "value"],
-  "properties": {
-    "title": {
-      "type": "string"
-    },
-
-    "direction": {
-      "type": "string",
-      "enum": [
-        "Up",
-        "Down",
-      ]
-    },
-
-    "value": {
-      "type": "number"
-    }
-
-  }};
-
 class CardJSONEditor extends Component {
 
   constructor(props) {
@@ -41,10 +18,21 @@ class CardJSONEditor extends Component {
     this.state = { editvisible : false, checksvisible : false, card : (this.props.card) };
   }
 
+  async componentDidMount() {
+    const schema = await import('./../Cards/' + this.props.card.component + '/schema');
+    this.setState({ schema  });
+  }
+
   updateCode(newCode) {
 
     var card = {...this.state.card};
-    card.data = JSON.parse(newCode);
+
+    /*If user is typing, JSON parsing might fail*/
+    try {
+      card.data = JSON.parse(newCode);
+    } catch (e) {
+    }
+//
     this.setState({card});
   }
 
@@ -76,10 +64,9 @@ class CardJSONEditor extends Component {
 
   render() {
 
-    const { card } = this.props;
-    const { formData, activeKey, editvisible, checksvisible, data } = this.state;
+    const { formData, activeKey, editvisible, checksvisible, card, schema } = this.state;
 
-    const options = {lineNumbers: true, mode : 'json' };
+    const options = {lineNumbers: false, mode : 'json' };
 
     const editmodal = (<Modal bodyStyle={{height : '50vh'}} visible={editvisible} footer={[
       <Button key="submit" type="primary" onClick={this.handleOK.bind(this)}>
@@ -88,19 +75,17 @@ class CardJSONEditor extends Component {
     ]} width={'90vw'} onCancel={this.showEdit.bind(this)}>
 
       <Row >
-
         <Col span={10} >
 
           <Tabs defaultActiveKey="1">
             <TabPane tab="Data"   key="1">  <CodeMirror value={JSON.stringify(card.data, null, '\t')} onChange={this.updateCode.bind(this)} options={options} /></TabPane>
-            <TabPane tab="Schema" key="2">  <CodeMirror value={JSON.stringify(schema)} onChange={this.updateCode.bind(this)} options={options} /></TabPane>
+            <TabPane tab="Schema" key="2">  <CodeMirror value={JSON.stringify(schema, null, '\t')} onChange={this.updateCode.bind(this)} options={options} /></TabPane>
           </Tabs>
 
         </Col>
 
         <Col span={12} push={2}>
-          {/**/}
-          <CardLoader component={this.props.card.component} data={(this.state.card.data)}/>
+          <CardLoader card={ card }/>
         </Col>
 
       </Row>

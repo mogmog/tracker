@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts';
 import numeral from "numeral";
 
+import schema from './schema.json';
+
 import { Row, Col } from 'antd';
 
 import {
@@ -14,6 +16,7 @@ import NumberInfo from 'components/NumberInfo';
 class NarrativeSummaryCard extends Component {
   constructor(props) {
     super(props);
+    this.schema = schema;
     this.state = {};
   }
 
