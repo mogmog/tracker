@@ -12,6 +12,8 @@ import { Modal, Icon , Card} from 'antd';
 import CountryInfoModalCard from './CountryInfoModalCard';
 import GeoJSONThumbnail from '../../Maps/GeoJSONThumbnail';
 
+import sample from './sample';
+
 class CountryInfoCard extends Component {
   constructor(props) {
     super(props);
@@ -26,17 +28,20 @@ class CountryInfoCard extends Component {
 
   render() {
 
+    const {data} = this.props;
+
     const { modal } = this.state;
+    console.log(sample);
 
     return (<ChartCard
       bordered={false}
       action={<Icon type="arrows-alt" style={{'fontSize' : '12px'}} onClick={this.handleCancel.bind(this)} />}
-      title="Estonia"
-      footer={<Field label="Population" value={numeral(1234).format('0,0')}/>}
+      title={data.title}
+      footer={[<Field label="Population" value={data.subtitle}/>]}
       contentHeight={150}
     >
 
-      <GeoJSONThumbnail/>
+      <GeoJSONThumbnail geojson={data.map}/>
 
       <Modal
         visible={modal}
@@ -55,5 +60,10 @@ class CountryInfoCard extends Component {
     </ChartCard>);
   }
 }
+
+CountryInfoCard.defaultProps = {
+  data: sample,
+}
+
 
 export default CountryInfoCard;

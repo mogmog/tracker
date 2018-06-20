@@ -113,7 +113,7 @@ class BasicLayout extends React.PureComponent {
 
       this.props.dispatch({
         type: 'cardpositions/fetchcardpositions',
-        payload : {userId : this.props.currentUser.userid}
+        payload : {userId : 1}
       });
 
 

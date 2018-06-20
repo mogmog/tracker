@@ -9,6 +9,7 @@ import {
 import CardLoader from "../../components/CardLoader/CardLoader";
 
 import CardJSONEditor from "../../components/CardJSONEditor/CardJSONEditor";
+import NewCard from "../../components/CardJSONEditor/NewCard";
 
 class ClassicDashboard extends React.PureComponent {
 
@@ -16,21 +17,13 @@ class ClassicDashboard extends React.PureComponent {
 
     const {card, cardpositions } = this.props;
 
-
     const positions     = cardpositions.cardpositions;
     const questioncards = card.questioncards;
 
-    console.log(positions.list);
-
-    const groupedByPos = _.reduce(positions.list , function(obj, position) {
+    const groupedByPos = _.reduce(positions.list , (obj, position) => {
       obj[position.position] = position
       return obj;
     }, {});
-
-    //console.log(groupedByPos);
-
-
-    const data = {};
 
     const topColResponsiveProps = {
       xs: 24,
@@ -50,6 +43,7 @@ class ClassicDashboard extends React.PureComponent {
       style: { marginBottom: 48 },
     };
 
+    //dfrt
     return (
 
       <Fragment>
@@ -61,10 +55,12 @@ class ClassicDashboard extends React.PureComponent {
             <Row gutter={24}>
 
               <Col {...topColResponsiveProps}>
-                <CardLoader card={groupedByPos[0].card} />
+                {groupedByPos[0] !== undefined ? (<CardJSONEditor card={groupedByPos[0].card} position={0} dispatch={this.props.dispatch}>
+                  <CardLoader card={groupedByPos[0].card} />
+                  </CardJSONEditor>) : (<NewCard position={0} dispatch={this.props.dispatch}/> )}
               </Col>
              <Col {...topColResponsiveProps}>
-               <CardJSONEditor card={groupedByPos[1].card} dispatch={this.props.dispatch}>
+               <CardJSONEditor card={groupedByPos[1].card} position={1} dispatch={this.props.dispatch}>
                 <CardLoader card={groupedByPos[1].card} />
                </CardJSONEditor>
               </Col>
@@ -72,22 +68,22 @@ class ClassicDashboard extends React.PureComponent {
 
             <Row gutter={24}>
               <Col {...secondColResponsiveProps}>
-                <CardJSONEditor card={groupedByPos[2].card} dispatch={this.props.dispatch}>
+                <CardJSONEditor card={groupedByPos[2].card} position={2} dispatch={this.props.dispatch}>
                   <CardLoader card={groupedByPos[2].card} />
                 </CardJSONEditor>
               </Col>
               <Col {...secondColResponsiveProps}>
-                <CardJSONEditor card={groupedByPos[3].card} dispatch={this.props.dispatch}>
+                <CardJSONEditor card={groupedByPos[3].card} position={3} dispatch={this.props.dispatch}>
                   <CardLoader card={groupedByPos[3].card} />
                 </CardJSONEditor>
               </Col>
               <Col {...secondColResponsiveProps}>
-                <CardJSONEditor card={groupedByPos[4].card} dispatch={this.props.dispatch}>
+                <CardJSONEditor card={groupedByPos[4].card} position={4} dispatch={this.props.dispatch}>
                   <CardLoader card={groupedByPos[4].card} />
                 </CardJSONEditor>
               </Col>
               <Col {...secondColResponsiveProps}>
-                <CardJSONEditor card={groupedByPos[5].card} dispatch={this.props.dispatch}>
+                <CardJSONEditor card={groupedByPos[5].card} position={5} dispatch={this.props.dispatch}>
                   <CardLoader card={groupedByPos[5].card} />
                 </CardJSONEditor>
               </Col>

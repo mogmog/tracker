@@ -19,6 +19,16 @@ export async function saveCard(params) {
   });
 }
 
+export async function createCard(params) {
+  return request('/api/real/cards/new', {
+    method: 'POST',
+    body: {
+      ...params,
+    },
+  });
+}
+
+
 
 export async function getCard(params) {
   return request('/api/real/cards/' + params.id, {

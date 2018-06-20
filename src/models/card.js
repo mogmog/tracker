@@ -1,10 +1,11 @@
-import { queryCards, saveCard } from '../services/card/api';
+import { queryCards, saveCard, createCard } from '../services/card/api';
 
 export default {
   namespace: 'card',
 
   state: {
     questioncards: [],
+    card : {}
   },
 
   effects: {
@@ -13,6 +14,14 @@ export default {
       const response = yield call(queryCards, payload);
       yield put({
         type: 'savefetchquestioncards',
+        payload: response,
+      });
+    },
+
+    * createquestioncard({payload}, {call, put}) {
+      const response = yield call(createCard, payload);
+      yield put({
+        type: 'savecreatequestioncard',
         payload: response,
       });
     },
@@ -32,6 +41,13 @@ export default {
       return {
         ...state,
         questioncards: action.payload && typeof(action.payload.list === 'Array') ? action.payload.list : [],
+      };
+    },
+
+    savecreatequestioncard(state, action) {
+      return {
+        ...state,
+        card: action.payload,
       };
     },
 

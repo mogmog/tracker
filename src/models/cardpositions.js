@@ -5,6 +5,7 @@ export default {
 
   state: {
     cardpositions: {},
+    ispositionempty : true
   },
 
   effects: {
@@ -16,6 +17,15 @@ export default {
         payload: response,
       });
     },
+
+    * fetchisempty({payload}, { call, put }) {
+      const response = yield call(queryCardPositions, payload);
+      yield put({
+        type: 'saveisempty',
+        payload: response,
+      });
+    },
+
   },
 
   reducers: {
@@ -25,5 +35,13 @@ export default {
         cardpositions: action.payload,
       };
     },
+
+    saveisempty(state, action) {
+      return {
+        ...state,
+        ispositionempty: action.payload.list.length === 0 ,
+      };
+    },
+
   },
 };

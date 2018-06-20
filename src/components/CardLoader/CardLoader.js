@@ -4,10 +4,18 @@ import CountryInfoCard      from './../Cards/CountryInfoCard/CountryInfoCard';
 import NarrativeSummaryCard from './../Cards/NarrativeSummaryCard/NarrativeSummaryCard';
 import NarrativeCard from './../Cards/NarrativeCard/NarrativeCard';
 
-export default class extends Component {
+const mappings = {
+  'CountryInfoCard' : CountryInfoCard,
+  'NarrativeSummaryCard' : NarrativeSummaryCard,
+  'NarrativeCard' : NarrativeCard
+
+}
+
+class CardLoader extends Component {
 
   constructor(props) {
     super();
+    this.mappings = mappings;
   }
 
   render() {
@@ -31,6 +39,12 @@ export default class extends Component {
     );
   }
 }
+
+export function getMappings() {
+  return mappings;
+}
+
+export default CardLoader;
 
 //TODO this was an earlier attempt to make this a bit more dynamic as it doesnt require keeping a mapping object
 

@@ -2,9 +2,15 @@ import React, {Component} from 'react';
 import { Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts';
 import numeral from "numeral";
 
+import sample from './sample.json';
 import schema from './schema.json';
 
 import { Row, Col } from 'antd';
+
+console.log(sample);
+console.log(sample);
+console.log(sample);
+console.log(sample);
 
 import {
   ChartCard,
@@ -30,15 +36,15 @@ class NarrativeSummaryCard extends Component {
       <Row>
 
         <Col span={8}>
-          <NumberInfo subTitle={data.values[0].title} total={data.values[0].value} />
+          {data.values[0] && <NumberInfo subTitle={data.values[0].title} total={data.values[0].value} />}
         </Col>
 
         <Col span={8}>
-          <NumberInfo subTitle={data.values[1].title} total={data.values[1].value} />
+          {data.values[1] && <NumberInfo subTitle={data.values[1].title} total={data.values[1].value} />}
         </Col>
 
         <Col span={8}>
-          <NumberInfo subTitle={data.values[2].title} total={data.values[2].value} />
+          {data.values[2] && <NumberInfo subTitle={data.values[2].title} total={data.values[2].value} />}
         </Col>
 
       </Row>
@@ -48,7 +54,7 @@ class NarrativeSummaryCard extends Component {
 }
 
 NarrativeSummaryCard.defaultProps = {
-  data: {}
+  data: sample
 };
 
 export default NarrativeSummaryCard;

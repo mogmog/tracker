@@ -11,6 +11,7 @@ from sqlalchemy import func, Text, Integer
 from flask import request, jsonify, abort, make_response
 from shapely.geometry import shape, Point
 from sqlalchemy import text
+import urllib.request, json
 
 from flask_graphql import GraphQLView
 
@@ -28,6 +29,7 @@ db = SQLAlchemy()
 
 from app.ng_event_models import Card, Page, PageCard, Store, NYPD, CardPosition
 from app.user_models import User, Session, Favourite
+from app.importer_models import Country
 
 loggedinuser = 0
 
@@ -102,14 +104,19 @@ def create_app(config_name):
     def getCardPositions():
       url = request.data.get('url', "/dashboard/analysis")
       userId = request.data.get('userId', 0)
+
+      position = request.data.get('position', None)
+
       page = Page.query.filter(Page.url == url).first()
 
-      #get all cards for this page
-      cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId).all()
-      #dict = {int(k):v.card for k,v in  ([ (x.position), x] for x in cardpositions) }
+      #get all cards for this page, with optional position parameter
+      if position == None:
+        cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId)
+      else :
+        cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId).filter(CardPosition.position == position)
 
       results = []
-      for cardposition in cardpositions:
+      for cardposition in cardpositions.all():
               results.append(cardposition.serialise())
 
       return make_response(jsonify({ 'list' : results })), 200
@@ -206,6 +213,14 @@ def create_app(config_name):
 
       return make_response(jsonify({ 'list' : results })), 200
 
+    @app.route('/api/real/cards/new', methods=['POST'])
+    def new_card():
+
+      card = Card(request.data.get('component'), request.data.get('key', {}), request.data.get('data', {}))
+      card.save()
+
+      return make_response(jsonify({})), 200
+
     @app.route('/api/real/cards/save', methods=['POST'])
     def save_card():
 
@@ -236,6 +251,20 @@ def create_app(config_name):
         userid = request.data.get('userId', '0')
         Favourite.delete_all(userid)
         return make_response(jsonify({'status': 'ok'})), 200
+
+
+    @app.route('/api/real/imports/countries', methods=['GET'])
+    def import_countries():
+
+      with urllib.request.urlopen("https://raw.githubusercontent.com/iancoleman/cia_world_factbook_api/master/data/2018-05-28_factbook.json") as url:
+        data = json.loads(url.read().decode())
+
+        for country in data['countries']:
+          country = Country(data['countries'][country]['data'], {})
+          country.save()
+          #print (data['countries'][country]['data']['name'])
+
+        return make_response(jsonify({'status': 'imported'})), 200
 
 
     return app

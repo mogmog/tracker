@@ -67,17 +67,20 @@ class PageCard(db.Model):
 class CardPosition(db.Model):
     __tablename__ = 'cardposition'
     id =  db.Column('id', db.Integer, primary_key=True)
-    pageId = db.Column('pageId', db.Integer, db.ForeignKey('page.id'))
+
+    key = db.Column(JSONB(astext_type=Text()))
+
+    pageId = db.Column('pageid', db.Integer, db.ForeignKey('page.id'))
     page = db.relationship("Page")
 
-    layoutId = db.Column('layoutId', db.Integer, db.ForeignKey('layout.id'))
+    layoutId = db.Column('layoutid', db.Integer, db.ForeignKey('layout.id'))
     layout = db.relationship("Layout")
 
 
-    userId = db.Column('userId', db.Integer, db.ForeignKey('user.id'))
+    userId = db.Column('userid', db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 
-    cardId = db.Column('cardId', db.Integer, db.ForeignKey('cards.id'))
+    cardId = db.Column('cardid', db.Integer, db.ForeignKey('cards.id'))
     card = db.relationship("Card")
 
     position = db.Column('position', db.Integer)
@@ -92,7 +95,7 @@ class CardPosition(db.Model):
 
     def serialise(self):
         print (self.card)
-        return  { 'id': self.id, 'card': self.card.serialise(), 'page' : self.page.serialise(), 'position': self.position}
+        return  { 'id': self.id, 'card': self.card.serialise(), 'page' : self.page.serialise(), 'position': self.position, 'key' : self.key}
 
 
 

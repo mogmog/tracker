@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
-import numeral from 'numeral';
-
+import sample from './sample.json';
 import schema from './schema.json';
 
 import Trend from 'components/Trend';
@@ -42,5 +41,9 @@ class NarrativeCard extends Component {
     </ChartCard>);
   }
 }
+
+NarrativeCard.defaultProps = {
+  data: sample
+};
 
 export default NarrativeCard;

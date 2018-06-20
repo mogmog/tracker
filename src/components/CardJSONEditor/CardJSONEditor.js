@@ -5,6 +5,8 @@ const { Meta } = Card;
 
 import {render} from "react-dom";
 import CardLoader from "../../components/CardLoader/CardLoader";
+import CardChecks from "../CardChecks/CardChecks";
+
 const TabPane = Tabs.TabPane;
 
 var CodeMirror = require('react-codemirror');
@@ -19,6 +21,7 @@ class CardJSONEditor extends Component {
   }
 
   async componentDidMount() {
+    /*get the schema for the appropriate card */
     const schema = await import('./../Cards/' + this.props.card.component + '/schema');
     this.setState({ schema  });
   }
@@ -47,7 +50,7 @@ class CardJSONEditor extends Component {
 
     dispatch({
       type: 'cardpositions/fetchcardpositions',
-      payload: {'userId' : 2, 'type': 'question', 'id': 1}
+      payload: {'userId' : 1, 'type': 'question', 'id': 1}
     });
 
     this.setState({editvisible : false});
@@ -55,6 +58,9 @@ class CardJSONEditor extends Component {
   }
 
   showEdit() {
+
+    const {dispatch} = this.props;
+
     this.setState({"editvisible": !this.state.editvisible});
   }
 
@@ -63,7 +69,9 @@ class CardJSONEditor extends Component {
   }
 
   render() {
+    console.log((this.props.isEmpty));
 
+    const { isEmpty } = this.props;
     const { formData, activeKey, editvisible, checksvisible, card, schema } = this.state;
 
     const options = {lineNumbers: false, mode : 'json' };
@@ -92,57 +100,9 @@ class CardJSONEditor extends Component {
 
     </Modal>);
 
-
-    const columns = [{
-      title: 'Name',
-      dataIndex: 'name',
-      render: text => <a href="javascript:;">{text}</a>,
-    }, {
-      title: 'Position',
-      dataIndex: 'address',
-    }];
-    const data2 = [{
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'Analyst',
-    }, {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'Analyst',
-    }, {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Intern',
-    }];
-
-// rowSelection object indicates the need for row selection
-    const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
-        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-      },
-      getCheckboxProps: record => ({
-        checked : record.key > 2,
-
-        name: record.name,
-      }),
-    };
-
-    const checkmodal = (<Modal bodyStyle={{height : '40vh'}} visible={checksvisible} footer={[
-      <Button key="submit" type="primary" onClick={this.handleOK.bind(this)}>
-        Save
-      </Button>,
-    ]} width={'40vw'} onCancel={this.showChecks.bind(this)}>
-
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data2} pagination={false} />
-
-    </Modal>);
-
     return (<div><Card bodyStyle={{padding : 0, margin : 0}} actions={[<Icon type="edit" onClick={this.showEdit.bind(this)} />, <Icon type="check-square-o" onClick={this.showChecks.bind(this)}/>, <Icon type="ellipsis" />]} >
       {this.props.children}
-    </Card> {editmodal} {checkmodal}</div>);
+    </Card> {editmodal} <CardChecks checksvisible={checksvisible}/></div>);
   }
 }
 
