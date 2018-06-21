@@ -33,7 +33,7 @@ class NewCard extends Component {
     const { newcardmodalvisible }  = this.state;
     const { position }    = this.props;
 
-    const newcardmodal = (<Modal bodyStyle={{height : '50vh'}} visible={newcardmodalvisible} footer={[]} width={'60vw'} >
+    const newcardmodal = (<Modal bodyStyle={{height : '50vh'}} visible={newcardmodalvisible} footer={[]} width={'60vw'} onCancel={this.showNewModal.bind(this)} >
 
       <Row gutter={24}>
 

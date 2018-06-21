@@ -219,7 +219,7 @@ def create_app(config_name):
       card = Card(request.data.get('component'), request.data.get('key', {}), request.data.get('data', {}))
       card.save()
 
-      return make_response(jsonify({})), 200
+      return make_response(jsonify(card.serialise())), 200
 
     @app.route('/api/real/cards/save', methods=['POST'])
     def save_card():
