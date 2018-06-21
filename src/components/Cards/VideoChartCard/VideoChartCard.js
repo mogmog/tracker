@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { Chart, Geom, Axis, Tooltip, Coord, Label, Legend, Guide, Shape, Facet, G2 } from 'bizcharts';
-import { View } from "@antv/data-set";
+import { Chart, Geom, Axis, Tooltip, Coord, Label, Legend, Guide, Shape, Facet, G2, View } from 'bizcharts';
 
 import numeral from 'numeral';
 
@@ -42,13 +41,26 @@ class VideoChartCard extends Component {
       }
     };
 
+    var markData = [
+      {"date": "2014-08-06", "type": "Client", "version": "2.0", "value": 1111111},
+      {"date": "2014-08-20", "type": "Client", "version": "2.1", "value": 1111111},
+      {"date": "2014-08-27", "type": "Server", "version": "3.5", "value": 1111111},
+      {"date": "2014-09-03", "type": "Client", "version": "2.2", "value": 1111111}
+    ];
+
+    function formatter(text, item) {
+      var point = item.point;
+      var type = point['type'];
+      return '<div style="width: 60px;text-align: center;font-size: 8px;line-height: 1.2;color: #fff;margin-left: -8px;"><span>' + type + '</span><br><span>' + text + '</span></div>';
+    }
+
     return (<ChartCard
       bordered={false}
       title="Something"
       footer={<Field label="Blah" value={`${numeral(12423).format('0,0')}`} />}
       contentHeight={400}
     >
-      <Chart height={400} data={data2} scale={cols} forceFit onTooltipChange={(ev)=>{
+      <Chart height={400}  scale={cols} forceFit onTooltipChange={(ev)=>{
         var items = ev.items; // tooltip显示的项
 
         console.log(ev.items);
@@ -72,6 +84,9 @@ class VideoChartCard extends Component {
           value: 56
         });
       }}>
+
+        <View data={data2} scale={cols} >
+
         <Axis name="year" />
         <Axis name="value" label={{
           formatter: val => {
@@ -96,6 +111,22 @@ class VideoChartCard extends Component {
         />
         <Geom type="area" position="year*value" />
         <Geom type="line" position="year*value" size={2} />
+        </View>
+
+
+        <View data={markData} scale={cols}>
+          <Tooltip visible={false} />
+          <Geom type="interval" position="date*value" color={['type', ['#ff7f00', '#093']]} size={3} />
+          <Geom type="point" position="date*value" color={['type', ['#ff7f00', '#093']]} shape='circle'  size={10} >
+            <Label
+              content="version"
+              custom={true}
+              renderer={formatter}
+              offset={0}
+            />
+          </Geom>
+        </View>
+
       </Chart>
     </ChartCard>);
   }

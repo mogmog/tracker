@@ -65,6 +65,7 @@ class PageCard(db.Model):
 
 
 class CardPosition(db.Model):
+
     __tablename__ = 'cardposition'
     id =  db.Column('id', db.Integer, primary_key=True)
 
@@ -84,6 +85,14 @@ class CardPosition(db.Model):
     card = db.relationship("Card")
 
     position = db.Column('position', db.Integer)
+
+    def __init__(self, userId, cardId, layoutId, pageId, position, key):
+        self.userId   = userId
+        self.cardId   = cardId
+        self.layoutId = layoutId
+        self.pageId   = pageId
+        self.position = position
+        self.key      = key
 
     def save(self):
       db.session.add(self)

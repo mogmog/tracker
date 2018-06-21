@@ -121,7 +121,19 @@ def create_app(config_name):
 
       return make_response(jsonify({ 'list' : results })), 200
 
-      #return make_response(jsonify(dict)), 200
+
+    @app.route('/api/real/cardpositions/new', methods=['POST'])
+    def newCardPositions():
+
+      cardId = request.data.get('cardId', 0)
+      position = request.data.get('position', 0)
+      key = request.data.get('key', {})
+
+      cardposition = CardPosition(1, cardId, 1, 4, position, key)
+      cardposition.save()
+
+      return make_response(jsonify(cardposition.serialise())), 200
+
 
     @app.route('/api/real/favourites', methods=['GET'])
     def getFavourites():
@@ -218,6 +230,9 @@ def create_app(config_name):
 
       card = Card(request.data.get('component'), request.data.get('key', {}), request.data.get('data', {}))
       card.save()
+
+      import time
+      time.sleep(1)
 
       return make_response(jsonify(card.serialise())), 200
 

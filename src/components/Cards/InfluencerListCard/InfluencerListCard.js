@@ -5,6 +5,8 @@ import { List, Avatar } from 'antd';
 import { ChartCard } from '../../Charts/index';
 import InfluencerListItem from "../../Influencers/InfluencerListItem";
 
+import sample from './sample.json';
+import schema from './schema.json';
 
 class InfluencerListCard extends Component {
   constructor(props) {
@@ -52,7 +54,6 @@ class InfluencerListCard extends Component {
     return (<ChartCard
       bordered={true}
       title={'Influencers'}
-      footer={[]}
     >
 
       <List
@@ -68,7 +69,6 @@ class InfluencerListCard extends Component {
 }
 
 InfluencerListCard.defaultProps = {
-  data: {title : 'No title defined'}
+  data: sample
 };
-
 export default InfluencerListCard;

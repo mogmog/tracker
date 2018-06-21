@@ -10,3 +10,13 @@ export async function queryCardPositions(params) {
   });
 }
 
+
+export async function createCardPositions(params) {
+  return request('/api/real/cardpositions/new', {
+    method: 'POST',
+    body: {
+      ...params,
+    },
+  });
+}
+

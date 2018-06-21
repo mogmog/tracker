@@ -1,10 +1,11 @@
-import {  queryCardPositions } from '../services/cardpositions/api';
+import {  queryCardPositions, createCardPositions } from '../services/cardpositions/api';
 
 export default {
   namespace: 'cardpositions',
 
   state: {
     cardpositions: {},
+    new : {},
     ispositionempty : true
   },
 
@@ -18,13 +19,14 @@ export default {
       });
     },
 
-    * fetchisempty({payload}, { call, put }) {
-      const response = yield call(queryCardPositions, payload);
+    * createcardposition({payload}, { call, put }) {
+      const response = yield call(createCardPositions, payload);
       yield put({
-        type: 'saveisempty',
+        type: 'save',
         payload: response,
       });
     },
+
 
   },
 
@@ -36,12 +38,13 @@ export default {
       };
     },
 
-    saveisempty(state, action) {
+    savecreatecardposition(state, action) {
       return {
         ...state,
-        ispositionempty: action.payload.list.length === 0 ,
+        new: action.payload,
       };
     },
+
 
   },
 };

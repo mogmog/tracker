@@ -3,11 +3,15 @@ import React, {Component} from 'react';
 import CountryInfoCard      from './../Cards/CountryInfoCard/CountryInfoCard';
 import NarrativeSummaryCard from './../Cards/NarrativeSummaryCard/NarrativeSummaryCard';
 import NarrativeCard from './../Cards/NarrativeCard/NarrativeCard';
+import InfluencerListCard from './../Cards/InfluencerListCard/InfluencerListCard';
+import VideoChartCard from './../Cards/VideoChartCard/VideoChartCard';
 
 const mappings = {
   'CountryInfoCard' : CountryInfoCard,
   'NarrativeSummaryCard' : NarrativeSummaryCard,
-  'NarrativeCard' : NarrativeCard
+  'NarrativeCard' : NarrativeCard,
+  'InfluencerListCard' : InfluencerListCard,
+  'VideoChartCard' : VideoChartCard
 
 }
 
@@ -19,14 +23,6 @@ class CardLoader extends Component {
   }
 
   render() {
-
-    /*must update this every time you add a new card*/
-    const mappings = {
-      'CountryInfoCard' : CountryInfoCard,
-      'NarrativeSummaryCard' : NarrativeSummaryCard,
-      'NarrativeCard' : NarrativeCard
-
-    }
 
     const Card = mappings[this.props.card.component];
 

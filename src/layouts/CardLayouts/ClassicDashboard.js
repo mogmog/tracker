@@ -57,7 +57,7 @@ class ClassicDashboard extends React.PureComponent {
               <Col {...topColResponsiveProps}>
                 {groupedByPos[0] !== undefined ? (<CardJSONEditor card={groupedByPos[0].card} position={0} dispatch={this.props.dispatch}>
                   <CardLoader card={groupedByPos[0].card} />
-                  </CardJSONEditor>) : (<NewCard position={0} dispatch={this.props.dispatch}/> )}
+                  </CardJSONEditor>) : (<NewCard position={0} {...this.props} /> )}
               </Col>
              <Col {...topColResponsiveProps}>
                <CardJSONEditor card={groupedByPos[1].card} position={1} dispatch={this.props.dispatch}>
@@ -100,11 +100,14 @@ class ClassicDashboard extends React.PureComponent {
           </Col>
 
           <Col span={5} push={1}>
-            {/*right hand side bar */}
-          {/*  <CardLoader component={positions[12]} data={data}/>*/}
+            {/*influencer sidebar*/}
+            <CardLoader card={groupedByPos[12].card} />
           </Col>
 
+        </Row>
 
+        <Row>
+          <CardLoader card={groupedByPos[13].card} />
         </Row>
 
       </Fragment>

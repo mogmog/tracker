@@ -19,12 +19,28 @@ class NewCard extends Component {
   }
 
   createNewCard(component, position) {
-      const { dispatch } = this.props;
+    const { dispatch, card } = this.props;
 
-    dispatch({
+   dispatch({
       type: 'card/createquestioncard',
-      payload: {component : component, key : {}, data : {}}
-    });
+      payload: {component : component, key : {type : 'question', id : 1}, data : {}}
+    }).then(()=> {
+
+     console.log(this.props.card.card.id);
+     console.log(this.props.card.card.id);
+     console.log(this.props.card.card.id);
+
+     const newcardid = this.props.card.card.id;
+     alert(newcardid);
+
+     dispatch({
+       type: 'cardpositions/createcardposition',
+       payload: {position : position, cardId : newcardid, key : {type : 'question', id : 1}}
+     })
+
+   });
+
+
 
   }
 
@@ -33,12 +49,16 @@ class NewCard extends Component {
     const { newcardmodalvisible }  = this.state;
     const { position }    = this.props;
 
+
+    console.log("does this contain card?");
+    console.log(this.props);
+
     const newcardmodal = (<Modal bodyStyle={{height : '50vh'}} visible={newcardmodalvisible} footer={[]} width={'60vw'} onCancel={this.showNewModal.bind(this)} >
 
       <Row gutter={24}>
 
           {
-            Object.keys(getMappings()).map((e) =>  <Col span={8} ><Card actions={[<Button onClick={(ee)=>{this.createNewCard(e, position)} }>Add {e}</Button>]}><CardLoader key={e} card={{component : e}}></CardLoader></Card></Col>)
+            Object.keys(getMappings()).map((e) =>  <Col span={8} key={e}><Card key={e} actions={[<Button onClick={(ee)=>{this.createNewCard(e, position)} }>Add {e}</Button>]}><CardLoader key={e} card={{component : e}}></CardLoader></Card></Col>)
           }
 
       </Row>
