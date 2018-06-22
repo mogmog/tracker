@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Chart, Geom, Axis, Tooltip, Coord, Label, Legend, Guide, Shape, Facet, G2, View } from 'bizcharts';
 
+import { View as Something} from '@antv/data-set';
+
 import numeral from 'numeral';
 
 import {
@@ -17,29 +19,32 @@ class VideoChartCard extends Component {
   render() {
     const { data } = this.props;
 
-// Data source
+    const dv = new Something().source(data.socialmedia);
 
-    const { Line } = Guide;
-
-    const data2 = [
-      { year: '1991', value: 15468, videos : [1,2,3,4] },
-      { year: '1992', value: 16100, videos : [1,2,3,4]},
-      { year: '1993', value: 15900, videos : [1,2,3,4] },
-      { year: '1994', value: 17409, videos : [1,2,3,4] },
-      { year: '1995', value: 17000, videos : [1,2,3,4] },
-      { year: '1996', value: 31056, videos : [1,2,3,4] },
-      { year: '1997', value: 31982, videos : [1,2,3,4] },
-      { year: '1998', value: 32040, videos : [1,2,3,4] },
-      { year: '1999', value: 33233, videos : [1,2,3,4] }
-    ];
-    const cols={
-      value: {
-        min: 10000
-      },
+    dv.transform({
+      type: 'percent',
+      field: 'value',
+      dimension: 'country',
+      groupBy: [ 'year' ],
+      as: 'percent'
+    });
+    const cols = {
       year: {
-        range: [ 0 , 1 ]
+        type: 'linear',
+        tickInterval: 50
+      },
+      'percent': {
+        formatter: function(value) {
+          value = value || 0;
+          value = value * 100;
+          return parseInt(value);
+        },
+        alias: 'percent(%)'
       }
-    };
+    }
+
+
+
 
     var markData = [
       {"date": "1997-08-06", "type": "Client", "version": "2.0", "value": 1111111},
@@ -61,46 +66,29 @@ class VideoChartCard extends Component {
 
     return (<ChartCard
       bordered={false}
-      title="Something"
+      title={data.title}
       footer={<Field label="Blah" value={`${numeral(12423).format('0,0')}`} />}
       contentHeight={400}
     >
-      <Chart height={400}  scale={cols} forceFit onTooltipChange={(ev)=>{
-        var items = ev.items; // tooltip显示的项
+      <Chart height={400}  scale={cols} forceFit >
 
-        (ev.tooltip._attrs.container.onclick = (e) => {alert(JSON.stringify(ev.items))});
+        <View data={dv} scale={cols} >
 
-        items.push({
-          name: 'Video 1',
-          title:  'TEst',
-          marker: false,
-          color: '',
-          value: 12
-        });
-        items.push({
-          name: 'Video 2',
-          marker: false,
-          title: 'dfdf',
-          color: '',
-          value: 56
-        });
-      }}>
+            <Axis name="year" />
+            <Axis name="percent" />
 
-        <View data={data2} scale={cols} >
+            <Tooltip crosshairs={{type:'line'}}/>
+            <Geom type="areaStack" position="year*percent" color='country' />
+            <Geom type="lineStack" position="year*percent" size={2} color='country' />
 
-        <Axis name="year" />
-        <Axis name="value" label={{
-          formatter: val => {
-            return (val / 10000).toFixed(1) + 'k';
-          }
-        }} />
 
-        <Geom type="area" position="year*value" />
-        <Geom type="line" position="year*value" size={2} />
+
         </View>
 
+        <Legend />
 
-        <View data={markData} scale={cols}>
+
+        {/*<View data={markData} scale={cols}>
 
           <Geom type="interval" position="date*value" color={['type', ['#ff7f00', '#093']]} size={3} />
           <Geom type="point" position="date*value" color={['type', ['#ff7f00', '#093']]} shape='circle'  size={10} >
@@ -111,9 +99,9 @@ class VideoChartCard extends Component {
               offset={0}
             />
           </Geom>
-        </View>
+        </View>*/}
 
-        <Tooltip
+        {/*<Tooltip
           onTooltipChange={(e) => {alert(1)}}
           enterable ={true}
           containerTpl='<div class="g2-tooltip"><p class="g2-tooltip-title"></p><table class="g2-tooltip-list"></table></div>'
@@ -130,7 +118,7 @@ class VideoChartCard extends Component {
           }}  g2-tooltip-list={{
           margin: '10px'
         }}
-        />
+        />*/}
 
       </Chart>
     </ChartCard>);

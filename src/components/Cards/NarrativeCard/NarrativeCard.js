@@ -6,7 +6,8 @@ import schema from './schema.json';
 import Trend from 'components/Trend';
 import NarrativeCardModal from './NarrativeCardModal';
 
-import { Modal } from 'antd';
+import { Modal, Icon } from 'antd';
+
 
 import {
   ChartCard,
@@ -31,12 +32,13 @@ class NarrativeCard extends Component {
     const { data } = this.props;
     const { modalvisible } = this.state;
 
+    //
     return (<div><ChartCard
       bordered={true}
       style={{ border: data.color  }}
-      title={data.title}
+      title={<span> <Icon type={'message'}/> {data.title}</span>}
       footer={<Field label={data.subtitle}  />}
-      contentHeight={100}
+      contentHeight={250}
       onClick={this.toggleModal.bind(this)}
     >
 
