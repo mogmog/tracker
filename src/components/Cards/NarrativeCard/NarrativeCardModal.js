@@ -12,6 +12,7 @@ import InfluencerItem from "../../Influencers/InfluencerItem";
 import NarrativeTrend from '../../Narratives/NarrativeTrend';
 
 import styles from './NarrativeCardModal.less';
+import PostItem from "../../Posts/PostItem";
 
 class NarrativeCardModal extends Component {
   constructor(props) {
@@ -33,14 +34,12 @@ class NarrativeCardModal extends Component {
       xl: 8
     };
 
-    console.log(this.carousel);
-
     const {data, modalvisible, onCancel} = this.props;
 
     return (<Modal title={data.title} visible={modalvisible} width={'70%'} onCancel={onCancel} footer={[]} >
 
       <Row>
-        <Col span={18}>
+        <Col span={17}>
 
           <Row>
             <Col span={8}>
@@ -51,15 +50,15 @@ class NarrativeCardModal extends Component {
 
               <Row>
                 <Col span={8}>
-                  <NarrativeTrend type={'Posts'} absolute={1234} delta={'+0 above baseline'} percent={0} />
+                  <NarrativeTrend type={data['socialmedia']['posts']['type']} absolute={data['socialmedia']['posts']['absolute']} delta={data['socialmedia']['posts']['delta']} percent={data['socialmedia']['posts']['percent']} />
                 </Col>
 
                 <Col span={8}>
-                  <NarrativeTrend type={'Reach'} absolute={111} delta={'+0 above baseline'} percent={0} />
+                  <NarrativeTrend type={data['socialmedia']['engagement']['type']} absolute={data['socialmedia']['engagement']['absolute']} delta={data['socialmedia']['engagement']['delta']} percent={data['socialmedia']['engagement']['percent']} />
                 </Col>
 
                 <Col span={8}>
-                  <NarrativeTrend type={'Engagement'} absolute={222} delta={'+0 above baseline'} percent={0} />
+                  <NarrativeTrend type={data['socialmedia']['reach']['type']} absolute={data['socialmedia']['reach']['absolute']} delta={data['socialmedia']['reach']['delta']} percent={data['socialmedia']['reach']['percent']} />
                 </Col>
 
               </Row>
@@ -152,7 +151,9 @@ class NarrativeCardModal extends Component {
 
         </Col>
 
-        <Col span={6}>
+        <Col span={6} push={1}>
+
+          Influencers
           <List
             itemLayout="horizontal"
             dataSource={data.influencers}
@@ -162,6 +163,17 @@ class NarrativeCardModal extends Component {
               }}/>
             )}
           />
+
+          Posts
+          <List
+            size="small"
+            itemLayout="horizontal"
+            dataSource={[1,2,3,4,5,6,54,34,4,4,4,4,4,4,4,4,4]}
+            renderItem={item => (
+              <PostItem item={item} />
+            )}
+          />
+
         </Col>
       </Row>
 
