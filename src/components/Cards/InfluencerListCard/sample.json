@@ -1,4 +1,23 @@
 {
-  "title" : "I am a narrative title",
-  "subtitle" : "I am a narrative subtitle"
+  "title" : "Influencer list",
+  "influencers" : [
+  {
+    "name": "Mr person",
+    "facebook" : true,
+    "twitter" : true,
+    "instagram" : true
+  },
+  {
+    "name": "Mr person 2",
+    "facebook" : true,
+    "twitter" : false,
+    "instagram" : false
+  },
+  {
+    "name": "Mr person 3",
+    "facebook" : false,
+    "twitter" : true,
+    "instagram" : true
+  }
+]
 }

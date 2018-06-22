@@ -4,6 +4,9 @@ import sample from './sample.json';
 import schema from './schema.json';
 
 import Trend from 'components/Trend';
+import NarrativeCardModal from './NarrativeCardModal';
+
+import { Modal } from 'antd';
 
 import {
   ChartCard,
@@ -16,29 +19,37 @@ class NarrativeCard extends Component {
   constructor(props) {
     super(props);
     this.schema = schema;
-    this.state = {};
+    this.state = {modalvisible : false};
+  }
+
+  toggleModal() {
+    this.setState({ 'modalvisible' : !this.state.modalvisible});
   }
 
   render() {
 
-    const {data} = this.props;
+    const { data } = this.props;
+    const { modalvisible } = this.state;
 
-    return (<ChartCard
-      bordered={false}
+    return (<div><ChartCard
+      bordered={true}
+      style={{ border: data.color  }}
       title={data.title}
       footer={<Field label={data.subtitle}  />}
       contentHeight={100}
+      onClick={this.toggleModal.bind(this)}
     >
 
-      <Trend flag="up" style={{ marginRight: 16 }}>
-        UP<span className={styles.trendText} >12%</span>
-      </Trend>
+      {data.direction === 'up' && (<Trend flag="up" style={{ marginRight: 16 }}> UP<span className={styles.trendText} >12%</span> </Trend>) }
 
-      <Trend flag="down">
-        DOWN<span className={styles.trendText}>11%</span>
-      </Trend>
+      {data.direction === 'down' && (<Trend flag="down"> DOWN<span className={styles.trendText}>11%</span> </Trend>) }
 
-    </ChartCard>);
+
+    </ChartCard>
+
+    <NarrativeCardModal data={data} modalvisible={modalvisible} onCancel={this.toggleModal.bind(this)}/>
+
+    </div>);
   }
 }
 
