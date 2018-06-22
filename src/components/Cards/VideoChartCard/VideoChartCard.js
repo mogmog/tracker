@@ -42,10 +42,10 @@ class VideoChartCard extends Component {
     };
 
     var markData = [
-      {"date": "2014-08-06", "type": "Client", "version": "2.0", "value": 1111111},
-      {"date": "2014-08-20", "type": "Client", "version": "2.1", "value": 1111111},
-      {"date": "2014-08-27", "type": "Server", "version": "3.5", "value": 1111111},
-      {"date": "2014-09-03", "type": "Client", "version": "2.2", "value": 1111111}
+      {"date": "1997-08-06", "type": "Client", "version": "2.0", "value": 1111111},
+      {"date": "1998-08-20", "type": "Client", "version": "2.1", "value": 1111111},
+      {"date": "1997-08-27", "type": "Server", "version": "3.5", "value": 1111111},
+      {"date": "1998-09-03", "type": "Client", "version": "2.2", "value": 1111111}
     ];
 
     function formatter(text, item) {
@@ -53,6 +53,11 @@ class VideoChartCard extends Component {
       var type = point['type'];
       return '<div style="width: 60px;text-align: center;font-size: 8px;line-height: 1.2;color: #fff;margin-left: -8px;"><span>' + type + '</span><br><span>' + text + '</span></div>';
     }
+
+    function test() {
+      alert(1);
+    }
+
 
     return (<ChartCard
       bordered={false}
@@ -63,11 +68,7 @@ class VideoChartCard extends Component {
       <Chart height={400}  scale={cols} forceFit onTooltipChange={(ev)=>{
         var items = ev.items; // tooltip显示的项
 
-        console.log(ev.items);
-
-        items.pop();
-        items.pop();
-        items.pop();
+        (ev.tooltip._attrs.container.onclick = (e) => {alert(JSON.stringify(ev.items))});
 
         items.push({
           name: 'Video 1',
@@ -93,10 +94,31 @@ class VideoChartCard extends Component {
             return (val / 10000).toFixed(1) + 'k';
           }
         }} />
+
+        <Geom type="area" position="year*value" />
+        <Geom type="line" position="year*value" size={2} />
+        </View>
+
+
+        <View data={markData} scale={cols}>
+
+          <Geom type="interval" position="date*value" color={['type', ['#ff7f00', '#093']]} size={3} />
+          <Geom type="point" position="date*value" color={['type', ['#ff7f00', '#093']]} shape='circle'  size={10} >
+            <Label
+              content="version"
+              custom={true}
+              renderer={formatter}
+              offset={0}
+            />
+          </Geom>
+        </View>
+
         <Tooltip
+          onTooltipChange={(e) => {alert(1)}}
+          enterable ={true}
           containerTpl='<div class="g2-tooltip"><p class="g2-tooltip-title"></p><table class="g2-tooltip-list"></table></div>'
           itemTpl='<tr class="g2-tooltip-list-item"><td style="color:{color}">{name}</td><td>{value}</td></tr>'
-          offset={50}
+          offset={0}
           g2-tooltip={{
             position: 'absolute',
             visibility: 'hidden',
@@ -109,23 +131,6 @@ class VideoChartCard extends Component {
           margin: '10px'
         }}
         />
-        <Geom type="area" position="year*value" />
-        <Geom type="line" position="year*value" size={2} />
-        </View>
-
-
-        <View data={markData} scale={cols}>
-          <Tooltip visible={false} />
-          <Geom type="interval" position="date*value" color={['type', ['#ff7f00', '#093']]} size={3} />
-          <Geom type="point" position="date*value" color={['type', ['#ff7f00', '#093']]} shape='circle'  size={10} >
-            <Label
-              content="version"
-              custom={true}
-              renderer={formatter}
-              offset={0}
-            />
-          </Geom>
-        </View>
 
       </Chart>
     </ChartCard>);

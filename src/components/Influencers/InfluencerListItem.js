@@ -5,6 +5,7 @@ import FacebookProvider, { EmbeddedPost } from 'react-facebook';
 import { MiniArea } from 'components/Charts';
 import moment from "moment/moment";
 import BigTrend from "../BigTrend/index";
+import PlatformGrid from "../PlatformGrid/PlatformGrid";
 
 const TabPane = Tabs.TabPane;
 
@@ -39,19 +40,7 @@ class InfluencerListItem extends Component {
       },
     ];
 
-    const menu = (
-      <Menu>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.twitter.com/">Twitter</a>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.vk.com/">VK</a>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.ok.com/">OK</a>
-        </Menu.Item>
-      </Menu>
-    );
+
 
     const topColResponsiveProps = {
       xs: 24,
@@ -66,11 +55,11 @@ class InfluencerListItem extends Component {
 
         <List.Item.Meta
           avatar={<Avatar onClick={this.toggleModal.bind(this)} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={<Row> <Col span={10}>{item.title}</Col> <Col span={12} push={4}>  <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" href="#">
-              Social Networks <Icon type="down" />
-            </a>
-          </Dropdown> </Col> </Row> }
+          title={<Row> <Col span={12}>{item.title}</Col>
+            <Col span={12} push={4}>
+              <PlatformGrid twitter={true}/>
+            </Col>
+          </Row> }
         />
       </List.Item>
         <Modal title={"Vladamir Putin"} visible={visible} width={'60%'} onCancel={this.toggleModal.bind(this)}>
