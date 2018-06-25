@@ -14,7 +14,8 @@ tmux split-window -h
 # python api
 tmux select-window -t tracker:trackerWindow.2
 tmux send-keys -t tracker:trackerWindow.2 'cd api' C-j
-tmux send-keys -t tracker:trackerWindow.2 'source venv/bin/activate' C-j
+
+#tmux send-keys -t tracker:trackerWindow.2 'source venv/bin/activate' C-j
 tmux send-keys -t tracker:trackerWindow.2 'export APP_SETTINGS="development"' C-j
 tmux send-keys -t tracker:trackerWindow.2 'export DATABASE_URL="postgresql://postgres:postgres@localhost/tracker"' C-j
 tmux send-keys -t tracker:trackerWindow.2 'python run.py' C-j
