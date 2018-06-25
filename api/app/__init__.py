@@ -3,17 +3,12 @@ import json
 import jsonschema
 import random
 from flask_api import FlaskAPI, status
-import graphene
-from graphene import relay
-from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func, Text, Integer
 from flask import request, jsonify, abort, make_response
 from shapely.geometry import shape, Point
 from sqlalchemy import text
 import urllib.request, json
-
-from flask_graphql import GraphQLView
 
 from shapely.geometry import shape, Point
 
