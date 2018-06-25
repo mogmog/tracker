@@ -1,0 +1,1 @@
+INSERT INTO public.layout (id, name) VALUES (1, 'ClassicDashboard');

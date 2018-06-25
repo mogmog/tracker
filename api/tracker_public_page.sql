@@ -1,0 +1,1 @@
+INSERT INTO public.page (id, url) VALUES (4, '/dashboard/analysis');
