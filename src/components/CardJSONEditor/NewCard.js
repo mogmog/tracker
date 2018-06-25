@@ -21,14 +21,14 @@ class NewCard extends Component {
   createNewCard(component, position) {
     const { dispatch, card } = this.props;
 
+    const cc = getMappings()[component];
+
+    console.log(cc);
+
    dispatch({
       type: 'card/createquestioncard',
-      payload: {component : component, key : {type : 'question', id : 1}, data : {}}
+      payload: {component : component, key : {type : 'question', id : 1}, data : new cc().sample}
     }).then(()=> {
-
-     console.log(this.props.card.card.id);
-     console.log(this.props.card.card.id);
-     console.log(this.props.card.card.id);
 
      const newcardid = this.props.card.card.id;
      alert(newcardid);
@@ -48,10 +48,6 @@ class NewCard extends Component {
 
     const { newcardmodalvisible }  = this.state;
     const { position }    = this.props;
-
-
-    console.log("does this contain card?");
-    console.log(this.props);
 
     const newcardmodal = (<Modal bodyStyle={{height : '50vh'}} visible={newcardmodalvisible} footer={[]} width={'60vw'} onCancel={this.showNewModal.bind(this)} >
 

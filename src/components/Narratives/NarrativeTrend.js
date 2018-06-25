@@ -6,6 +6,7 @@ import {
   ChartCard,
   Field,
 } from 'components/Charts';
+import BigTrend from "../BigTrend";
 
 class NarrativeTrend extends Component {
   constructor(props) {
@@ -14,12 +15,14 @@ class NarrativeTrend extends Component {
   }
 
   render() {
-    const { type, percent, absolute, delta } = this.props;
+    const { type, percent, absolute, delta, direction } = this.props;
+
+    console.log(direction);
 
     return (<ChartCard
       bordered={false}
       title={type}
-      total={`${percent}%`}
+      total={<span>{`${percent}%`} <BigTrend flag={direction}/> </span>}
       footer={[<Field label={`${absolute} ${type}`} />, <Field label={delta}  />]}
       contentHeight={46}
     >
@@ -32,14 +35,16 @@ NarrativeTrend.propTypes = {
   type : PropTypes.string,
   percent : PropTypes.number,
   absolute: PropTypes.number,
-  delta : PropTypes.string
+  delta : PropTypes.string,
+  direction : PropTypes.string
 };
 
 NarrativeTrend.defaultProps = {
   type : 'Posts',
   percent : 0,
   absolute: 0,
-  delta : '+0 above baseline'
+  delta : '+0 above baseline',
+  direction : 'up'
 };
 
 export default NarrativeTrend;

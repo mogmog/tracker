@@ -13,12 +13,15 @@ import CountryInfoModalCard from './CountryInfoModalCard';
 import GeoJSONThumbnail from '../../Maps/GeoJSONThumbnail';
 
 import sample from './sample';
+import schema from './schema';
 
 class CountryInfoCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = { modal : false };
+    this.sample = sample;
+    this.schema = schema;
   }
 
   handleCancel(e) {
@@ -36,7 +39,7 @@ class CountryInfoCard extends Component {
     return (<ChartCard
       bordered={false}
       action={<Icon type="arrows-alt" style={{'fontSize' : '12px'}} onClick={this.handleCancel.bind(this)} />}
-      title={data.title}
+      title={<span><Icon type="global" /> {data.title}</span>}
       footer={[<Field label="Population" value={data.subtitle}/>]}
       contentHeight={150}
     >

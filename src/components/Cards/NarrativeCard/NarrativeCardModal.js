@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Tabs, Row, Col, Modal, List, Carousel, Divider, Card } from 'antd';
+import {Tabs, Row, Col, Modal, List, Carousel, Divider, Card, Icon } from 'antd';
 import FacebookProvider, {EmbeddedPost} from 'react-facebook';
 
 const TabPane = Tabs.TabPane;
@@ -13,6 +13,7 @@ import NarrativeTrend from '../../Narratives/NarrativeTrend';
 
 import styles from './NarrativeCardModal.less';
 import PostItem from "../../Posts/PostItem";
+import ChartCard from "../../Charts/ChartCard/index";
 
 class NarrativeCardModal extends Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class NarrativeCardModal extends Component {
     this.state = {};
   }
 
-  jump() {
-   console.log(this.carousel.goTo(1));
+  jump(where) {
+   this.carousel.goTo(where);
   }
 
   render() {
@@ -50,26 +51,22 @@ class NarrativeCardModal extends Component {
 
               <Row>
                 <Col span={8}>
-                  <NarrativeTrend type={data['socialmedia']['posts']['type']} absolute={data['socialmedia']['posts']['absolute']} delta={data['socialmedia']['posts']['delta']} percent={data['socialmedia']['posts']['percent']} />
+                  <NarrativeTrend direction={data['socialmedia']['posts']['direction']} type={data['socialmedia']['posts']['type']} absolute={data['socialmedia']['posts']['absolute']} delta={data['socialmedia']['posts']['delta']} percent={data['socialmedia']['posts']['percent']} />
                 </Col>
 
                 <Col span={8}>
-                  <NarrativeTrend type={data['socialmedia']['engagement']['type']} absolute={data['socialmedia']['engagement']['absolute']} delta={data['socialmedia']['engagement']['delta']} percent={data['socialmedia']['engagement']['percent']} />
+                  <NarrativeTrend direction={data['socialmedia']['engagement']['direction']} type={data['socialmedia']['engagement']['type']} absolute={data['socialmedia']['engagement']['absolute']} delta={data['socialmedia']['engagement']['delta']} percent={data['socialmedia']['engagement']['percent']} />
                 </Col>
 
                 <Col span={8}>
-                  <NarrativeTrend type={data['socialmedia']['reach']['type']} absolute={data['socialmedia']['reach']['absolute']} delta={data['socialmedia']['reach']['delta']} percent={data['socialmedia']['reach']['percent']} />
+                  <NarrativeTrend direction={data['socialmedia']['reach']['direction']} type={data['socialmedia']['reach']['type']} absolute={data['socialmedia']['reach']['absolute']} delta={data['socialmedia']['reach']['delta']} percent={data['socialmedia']['reach']['percent']} />
                 </Col>
 
               </Row>
 
             </Col>
 
-
-
           </Row>
-
-          <Divider/>
 
           <Row gutter={10}>
 
@@ -104,44 +101,25 @@ class NarrativeCardModal extends Component {
           <Row>
             <Col>
 
-              <div style={{ background: '#ECECEC', padding: '20px' }}>
+              <div style={{ background: '#ECECEC', padding: '1px' }}>
 
                 <Row>
-                  <Col span={8}>
-                    <Card title="Analysis" bordered={false} >.
-                      <a onClick={this.jump.bind(this)}>as we can see</a> facebook has 1B users blah blah blah.
+                  <Col span={24}>
 
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <ChartCard
+                      bordered={true}
+                      title={<span><Icon type={'form'}></Icon>Analysis</span>}
+                    >
+                      <a onClick={(e) => {this.jump(1)}}>as we can see</a> facebook has 1B users blah blah blah.
 
-                    </Card>
-                  </Col>
+                      Lorem ipsum dolor sit amet, consectetur <a onClick={(e) => {this.jump(2)}}>dolore</a> elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-
-                  <Col span={8}>
-                    <Card title="Analysis" bordered={false} >.
-                      <a onClick={this.jump.bind(this)}>as we can see</a> facebook has 1B users blah blah blah.
-
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                    </Card>
-                  </Col>
-
-
-                  <Col span={8}>
-                    <Card title="Analysis" bordered={false} >.
-                      <a onClick={this.jump.bind(this)}>as we can see</a> facebook has 1B users blah blah blah.
-
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                    </Card>
+                    </ChartCard>
                   </Col>
 
                 </Row>
 
-
               </div>
-
-
 
               <CustomMentionEditor actions={() => {
               }}></CustomMentionEditor>
@@ -153,8 +131,8 @@ class NarrativeCardModal extends Component {
 
         <Col span={6} push={1}>
 
-          Influencers
           <List
+            header={'Influencers'}
             itemLayout="horizontal"
             dataSource={data.influencers}
             renderItem={item => (
@@ -164,11 +142,11 @@ class NarrativeCardModal extends Component {
             )}
           />
 
-          Posts
           <List
             size="small"
+            header={'Posts'}
             itemLayout="horizontal"
-            dataSource={[1,2,3,4,5,6,54,34,4,4,4,4,4,4,4,4,4]}
+            dataSource={[1,2,3,4,5,6,54,34,4,4]}
             renderItem={item => (
               <PostItem item={item} />
             )}

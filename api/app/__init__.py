@@ -115,6 +115,8 @@ def create_app(config_name):
       else :
         cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId).filter(CardPosition.position == position)
 
+      print (cardpositions)
+
       results = []
       for cardposition in cardpositions.all():
               results.append(cardposition.serialise())

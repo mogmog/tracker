@@ -1,4 +1,87 @@
 {
-  "title" : "I am a narrative title",
-  "subtitle" : "I am a narrative subtitle"
+  "direction": "up",
+  "color": "5px solid rgba(255, 00, 0, .4)",
+  "title": "Anti West Sentiment",
+  "socialmedia": {
+    "posts": {
+      "absolute": 12,
+      "percent": 12,
+      "delta": "+12 above baseline",
+      "type": "Posts"
+    },
+    "engagement": {
+      "absolute": 12,
+      "percent": 12,
+      "delta": "+12 above baseline",
+      "type": "Engagement"
+    },
+    "reach": {
+      "absolute": 12,
+      "percent": 12,
+      "delta": "+12 above baseline",
+      "type": "Reach"
+    }
+  },
+  "subtitle": "ipso factum",
+  "influencers": [
+    {
+      "facebook": true,
+      "twitter": true,
+      "name": "Mr person",
+      "instagram": true
+    },
+    {
+      "facebook": true,
+      "twitter": false,
+      "name": "Mr person 2",
+      "instagram": false
+    },
+    {
+      "facebook": false,
+      "twitter": true,
+      "name": "Mr person 3",
+      "instagram": true
+    }
+  ],
+  "trend": [
+    {
+      "x": "2018-06-21",
+      "y": 1
+    },
+    {
+      "x": "2018-06-22",
+      "y": 6
+    },
+    {
+      "x": "2018-06-23",
+      "y": 4
+    },
+    {
+      "x": "2018-06-24",
+      "y": 8
+    },
+    {
+      "x": "2018-06-25",
+      "y": 3
+    },
+    {
+      "x": "2018-06-26",
+      "y": 7
+    },
+    {
+      "x": "2018-06-27",
+      "y": 2
+    }
+  ],
+  "posts": [
+    {
+      "url": "https://www.facebook.com/20531316728/posts/10154009990506721/"
+    },
+    {
+      "url": "https://www.facebook.com/20531316728/posts/10154009990506729/"
+    },
+    {
+      "url": "https://www.facebook.com/20531316728/posts/10154009990506729/"
+    }
+  ]
 }

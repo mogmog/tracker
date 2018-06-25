@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Chart, Geom, Axis, Tooltip, Coord, Label, Legend, Guide, Shape, Facet, G2, View } from 'bizcharts';
 
 import { View as Something} from '@antv/data-set';
+import sample from './sample.json';
+import schema from './schema.json';
 
 import numeral from 'numeral';
 
@@ -14,6 +16,8 @@ class VideoChartCard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.schema = schema;
+    this.sample = sample;
   }
 
   render() {
@@ -81,44 +85,9 @@ class VideoChartCard extends Component {
             <Geom type="areaStack" position="year*percent" color='country' />
             <Geom type="lineStack" position="year*percent" size={2} color='country' />
 
-
-
         </View>
 
         <Legend />
-
-
-        {/*<View data={markData} scale={cols}>
-
-          <Geom type="interval" position="date*value" color={['type', ['#ff7f00', '#093']]} size={3} />
-          <Geom type="point" position="date*value" color={['type', ['#ff7f00', '#093']]} shape='circle'  size={10} >
-            <Label
-              content="version"
-              custom={true}
-              renderer={formatter}
-              offset={0}
-            />
-          </Geom>
-        </View>*/}
-
-        {/*<Tooltip
-          onTooltipChange={(e) => {alert(1)}}
-          enterable ={true}
-          containerTpl='<div class="g2-tooltip"><p class="g2-tooltip-title"></p><table class="g2-tooltip-list"></table></div>'
-          itemTpl='<tr class="g2-tooltip-list-item"><td style="color:{color}">{name}</td><td>{value}</td></tr>'
-          offset={0}
-          g2-tooltip={{
-            position: 'absolute',
-            visibility: 'hidden',
-            border : '1px solid #efefef',
-            backgroundColor: 'white',
-            color: '#000',
-            opacity: "0.8",
-            padding: '5px 15px'
-          }}  g2-tooltip-list={{
-          margin: '10px'
-        }}
-        />*/}
 
       </Chart>
     </ChartCard>);
@@ -126,7 +95,7 @@ class VideoChartCard extends Component {
 }
 
 VideoChartCard.defaultProps = {
-  data: {}
+  data: sample
 };
 
 export default VideoChartCard;

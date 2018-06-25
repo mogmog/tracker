@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {List, Avatar} from 'antd';
+import {List, Avatar, Icon} from 'antd';
 
 import {ChartCard} from '../../Charts/index';
 import InfluencerItem from "./../../Influencers/InfluencerItem";
@@ -25,7 +25,7 @@ class InfluencerListCard extends Component {
 
     return (
 
-      <ChartCard bordered={true} title={data.title} >
+      <ChartCard bordered={true} title={<span > <Icon type="notification" /> {data.title} </span>} >
 
       <List
         itemLayout="horizontal"
