@@ -8,7 +8,7 @@ from sqlalchemy import func, Text, Integer
 from flask import request, jsonify, abort, make_response
 from shapely.geometry import shape, Point
 from sqlalchemy import text
-import urllib.request, json
+import json
 
 from shapely.geometry import shape, Point
 
