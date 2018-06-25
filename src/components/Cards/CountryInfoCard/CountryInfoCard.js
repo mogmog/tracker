@@ -34,13 +34,12 @@ class CountryInfoCard extends Component {
     const {data} = this.props;
 
     const { modal } = this.state;
-    console.log(sample);
 
     return (<ChartCard
       bordered={false}
       action={<Icon type="arrows-alt" style={{'fontSize' : '12px'}} onClick={this.handleCancel.bind(this)} />}
       title={<span><Icon type="global" /> {data.title}</span>}
-      footer={[<Field label="Population" value={data.subtitle}/>]}
+      footer={data.fields.map((field) => <Field label={field.title} value={field.value}/> )}
       contentHeight={150}
     >
 
