@@ -42,7 +42,7 @@ class CountryInfoCard extends Component {
       action={<Icon type="arrows-alt" style={{'fontSize' : '12px'}} onClick={this.handleCancel.bind(this)} />}
       title={<span><Icon type="global" /> {data.title}</span>}
       footer={data.fields.map((field) => <Field label={field.title} value={field.value}/> )}
-      contentHeight={150}
+      contentHeight={250}
     >
 
       <GeoJSONThumbnail geojson={data.map}/>
