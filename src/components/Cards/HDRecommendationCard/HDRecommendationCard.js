@@ -44,9 +44,15 @@ class HDSuggestionCard extends Component {
           <Col span={24}>
             <List
               size="small"
-              bordered
+              itemLayout="horizontal"
               dataSource={data.list}
-              renderItem={item => (<List.Item>{item}</List.Item>)}
+              renderItem={item => (
+                <List.Item>
+                  <List.Item.Meta
+                    title={<a> <Icon type={'check'} /> {item}</a>}
+                  />
+                </List.Item>
+              )}
             />
           </Col>
 

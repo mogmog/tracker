@@ -6,7 +6,7 @@ import schema from './schema.json';
 import Trend from 'components/Trend';
 import NarrativeCardModal from './NarrativeCardModal';
 
-import { Modal, Icon } from 'antd';
+import { Modal, Icon , List} from 'antd';
 
 
 import {
@@ -41,6 +41,19 @@ class NarrativeCard extends Component {
       contentHeight={250}
       onClick={this.toggleModal.bind(this)}
     >
+
+      {data.subnarratives && data.subnarratives.length && <List
+        size="small"
+        itemLayout="horizontal"
+        dataSource={data.subnarratives}
+        renderItem={item => (
+          <List.Item>
+            <List.Item.Meta
+              title={<a> <Icon type={'info'} /> {item}</a>}
+            />
+          </List.Item>
+        )}
+      />}
 
       {data.direction === 'up' && (<Trend flag="up" style={{ marginRight: 16 }}> UP<span className={styles.trendText} >12%</span> </Trend>) }
 

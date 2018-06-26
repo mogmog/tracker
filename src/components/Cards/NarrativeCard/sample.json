@@ -23,6 +23,7 @@
     }
   },
   "subtitle": "ipso factum",
+  "subnarratives" : ["test", "test2"],
   "influencers": [
     {
       "facebook": true,

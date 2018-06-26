@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Tabs, Row, Col, List, Carousel, Divider, Card, Icon , Tooltip , Button } from 'antd';
+import {Tabs, Row, Col, List, Carousel, Divider, Card, Icon, Tooltip, Button, Checkbox} from 'antd';
 
 import FacebookProvider, {EmbeddedPost} from 'react-facebook';
 
@@ -19,19 +19,24 @@ import PostItem from "../../Posts/PostItem";
 import ChartCard from "../../Charts/ChartCard/index";
 import Facebook from "../../Content/Facebook/Facebook";
 import Twitter from "../../Content/Twitter/Twitter";
+import InfluencerDetail from "../../Influencers/InfluencerDetail";
 
 class NarrativeCardModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { pane : 0};
-  }
-
-  slideforward() {
-    this.setState({pane : 1});
+    this.state = {pane: 0, influencerdetaillist: []};
   }
 
   slideback() {
-    this.setState({pane : 0});
+    this.setState({pane: 0});
+  }
+
+  viewInfluencers() {
+    this.setState({pane: 1});
+  }
+
+  addInfluencer(item) {
+    this.setState({influencerdetaillist: this.state.influencerdetaillist.concat([item])});
   }
 
   render() {
@@ -44,8 +49,8 @@ class NarrativeCardModal extends Component {
       xl: 8
     };
 
-    const {data , toggle } = this.props;
-    const { pane } = this.state;
+    const {data, toggle} = this.props;
+    const {pane, influencerdetaillist} = this.state;
 
     const component1 = <Row>
       <Col span={17}>
@@ -60,7 +65,7 @@ class NarrativeCardModal extends Component {
                             type={data['socialmedia']['posts']['type']}
                             absolute={data['socialmedia']['posts']['absolute']}
                             delta={data['socialmedia']['posts']['delta']}
-                            percent={data['socialmedia']['posts']['percent']} />
+                            percent={data['socialmedia']['posts']['percent']}/>
           </Col>
 
           <Col span={8}>
@@ -70,7 +75,7 @@ class NarrativeCardModal extends Component {
                             type={data['socialmedia']['engagement']['type']}
                             absolute={data['socialmedia']['engagement']['absolute']}
                             delta={data['socialmedia']['engagement']['delta']}
-                            percent={data['socialmedia']['engagement']['percent']} />
+                            percent={data['socialmedia']['engagement']['percent']}/>
           </Col>
 
           <Col span={8}>
@@ -80,7 +85,7 @@ class NarrativeCardModal extends Component {
                             type={data['socialmedia']['reach']['type']}
                             absolute={data['socialmedia']['reach']['absolute']}
                             delta={data['socialmedia']['reach']['delta']}
-                            percent={data['socialmedia']['reach']['percent']} />
+                            percent={data['socialmedia']['reach']['percent']}/>
           </Col>
 
         </Row>
@@ -92,8 +97,10 @@ class NarrativeCardModal extends Component {
               <Carousel ref={(carousel) => this.carousel = carousel} dots={false}>
                 {data.posts.map((post, key) =>
                   <div>
-                    {post.type === 'facebook' && <Facebook key={key} name={post.name} content={post.content} date={post.date} /> }
-                    {post.type === 'twitter' && <Twitter key={key} name={post.name} content={post.content} date={post.date} /> }
+                    {post.type === 'facebook' &&
+                    <Facebook key={key} name={post.name} content={post.content} date={post.date}/>}
+                    {post.type === 'twitter' &&
+                    <Twitter key={key} name={post.name} content={post.content} date={post.date}/>}
                   </div>
                 )}
               </Carousel>
@@ -105,7 +112,7 @@ class NarrativeCardModal extends Component {
         <Row>
           <Col>
 
-            <div style={{ background: '#ECECEC', padding: '1px' }}>
+            <div style={{background: '#ECECEC', padding: '1px'}}>
 
               <Row>
                 <Col span={24}>
@@ -114,9 +121,17 @@ class NarrativeCardModal extends Component {
                     bordered={true}
                     title={<span><Icon type={'form'}></Icon>Analysis</span>}
                   >
-                    <a onClick={(e) => {this.jump(1)}}>as we can see</a> facebook has 1B users blah blah blah.
+                    <a onClick={(e) => {
+                      this.jump(1)
+                    }}>as we can see</a> facebook has 1B users blah blah blah.
 
-                    Lorem ipsum dolor sit amet, consectetur <a onClick={(e) => {this.jump(2)}}>dolore</a> elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur <a onClick={(e) => {
+                    this.jump(2)
+                  }}>dolore</a> elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim
+                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                    est laborum.
 
                   </ChartCard>
                 </Col>
@@ -136,7 +151,8 @@ class NarrativeCardModal extends Component {
       <Col span={6} push={1}>
 
         <List
-          header={'Influencers'}
+          header={<span> Influencers {influencerdetaillist.length && <Button
+            onClick={this.viewInfluencers.bind(this)}>View {influencerdetaillist.length} selected</Button>} </span>}
           itemLayout="horizontal"
           dataSource={data.influencers}
           renderItem={item => (
@@ -144,10 +160,10 @@ class NarrativeCardModal extends Component {
 
               <InfluencerItem
                 item={item}
-                extra={ <Button onClick={this.slideforward.bind(this)}>slide me</Button>}
+                extra={<Checkbox onClick={(e) => this.addInfluencer(item)}/>}
                 onClick={(e) => {
-              this.setState({item, visible: true})
-            }}/>
+                  this.setState({item, visible: true})
+                }}/>
 
             </span>
           )}
@@ -159,31 +175,43 @@ class NarrativeCardModal extends Component {
           itemLayout="horizontal"
           dataSource={data.posts}
           renderItem={item => (
-            <PostItem item={item} />
+            <PostItem item={item}/>
           )}
         />
 
       </Col>
     </Row>;
 
-        const component2 = (<div>
-          <Button onClick={this.slideback.bind(this)}>Back to Narrative Summary</Button>
-          <List
-          header={'Influencers'}
-          itemLayout="horizontal"
-          dataSource={data.influencers}
-          renderItem={item => (
-            <span>
+    const component2 = (<div>
+      <Button onClick={this.slideback.bind(this)}>Back to Narrative Summary</Button>
+
+      <Row>
+        {influencerdetaillist.length ===1 && <Col span={24}><span><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></span></Col>}
+        {influencerdetaillist.length ===2 && <span><Col span={10}><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></Col><Col push={2} span={10}><InfluencerDetail item={influencerdetaillist[1]}></InfluencerDetail></Col></span>}
+        {influencerdetaillist.length ===3 && <span><Col span={8}><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></Col><Col span={8}><InfluencerDetail item={influencerdetaillist[1]}></InfluencerDetail></Col><Col span={8}><InfluencerDetail item={influencerdetaillist[2]}></InfluencerDetail></Col></span>}
+
+
+      </Row>
+
+      {/*<List
+        header={'Influencers'}
+        itemLayout="horizontal"
+        dataSource={influencerdetaillist}
+        renderItem={item => (
+          <span>
 
               <InfluencerItem item={item} onClick={(e) => {
                 this.setState({item, visible: true})
               }}/>
 
             </span>
-          )}
-        /></div>);
+        )}
+      />*/}
 
-    return (<Modal pane={pane} toggle={toggle} title={data.title} width={'70%'} footer={[]} component1 = {component1} component2 = {component2} ></Modal>);
+      </div>);
+
+    return (<Modal pane={pane} toggle={toggle} title={data.title} width={'70%'} footer={[]} component1={component1}
+                   component2={component2}></Modal>);
   }
 }
 

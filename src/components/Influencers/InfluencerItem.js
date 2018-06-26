@@ -16,8 +16,7 @@ class InfluencerItem extends Component {
     return (
       <List.Item onClick={onClick}>
       <List.Item.Meta
-        avatar={<Avatar  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-        title={<Row> <Col span={12}>{item.name} {extra}</Col>
+        title={<Row> <Col span={12}>{extra} <Icon type={'notification'}/> {item.name} </Col>
           <Col span={12} push={4}>
             <PlatformGrid twitter={item.twitter} facebook={item.facebook} instagram={item.instagram}/>
           </Col>
