@@ -3,7 +3,6 @@ import ReactMapboxGl, {GeoJSONLayer, Layer, Source, Feature, Marker, Popup} from
 import geojsonExtent from '@mapbox/geojson-extent';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import geo from './../../assets/newyork.json';
 
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoibW9nbW9nIiwiYSI6ImNpZmI2eTZuZTAwNjJ0Y2x4a2g4cDIzZTcifQ.qlITXIamvfVj-NCTtAGylw",
@@ -26,6 +25,8 @@ export default class extends Component {
    }
 
   render() {
+
+    const { geo } = this.props;
 
     return (
       <Map

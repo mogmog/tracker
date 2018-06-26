@@ -58,7 +58,7 @@ class CountryInfoCard extends Component {
         <Row>
 
           <Col span={12}>
-            <WorldMap zoomTo={this.state.zoomto}/>
+            <WorldMap geo={data.map} zoomTo={this.state.zoomto}/>
           </Col>
 
           <Col span={12}>

@@ -54,8 +54,8 @@ NarrativeTrend.propTypes = {
 };
 
 NarrativeTrend.defaultProps = {
-  tooltip : 'Posts represent something',
-  type : 'Post Volume',
+  tooltip : 'put tooltip here',
+  type : 'put type here',
   percent : 0,
   absolute: 0,
   delta : '+0 above baseline',

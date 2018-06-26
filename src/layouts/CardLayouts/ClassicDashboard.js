@@ -6,6 +6,8 @@ import {
   Divider
 } from 'antd';
 
+import {Motion, spring} from 'react-motion';
+
 import CardLoader from "../../components/CardLoader/CardLoader";
 
 import CardJSONEditor from "../../components/CardJSONEditor/CardJSONEditor";

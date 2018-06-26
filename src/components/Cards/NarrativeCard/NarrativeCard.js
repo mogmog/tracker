@@ -49,7 +49,7 @@ class NarrativeCard extends Component {
 
     </ChartCard>
 
-    <NarrativeCardModal data={data} modalvisible={modalvisible} onCancel={this.toggleModal.bind(this)}/>
+    <NarrativeCardModal data={data} modalvisible={modalvisible} />
 
     </div>);
   }
