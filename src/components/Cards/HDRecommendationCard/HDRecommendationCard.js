@@ -36,7 +36,7 @@ class HDSuggestionCard extends Component {
 
       <ChartCard
         bordered={false}
-        contentHeight={150}
+        contentHeight={250}
         title={<span><Icon type={'check'} />{data.title}</span>}
       >
 
