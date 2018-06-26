@@ -13,7 +13,12 @@ class PostItem extends Component {
 
     return (
       <List.Item onClick={onClick}>
-      <List.Item.Meta title={<Row> <Col span={4}><Icon type={'facebook'}/> </Col><Col span={20}>blah blah blah</Col> </Row> }
+      <List.Item.Meta title={<Row> <Col span={4}>
+
+        {item.type === 'facebook' && <Icon type={'facebook'}/>}
+        {item.type === 'twitter' && <Icon type={'twitter'}/>}
+
+      </Col><Col span={20}> {item.content}</Col> </Row> }
       />
     </List.Item>)
   }

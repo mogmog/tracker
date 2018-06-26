@@ -17,11 +17,21 @@ import NarrativeTrend from '../../Narratives/NarrativeTrend';
 import styles from './NarrativeCardModal.less';
 import PostItem from "../../Posts/PostItem";
 import ChartCard from "../../Charts/ChartCard/index";
+import Facebook from "../../Content/Facebook/Facebook";
+import Twitter from "../../Content/Twitter/Twitter";
 
 class NarrativeCardModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = { pane : 0};
+  }
+
+  slideforward() {
+    this.setState({pane : 1});
+  }
+
+  slideback() {
+    this.setState({pane : 0});
   }
 
   render() {
@@ -34,7 +44,8 @@ class NarrativeCardModal extends Component {
       xl: 8
     };
 
-    const {data , modalvisible } = this.props;
+    const {data , toggle } = this.props;
+    const { pane } = this.state;
 
     const component1 = <Row>
       <Col span={17}>
@@ -78,11 +89,11 @@ class NarrativeCardModal extends Component {
 
           <div className={styles["card-container"]}>
             <div className={styles.narrativecarousel}>
-              <Carousel ref={(carousel) => this.carousel = carousel}>
-                {data.posts.map((post) =>
-                  <div><FacebookProvider appId="1568172383396211">
-                    <EmbeddedPost href={post.url} />
-                  </FacebookProvider>
+              <Carousel ref={(carousel) => this.carousel = carousel} dots={false}>
+                {data.posts.map((post, key) =>
+                  <div>
+                    {post.type === 'facebook' && <Facebook key={key} name={post.name} content={post.content} date={post.date} /> }
+                    {post.type === 'twitter' && <Twitter key={key} name={post.name} content={post.content} date={post.date} /> }
                   </div>
                 )}
               </Carousel>
@@ -129,9 +140,16 @@ class NarrativeCardModal extends Component {
           itemLayout="horizontal"
           dataSource={data.influencers}
           renderItem={item => (
-            <InfluencerItem item={item} onClick={(e) => {
+            <span>
+
+              <InfluencerItem
+                item={item}
+                extra={ <Button onClick={this.slideforward.bind(this)}>slide me</Button>}
+                onClick={(e) => {
               this.setState({item, visible: true})
             }}/>
+
+            </span>
           )}
         />
 
@@ -139,7 +157,7 @@ class NarrativeCardModal extends Component {
           size="small"
           header={'Posts'}
           itemLayout="horizontal"
-          dataSource={[1,2,3,4,5,6,54,34,4,4]}
+          dataSource={data.posts}
           renderItem={item => (
             <PostItem item={item} />
           )}
@@ -148,7 +166,24 @@ class NarrativeCardModal extends Component {
       </Col>
     </Row>;
 
-    return (<Modal visible={modalvisible} title={data.title} width={'70%'} footer={[]} component1 = {component1} ></Modal>);
+        const component2 = (<div>
+          <Button onClick={this.slideback.bind(this)}>Back to Narrative Summary</Button>
+          <List
+          header={'Influencers'}
+          itemLayout="horizontal"
+          dataSource={data.influencers}
+          renderItem={item => (
+            <span>
+
+              <InfluencerItem item={item} onClick={(e) => {
+                this.setState({item, visible: true})
+              }}/>
+
+            </span>
+          )}
+        /></div>);
+
+    return (<Modal pane={pane} toggle={toggle} title={data.title} width={'70%'} footer={[]} component1 = {component1} component2 = {component2} ></Modal>);
   }
 }
 

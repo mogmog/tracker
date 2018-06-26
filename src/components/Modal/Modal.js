@@ -7,23 +7,22 @@ import styles from './Modal.less';
 class HDModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {modalvisible: false, open: false};
+    this.state = {modalvisible: this.props.modalvisible, open: false};
   }
 
-  slide() {
-    this.carousel.goTo(this.state.open ? 0 : 1);
-    this.setState({'open': !this.state.open});
+  componentDidUpdate(oldprops) {
+    if (this.props.pane != oldprops.pane) {
+      this.carousel.goTo(this.props.pane);
+    }
   }
 
   render() {
 
-    const {title, width, footer, component1, component2, visible} = this.props;
-    const { open} = this.state;
+    const {title, width, footer, component1, component2 , toggle} = this.props;
+    const { open, visible } = this.state;
 
     return (
-      <Modal title={title} visible={visible} width={width} footer={footer}>
-
-        <Button onClick={this.slide.bind(this)}>slide me</Button>
+      <Modal title={title} visible={true} width={width} footer={footer} onCancel={ toggle }>
 
         <div className={styles.wrapper}>
 

@@ -11,13 +11,13 @@ class InfluencerItem extends Component {
 
   render () {
 
-    const {item, onClick } = this.props;
+    const {item, onClick, extra } = this.props;
 
     return (
       <List.Item onClick={onClick}>
       <List.Item.Meta
         avatar={<Avatar  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-        title={<Row> <Col span={12}>{item.name}</Col>
+        title={<Row> <Col span={12}>{item.name} {extra}</Col>
           <Col span={12} push={4}>
             <PlatformGrid twitter={item.twitter} facebook={item.facebook} instagram={item.instagram}/>
           </Col>

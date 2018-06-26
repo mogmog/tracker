@@ -35,7 +35,7 @@ class VideoChartCard extends Component {
     const cols = {
       year: {
         type: 'linear',
-        tickInterval: 50
+        tickInterval: 2
       },
       'percent': {
         formatter: function(value) {
@@ -51,10 +51,10 @@ class VideoChartCard extends Component {
 
 
     var markData = [
-      {"date": "1997-08-06", "type": "Client", "version": "2.0", "value": 1111111},
-      {"date": "1998-08-20", "type": "Client", "version": "2.1", "value": 1111111},
-      {"date": "1997-08-27", "type": "Server", "version": "3.5", "value": 1111111},
-      {"date": "1998-09-03", "type": "Client", "version": "2.2", "value": 1111111}
+      {"date": "2017-08-06", "type": "Client", "version": "2.0", "value": 1111111},
+      {"date": "2018-08-20", "type": "Client", "version": "2.1", "value": 1111111},
+      {"date": "2018-08-27", "type": "Server", "version": "3.5", "value": 1111111},
+      {"date": "2018-09-03", "type": "Client", "version": "2.2", "value": 1111111}
     ];
 
     function formatter(text, item) {
