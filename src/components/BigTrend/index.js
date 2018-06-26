@@ -3,7 +3,7 @@ import { Icon, Row, Col } from 'antd';
 import classNames from 'classnames';
 import styles from './index.less';
 
-const BigTrend = ({ colorful = true, reverseColor = false, flag, children, className, ...rest }) => {
+const BigTrend = ({ colorful = true, reverseColor = false, flag, children, percent, graph, className, ...rest }) => {
   const classString = classNames(
     styles.trendItem,
     {
@@ -17,12 +17,19 @@ const BigTrend = ({ colorful = true, reverseColor = false, flag, children, class
     <div {...rest} className={classString} title={typeof children === 'string' ? children : ''}>
 
       {flag && (
+        <div>
         <Row>
-          <Col span={24}>
+          <Col>
             <span className={styles[flag]}><Icon type={`caret-${flag}`} /></span>
-            <span className={styles.value}> {children} </span>
+            <span className={styles.value}> {percent}% </span>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            {graph}
+          </Col>
+        </Row>
+        </div>
       )}
 
     </div>

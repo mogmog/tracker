@@ -53,28 +53,30 @@ class ClassicDashboard extends React.PureComponent {
           <Col span={18}>
 
             <Row gutter={24}>
-              <Col {...topColResponsiveProps}>
+              <Col span={8}>
                 {groupedByPos[0] !== undefined ? (
                   <CardJSONEditor card={groupedByPos[0].card} position={0} dispatch={this.props.dispatch}>
                     <CardLoader card={groupedByPos[0].card}/>
                   </CardJSONEditor>) : (<NewCard position={0} {...this.props} />)}
               </Col>
 
-              <Col {...topColResponsiveProps}>
+              <Col span={8}>
                 {groupedByPos[1] !== undefined ? (
                   <CardJSONEditor card={groupedByPos[1].card} position={1} dispatch={this.props.dispatch}>
                     <CardLoader card={groupedByPos[1].card}/>
                   </CardJSONEditor>) : (<NewCard position={1} {...this.props} />)}
               </Col>
-            </Row>
 
-            <Row gutter={24}>
-              <Col {...secondColResponsiveProps}>
+              <Col span={8}>
                 {groupedByPos[2] !== undefined ? (
                   <CardJSONEditor card={groupedByPos[2].card} position={2} dispatch={this.props.dispatch}>
                     <CardLoader card={groupedByPos[2].card}/>
                   </CardJSONEditor>) : (<NewCard position={2} {...this.props} />)}
               </Col>
+
+            </Row>
+
+            <Row gutter={24}>
               <Col {...secondColResponsiveProps}>
                 {groupedByPos[3] !== undefined ? (
                   <CardJSONEditor card={groupedByPos[3].card} position={3} dispatch={this.props.dispatch}>
@@ -92,6 +94,12 @@ class ClassicDashboard extends React.PureComponent {
                   <CardJSONEditor card={groupedByPos[5].card} position={5} dispatch={this.props.dispatch}>
                     <CardLoader card={groupedByPos[5].card}/>
                   </CardJSONEditor>) : (<NewCard position={5} {...this.props} />)}
+              </Col>
+              <Col {...secondColResponsiveProps}>
+                {groupedByPos[6] !== undefined ? (
+                  <CardJSONEditor card={groupedByPos[6].card} position={6} dispatch={this.props.dispatch}>
+                    <CardLoader card={groupedByPos[6].card}/>
+                  </CardJSONEditor>) : (<NewCard position={6} {...this.props} />)}
               </Col>
             </Row>
 

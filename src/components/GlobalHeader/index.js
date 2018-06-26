@@ -96,7 +96,7 @@ export default class GlobalHeader extends PureComponent {
 
         <Link to="/problemset/list" className={styles.logo} key="logo">
           <Icon type="left" />
-          <a>Back to my problemset</a>
+          <a>Back to problem sets</a>
         </Link>
        {/* <Icon
           className={styles.trigger}

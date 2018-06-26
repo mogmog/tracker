@@ -64,7 +64,7 @@ export default class extends Component {
         style='mapbox://styles/mogmog/cjieefufm1vbv2ssb2pbthu9h'
         zoom={[3]}
         containerStyle={{
-          "height": "300px",
+          "height": "600px",
           "maxWidth": "100%"
         }}>
 

@@ -5,13 +5,17 @@ import NarrativeSummaryCard from './../Cards/NarrativeSummaryCard/NarrativeSumma
 import NarrativeCard from './../Cards/NarrativeCard/NarrativeCard';
 import InfluencerListCard from './../Cards/InfluencerListCard/InfluencerListCard';
 import VideoChartCard from './../Cards/VideoChartCard/VideoChartCard';
+import HDObservationCard from './../Cards/HDObservationCard/HDObservationCard'
+import HDRecommendationCard from './../Cards/HDRecommendationCard/HDRecommendationCard';
 
 const mappings = {
   'CountryInfoCard' : CountryInfoCard,
   'NarrativeSummaryCard' : NarrativeSummaryCard,
   'NarrativeCard' : NarrativeCard,
   'InfluencerListCard' : InfluencerListCard,
-  'VideoChartCard' : VideoChartCard
+  'VideoChartCard' : VideoChartCard,
+  'HDObservationCard' : HDObservationCard,
+  'HDRecommendationCard' : HDRecommendationCard
 
 }
 
@@ -26,7 +30,7 @@ class CardLoader extends Component {
 
     const Card = mappings[this.props.card.component];
 
-    if (!Card) return null;
+    if (!Card) return <span>No card defined in card loader</span>;
 
     return (
       <div>

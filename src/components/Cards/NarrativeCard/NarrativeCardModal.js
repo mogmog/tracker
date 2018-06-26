@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Tabs, Row, Col, Modal, List, Carousel, Divider, Card, Icon } from 'antd';
+import {Tabs, Row, Col, Modal, List, Carousel, Divider, Card, Icon , Tooltip } from 'antd';
 import FacebookProvider, {EmbeddedPost} from 'react-facebook';
 
 const TabPane = Tabs.TabPane;
 
-import {MiniArea} from 'components/Charts';
+import {MiniArea, MiniBar, Field} from 'components/Charts';
 import BigTrend from "../../BigTrend/index";
 import CustomMentionEditor from "../EditorCard/EditorWithMentions";
 import InfluencerItem from "../../Influencers/InfluencerItem";
@@ -43,57 +43,53 @@ class NarrativeCardModal extends Component {
         <Col span={17}>
 
           <Row>
+
             <Col span={8}>
-              <MiniArea line height={120} data={data.trend}/>
+
+              <NarrativeTrend trend={data.trend}
+                              tooltip={data['socialmedia']['posts']['tooltip']}
+                              direction={data['socialmedia']['posts']['direction']}
+                              type={data['socialmedia']['posts']['type']}
+                              absolute={data['socialmedia']['posts']['absolute']}
+                              delta={data['socialmedia']['posts']['delta']}
+                              percent={data['socialmedia']['posts']['percent']} />
             </Col>
 
-            <Col span={16}>
+            <Col span={8}>
+              <NarrativeTrend trend={data.trend}
+                              tooltip={data['socialmedia']['engagement']['tooltip']}
+                              direction={data['socialmedia']['engagement']['direction']}
+                              type={data['socialmedia']['engagement']['type']}
+                              absolute={data['socialmedia']['engagement']['absolute']}
+                              delta={data['socialmedia']['engagement']['delta']}
+                              percent={data['socialmedia']['engagement']['percent']} />
+            </Col>
 
-              <Row>
-                <Col span={8}>
-                  <NarrativeTrend direction={data['socialmedia']['posts']['direction']} type={data['socialmedia']['posts']['type']} absolute={data['socialmedia']['posts']['absolute']} delta={data['socialmedia']['posts']['delta']} percent={data['socialmedia']['posts']['percent']} />
-                </Col>
-
-                <Col span={8}>
-                  <NarrativeTrend direction={data['socialmedia']['engagement']['direction']} type={data['socialmedia']['engagement']['type']} absolute={data['socialmedia']['engagement']['absolute']} delta={data['socialmedia']['engagement']['delta']} percent={data['socialmedia']['engagement']['percent']} />
-                </Col>
-
-                <Col span={8}>
-                  <NarrativeTrend direction={data['socialmedia']['reach']['direction']} type={data['socialmedia']['reach']['type']} absolute={data['socialmedia']['reach']['absolute']} delta={data['socialmedia']['reach']['delta']} percent={data['socialmedia']['reach']['percent']} />
-                </Col>
-
-              </Row>
-
+            <Col span={8}>
+              <NarrativeTrend trend={data.trend}
+                              tooltip={data['socialmedia']['reach']['tooltip']}
+                              direction={data['socialmedia']['reach']['direction']}
+                              type={data['socialmedia']['reach']['type']}
+                              absolute={data['socialmedia']['reach']['absolute']}
+                              delta={data['socialmedia']['reach']['delta']}
+                              percent={data['socialmedia']['reach']['percent']} />
             </Col>
 
           </Row>
 
           <Row gutter={10}>
 
-
             <div className={styles["card-container"]}>
-              <Tabs defaultActiveKey="1">
-                <TabPane tab="Facebook" key="1">
-
-                  <div className={styles.narrativecarousel}>
-                    <Carousel ref={(carousel) => this.carousel = carousel}>
-                      {data.posts.map((post) =>
-                        <div><FacebookProvider appId="1568172383396211">
-                          <EmbeddedPost href={post.url} />
-                        </FacebookProvider>
-                        </div>
-                     )}
-                    </Carousel>
-                  </div>
-
-
-
-                </TabPane>
-
-                <TabPane tab="Twitter" key="2">
-                  tbc
-                </TabPane>
-              </Tabs>
+              <div className={styles.narrativecarousel}>
+                <Carousel ref={(carousel) => this.carousel = carousel}>
+                  {data.posts.map((post) =>
+                    <div><FacebookProvider appId="1568172383396211">
+                      <EmbeddedPost href={post.url} />
+                    </FacebookProvider>
+                    </div>
+                  )}
+                </Carousel>
+              </div>
             </div>
 
           </Row>

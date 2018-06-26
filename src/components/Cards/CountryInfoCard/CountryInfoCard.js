@@ -7,7 +7,9 @@ import {
   Field,
 } from '../../Charts/index';
 
-import { Modal, Icon , Card} from 'antd';
+import WorldMap from './../../Maps/WorldMap';
+
+import { Row, Col, Modal, Icon , Card, List} from 'antd';
 
 import CountryInfoModalCard from './CountryInfoModalCard';
 import GeoJSONThumbnail from '../../Maps/GeoJSONThumbnail';
@@ -47,14 +49,35 @@ class CountryInfoCard extends Component {
 
       <Modal
         visible={modal}
-        width={1000}
-        bodyStyle={{'height' : '60vh' }}
-        title={``}
+        width={'70%'}
+        title={data.title}
         onCancel={this.handleCancel.bind(this)}
         footer={[]}
       >
 
-        <CountryInfoModalCard />
+        <Row>
+
+          <Col span={12}>
+            <WorldMap zoomTo={this.state.zoomto}/>
+          </Col>
+
+          <Col span={12}>
+
+            <List
+              grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3 }}
+              dataSource={data.modal}
+              renderItem={item => (
+                <List.Item>
+                  <Card title={item.title}>Card content</Card>
+                </List.Item>
+              )}
+            />
+
+          </Col>
+
+        </Row>
+
+
 
       </Modal>
 

@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 
+import {Card, Tooltip, Icon } from 'antd';
+
 import React, {Component} from 'react';
 
 import {
   ChartCard,
   Field,
+  MiniArea
 } from 'components/Charts';
 import BigTrend from "../BigTrend";
 
@@ -15,19 +18,28 @@ class NarrativeTrend extends Component {
   }
 
   render() {
-    const { type, percent, absolute, delta, direction } = this.props;
+    const { title, type, percent, absolute, delta, direction, tooltip, trend } = this.props;
 
-    console.log(direction);
+    return (
 
-    return (<ChartCard
-      bordered={false}
-      title={type}
-      total={<span>{`${percent}%`} <BigTrend flag={direction}/> </span>}
-      footer={[<Field label={`${absolute} ${type}`} />, <Field label={delta}  />]}
-      contentHeight={46}
-    >
+      <ChartCard
+        bordered={false}
+        title={type}
+        action={
+          <Tooltip title={tooltip}>
+            <Icon type="info-circle-o" />
+          </Tooltip>
+        }
+        total={ <BigTrend reverseColor percent={percent} flag={direction}  />}
+        footer={[<Field label={delta} />, <Field label={type} value={absolute} />]}
+        contentHeight={56}
+      >
+        <MiniArea line height={40} data={trend}/>
 
-    </ChartCard>);
+      </ChartCard>
+
+
+    );
   }
 }
 
@@ -36,15 +48,20 @@ NarrativeTrend.propTypes = {
   percent : PropTypes.number,
   absolute: PropTypes.number,
   delta : PropTypes.string,
-  direction : PropTypes.string
+  direction : PropTypes.string,
+  tooltip : PropTypes.string,
+  trend : PropTypes.array
 };
 
 NarrativeTrend.defaultProps = {
-  type : 'Posts',
+  tooltip : 'Posts represent something',
+  type : 'Post Volume',
   percent : 0,
   absolute: 0,
   delta : '+0 above baseline',
-  direction : 'up'
+  direction : 'up',
+  trend : []
+
 };
 
 export default NarrativeTrend;
