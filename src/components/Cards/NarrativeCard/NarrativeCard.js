@@ -15,6 +15,7 @@ import {
 } from '../../Charts/index';
 
 import styles from './NarrativeCard.less';
+import BigTrend from "../../BigTrend";
 
 class NarrativeCard extends Component {
   constructor(props) {
@@ -37,27 +38,14 @@ class NarrativeCard extends Component {
       bordered={true}
       style={{ border: data.color  }}
       title={<span> <Icon type={'message'}/> {data.title}</span>}
-      footer={<Field style={{'height' : '120px' }} label={data.subtitle}  />}
-      contentHeight={250}
+      footer={<Field style={{'height' : '130px' }} label={data.subtitle}  />}
+      contentHeight={80}
       onClick={this.toggleModal.bind(this)}
     >
 
-      {data.subnarratives && data.subnarratives.length && <List
-        size="small"
-        itemLayout="horizontal"
-        dataSource={data.subnarratives}
-        renderItem={item => (
-          <List.Item>
-            <List.Item.Meta
-              title={<a> <Icon type={'info'} /> {item}</a>}
-            />
-          </List.Item>
-        )}
-      />}
+      {data.direction === 'up' && (<BigTrend reverseColor percent={data.percent} flag={data.direction}  />) }
 
-      {data.direction === 'up' && (<Trend flag="up" style={{ marginRight: 16 }}> UP<span className={styles.trendText} >12%</span> </Trend>) }
-
-      {data.direction === 'down' && (<Trend flag="down"> DOWN<span className={styles.trendText}>11%</span> </Trend>) }
+      {data.direction === 'down' && (<BigTrend reverseColor percent={data.percent} flag={data.direction}  />) }
 
 
     </ChartCard>

@@ -32,7 +32,8 @@ class NarrativeCardModal extends Component {
   }
 
   jump(i) {
-      this.socialmediacarousel.goTo(i);
+    console.log(this.socialmediacarousel);
+      this.socialmediacarousel.slick.slickGoTo(i);
   }
 
   slideback() {
@@ -102,13 +103,13 @@ class NarrativeCardModal extends Component {
 
           <div className={styles["card-container"]}>
             <div className={styles.narrativecarousel}>
-              <Carousel ref={(carousel) => this.socialmediacarousel = carousel} dots={true}>
+              <Carousel ref={(carousel) => this.socialmediacarousel = carousel} dots={true} arrows={true} accessibility={false} slidesToShow={2} prevArrow={<Button>!!!prev!!!</Button>} nextArrow={<span>Next</span>}>
                 {data.posts.map((post, key) =>
                   <div>
                     {post.type === 'facebook' &&
-                    <Facebook key={key} name={post.name} content={post.content} date={post.date}/>}
+                    <Facebook key={key} name={post.name} content={post.content} content_en={post.content_en} date={post.date}/>}
                     {post.type === 'twitter' &&
-                    <Twitter key={key} name={post.name} content={post.content} date={post.date}/>}
+                    <Twitter key={key} name={post.name} content={post.content} content_en={post.content_en} date={post.date}/>}
                   </div>
                 )}
               </Carousel>
@@ -119,16 +120,6 @@ class NarrativeCardModal extends Component {
 
         <Row>
           <Col>
-
-            <List
-              size="small"
-              header={'Posts'}
-              itemLayout="horizontal"
-              dataSource={data.posts}
-              renderItem={(item, i) => (
-                <PostItem onClick={(e) => {this.jump(i)}} item={item}/>
-              )}
-            />
 
             <List
               header={<span> Influencers {!!influencerdetaillist.length && <Button
@@ -168,7 +159,17 @@ class NarrativeCardModal extends Component {
                 bordered={true}
                 title={<span><Icon type={'form'}></Icon>Analysis</span>}
               >
-                {data.analysis}
+                <div style={{zoom : 1.1}} >{data.analysis} </div>
+
+                <List
+                  size="small"
+                  header={'Posts'}
+                  dataSource={data.posts}
+                  renderItem={(item, i) => (
+                    <PostItem onClick={(e) => {this.jump(i)}} item={item}/>
+                  )}
+                />
+
               </ChartCard>
             </Col>
 
@@ -232,57 +233,7 @@ class NarrativeCardModal extends Component {
       <Row>
         <Col>
 
-          <Chart height={300} data={bubble} padding={[20, 0, 80, 80]} scale={cols} plotBackground={{
-            stroke: '#ccc', // 边颜色
-            lineWidth: 1, // 边框粗细
-          }} forceFit>
-            <Axis name="x" label={{ formatter: (val) => {
-                return val + ' gr'; // 格式化坐标轴显示文本
-              }}}
-                  grid={{
-                    lineStyle: {
-                      stroke: '#d9d9d9',
-                      lineWidth: 1,
-                      lineDash: [2, 2],
-                    },
-                  }}
-            />
-            <Axis name="y" title={{offset: 64}} label={{
-              formatter: function(val) {
-                if (val > 0) {
-                  return val + ' gr';
-                }
-              }
-            }} />
 
-            {/*<Tooltip title='country' />*/}
-            <Geom type='point' position="x*y" color="#1890ff" style={{ineWidth: 1,stroke: '#1890ff'}} shape='circle' size={['z', [ 10, 40 ]]} tooltip='x*y*z' opacity={0.3} >
-              <Label content="name*country" offset={0} textStyle={{
-                fill: '#1890FF',
-              }}/>
-            </Geom>
-            <Guide>
-              <Guide.Line start={['min',50]}
-                    end= {['max', 50]} text={{
-                content: 'Safe sugar intake 50g/day',
-                position: 'end',
-                style: {
-                  textAlign: 'end'
-                }
-              }}
-              />
-              <Guide.Line start={[65, 'min']}
-                    end= {[65, 'max']} text={{
-                content: 'Safe fat intake 65g/day',
-                position: 'end',
-                autoRotate: false,
-                style: {
-                  textAlign: 'start'
-                }
-              }}
-              />
-            </Guide>
-          </Chart>
 
         </Col>
       </Row>

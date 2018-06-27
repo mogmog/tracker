@@ -12,7 +12,7 @@ class HDModal extends Component {
 
   componentDidUpdate(oldprops) {
     if (this.props.pane != oldprops.pane) {
-      this.carousel.goTo(this.props.pane);
+     // this.modalcarousel.goTo(this.props.pane);
     }
   }
 
@@ -20,15 +20,15 @@ class HDModal extends Component {
 
     const {title, width, footer, component1, component2 , toggle} = this.props;
     const { open, visible } = this.state;
+    const that = this;
 
     return (
-      <Modal style={{height : '700px'}} title={title} visible={true} width={width} footer={footer} onCancel={ toggle }>
+      <Modal style={{height : '800px'}} title={title} visible={true} width={width} footer={footer} onCancel={ toggle }>
 
         <div className={styles.wrapper}>
-
           <div> {component1} </div>
-          {/*<Carousel ref={(carousel) => {this.carousel = carousel}} dots={false}>
-            <div> {component1} </div>
+       {/*   <Carousel ref={(carousel) => {that.modalcarousel = carousel}} dots={false} accessibility={false}>
+
             <div> {component2} </div>
           </Carousel>*/}
 

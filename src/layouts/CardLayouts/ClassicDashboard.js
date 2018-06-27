@@ -52,9 +52,9 @@ class ClassicDashboard extends React.PureComponent {
 
         <Row>
 
-          <Col span={16}>
+          <Col span={18}>
 
-            <Row gutter={24}>
+            <Row gutter={6}>
               <Col {...secondColResponsiveProps}>
                 {groupedByPos[3] !== undefined ? (
                   <CardJSONEditor card={groupedByPos[3].card} position={3} dispatch={this.props.dispatch}>

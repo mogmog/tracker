@@ -77,6 +77,10 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, ['problemset'], () => import('../routes/ProblemSet/List')),
     },
 
+    '/influencers/list': {
+      component: dynamicWrapper(app, [ ], () => import('../routes/Influencers/List')),
+    },
+
     '/dashboard/analysis': {
       component: dynamicWrapper(app, ['chart', 'card'], () => import('../routes/Dashboard/Analysis')),
     },
