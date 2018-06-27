@@ -52,10 +52,10 @@ class InfluencerDetail extends Component {
           {detail}
 
           <DescriptionList size="large" style={{marginBottom: 32}}>
-            <Description term="Language"> English</Description>
-            <Description term="City/Country">Tallin</Description>
-            <Description term="Category">Hate speech</Description>
-            <Description term="Notes">Here are some notes</Description>
+            <Description term="Language"> {item.language}</Description>
+            <Description term="City/Country">{item.country}</Description>
+            <Description term="Category">{item.category}</Description>
+            <Description term="Notes">{item.notes}</Description>
           </DescriptionList>
 
         </Col>

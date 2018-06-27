@@ -78,6 +78,8 @@ class ClassicDashboard extends React.PureComponent {
 
             </Row>
 
+            <Divider/>
+
             <Row gutter={24}>
               <Col {...secondColResponsiveProps}>
                 {groupedByPos[3] !== undefined ? (
@@ -126,11 +128,13 @@ class ClassicDashboard extends React.PureComponent {
         </Row>
 
         <Row>
+          <Col span={18}>
           {/*bottom bar*/}
           {groupedByPos[13] !== undefined ? (
             <CardJSONEditor card={groupedByPos[13].card} position={13} dispatch={this.props.dispatch}>
               <CardLoader card={groupedByPos[13].card}/>
             </CardJSONEditor>) : (<NewCard position={13} {...this.props} />)}
+          </Col>
         </Row>
 
       </Fragment>

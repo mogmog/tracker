@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {Tabs, Row, Col, List, Carousel, Divider, Card, Icon, Tooltip, Button, Checkbox} from 'antd';
 
+import { Chart, Geom, Axis,  Coord, Label, Legend, Guide, Shape, Facet, G2 } from 'bizcharts';
+
+import { View } from "@antv/data-set";
+
 import FacebookProvider, {EmbeddedPost} from 'react-facebook';
 
 const TabPane = Tabs.TabPane;
@@ -25,6 +29,12 @@ class NarrativeCardModal extends Component {
   constructor(props) {
     super(props);
     this.state = {pane: 0, influencerdetaillist: []};
+  }
+
+  jump(i) {
+
+  console.log(this.carousel);
+  this.carousel.goTo(1);
   }
 
   slideback() {
@@ -94,7 +104,7 @@ class NarrativeCardModal extends Component {
 
           <div className={styles["card-container"]}>
             <div className={styles.narrativecarousel}>
-              <Carousel ref={(carousel) => this.carousel = carousel} dots={false}>
+              <Carousel ref={(carousel) => this.carousel = carousel} dots={true}>
                 {data.posts.map((post, key) =>
                   <div>
                     {post.type === 'facebook' &&
@@ -121,13 +131,9 @@ class NarrativeCardModal extends Component {
                     bordered={true}
                     title={<span><Icon type={'form'}></Icon>Analysis</span>}
                   >
-                    <a onClick={(e) => {
-                      this.jump(1)
-                    }}>as we can see</a> facebook has 1B users blah blah blah.
+                    <a onClick={this.jump.bind(this)}>as we can see</a> facebook has 1B users blah blah blah.
 
-                    Lorem ipsum dolor sit amet, consectetur <a onClick={(e) => {
-                    this.jump(2)
-                  }}>dolore</a> elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim
+                    Lorem ipsum dolor sit amet, consectetur <a onClick={this.jump.bind(this)}>dolore</a> elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim
                     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                     irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
@@ -151,7 +157,7 @@ class NarrativeCardModal extends Component {
       <Col span={6} push={1}>
 
         <List
-          header={<span> Influencers {influencerdetaillist.length && <Button
+          header={<span> Influencers {!!influencerdetaillist.length && <Button
             onClick={this.viewInfluencers.bind(this)}>View {influencerdetaillist.length} selected</Button>} </span>}
           itemLayout="horizontal"
           dataSource={data.influencers}
@@ -174,13 +180,51 @@ class NarrativeCardModal extends Component {
           header={'Posts'}
           itemLayout="horizontal"
           dataSource={data.posts}
-          renderItem={item => (
-            <PostItem item={item}/>
+          renderItem={(item, i) => (
+            <PostItem onClick={(e) => {this.jump(i)}} item={item}/>
           )}
         />
 
       </Col>
     </Row>;
+
+
+    const bubble = [
+      { x: 95, y: 95, z: 13.8, name: 'BE', country: 'Belgium' },
+      { x: 86.5, y: 102.9, z: 14.7, name: 'DE', country: 'Germany' },
+      { x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland' },
+      { x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands' },
+      { x: 80.3, y: 86.1, z: 11.8, name: 'SE', country: 'Sweden' },
+      { x: 78.4, y: 70.1, z: 16.6, name: 'ES', country: 'Spain' },
+      { x: 74.2, y: 68.5, z: 14.5, name: 'FR', country: 'France' },
+      { x: 73.5, y: 83.1, z: 10, name: 'NO', country: 'Norway' },
+      { x: 71, y: 93.2, z: 24.7, name: 'UK', country: 'United Kingdom' },
+      { x: 69.2, y: 57.6, z: 10.4, name: 'IT', country: 'Italy' },
+      { x: 68.6, y: 20, z: 16, name: 'RU', country: 'Russia' },
+      { x: 65.5, y: 126.4, z: 35.3, name: 'US', country: 'United States' },
+      { x: 65.4, y: 50.8, z: 28.5, name: 'HU', country: 'Hungary' },
+      { x: 63.4, y: 51.8, z: 15.4, name: 'PT', country: 'Portugal' },
+      { x: 64, y: 82.9, z: 31.3, name: 'NZ', country: 'New Zealand' },
+    ];
+    const cols = {
+      x: {
+        alias: 'Daily fat intake', // 定义别名
+        tickInterval: 5, // 自定义刻度间距
+        nice: false, // 不对最大最小值优化
+        max: 96, // 自定义最大值
+        min: 62, // 自定义最小是
+      },
+      y: {
+        alias: 'Daily sugar intake',
+        tickInterval: 50,
+        nice: false,
+        max: 165,
+        min: 0,
+      },
+      z: {
+        alias: 'Obesity(adults) %',
+      },
+    };
 
     const component2 = (<div>
       <Button onClick={this.slideback.bind(this)}>Back to Narrative Summary</Button>
@@ -193,20 +237,64 @@ class NarrativeCardModal extends Component {
 
       </Row>
 
-      {/*<List
-        header={'Influencers'}
-        itemLayout="horizontal"
-        dataSource={influencerdetaillist}
-        renderItem={item => (
-          <span>
 
-              <InfluencerItem item={item} onClick={(e) => {
-                this.setState({item, visible: true})
+      <Row>
+        <Col>
+
+          <Chart height={300} data={bubble} padding={[20, 0, 80, 80]} scale={cols} plotBackground={{
+            stroke: '#ccc', // 边颜色
+            lineWidth: 1, // 边框粗细
+          }} forceFit>
+            <Axis name="x" label={{ formatter: (val) => {
+                return val + ' gr'; // 格式化坐标轴显示文本
+              }}}
+                  grid={{
+                    lineStyle: {
+                      stroke: '#d9d9d9',
+                      lineWidth: 1,
+                      lineDash: [2, 2],
+                    },
+                  }}
+            />
+            <Axis name="y" title={{offset: 64}} label={{
+              formatter: function(val) {
+                if (val > 0) {
+                  return val + ' gr';
+                }
+              }
+            }} />
+
+            {/*<Tooltip title='country' />*/}
+            <Geom type='point' position="x*y" color="#1890ff" style={{ineWidth: 1,stroke: '#1890ff'}} shape='circle' size={['z', [ 10, 40 ]]} tooltip='x*y*z' opacity={0.3} >
+              <Label content="name*country" offset={0} textStyle={{
+                fill: '#1890FF',
               }}/>
+            </Geom>
+            <Guide>
+              <Guide.Line start={['min',50]}
+                    end= {['max', 50]} text={{
+                content: 'Safe sugar intake 50g/day',
+                position: 'end',
+                style: {
+                  textAlign: 'end'
+                }
+              }}
+              />
+              <Guide.Line start={[65, 'min']}
+                    end= {[65, 'max']} text={{
+                content: 'Safe fat intake 65g/day',
+                position: 'end',
+                autoRotate: false,
+                style: {
+                  textAlign: 'start'
+                }
+              }}
+              />
+            </Guide>
+          </Chart>
 
-            </span>
-        )}
-      />*/}
+        </Col>
+      </Row>
 
       </div>);
 

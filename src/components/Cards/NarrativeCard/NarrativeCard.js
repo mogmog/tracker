@@ -37,7 +37,7 @@ class NarrativeCard extends Component {
       bordered={true}
       style={{ border: data.color  }}
       title={<span> <Icon type={'message'}/> {data.title}</span>}
-      footer={<Field label={data.subtitle}  />}
+      footer={<Field style={{'height' : '120px' }} label={data.subtitle}  />}
       contentHeight={250}
       onClick={this.toggleModal.bind(this)}
     >
