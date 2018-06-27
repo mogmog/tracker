@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Carousel, Button } from 'antd';
+import {Modal, Button} from 'antd';
 import {Motion, spring} from 'react-motion';
 import PropTypes from "prop-types";
 import styles from './Modal.less';
@@ -7,31 +7,49 @@ import styles from './Modal.less';
 class HDModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {modalvisible: this.props.modalvisible, open: false};
+    this.state = {modalvisible: true, open: false};
   }
 
   componentDidUpdate(oldprops) {
     if (this.props.pane != oldprops.pane) {
-     // this.modalcarousel.goTo(this.props.pane);
+       this.setState({open : this.props.pane === 1});
     }
+  }
+
+  onCancel() {
+    this.setState({'modalvisible': !this.state.modalvisible});
+  }
+
+  slide() {
+    this.setState({'open': !this.state.open});
   }
 
   render() {
 
-    const {title, width, footer, component1, component2 , toggle} = this.props;
-    const { open, visible } = this.state;
-    const that = this;
+    const {title, width, footer, component1, component2 } = this.props;
+    const {modalvisible, open} = this.state;
 
     return (
-      <Modal style={{height : '800px'}} title={title} visible={true} width={width} footer={footer} onCancel={ toggle }>
+      <Modal bodyStyle={{'height' : '80vh'}} title={title} visible={modalvisible} width={width} onCancel={this.onCancel.bind(this)} footer={footer}>
 
         <div className={styles.wrapper}>
-          <div> {component1} </div>
-       {/*   <Carousel ref={(carousel) => {that.modalcarousel = carousel}} dots={false} accessibility={false}>
 
-            <div> {component2} </div>
-          </Carousel>*/}
+          <Motion style={{tween: spring(open ? -100 : 0)}}>
+            {
+              ({tween}) => (
 
+                <div style={{ 'transform': 'translateX(' + tween + '%)'}}>
+                  <div className={styles.slide} >
+                    {component1}
+                  </div>
+
+                  <div className={styles.slide2} >
+                    {component2}
+                  </div>
+                </div>
+
+              )}
+          </Motion>
         </div>
 
       </Modal>);
@@ -42,15 +60,12 @@ HDModal.propTypes = {
   title: PropTypes.string,
   width: PropTypes.string,
   footer: PropTypes.array
-
 };
 
 HDModal.defaultProps = {
   title: 'Modal Title',
   width: '70%',
-  footer: [],
-  component1 : <span> 1 </span>,
-  component2 : <span> 2 </span>,
+  footer: []
 
 };
 
