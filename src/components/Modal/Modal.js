@@ -22,14 +22,15 @@ class HDModal extends Component {
     const { open, visible } = this.state;
 
     return (
-      <Modal title={title} visible={true} width={width} footer={footer} onCancel={ toggle }>
+      <Modal style={{height : '700px'}} title={title} visible={true} width={width} footer={footer} onCancel={ toggle }>
 
         <div className={styles.wrapper}>
 
-          <Carousel ref={(carousel) => {this.carousel = carousel}} dots={false}>
+          <div> {component1} </div>
+          {/*<Carousel ref={(carousel) => {this.carousel = carousel}} dots={false}>
             <div> {component1} </div>
             <div> {component2} </div>
-          </Carousel>
+          </Carousel>*/}
 
         </div>
 

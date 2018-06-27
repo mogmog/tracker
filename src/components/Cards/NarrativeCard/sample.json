@@ -2,6 +2,7 @@
   "direction": "up",
   "color": "5px solid rgba(255, 00, 0, .4)",
   "title": "Anti West Sentiment",
+  "analysis" : "as we can see facebook",
   "socialmedia": {
     "posts": {
       "absolute": 12,

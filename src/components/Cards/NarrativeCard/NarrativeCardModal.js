@@ -32,9 +32,7 @@ class NarrativeCardModal extends Component {
   }
 
   jump(i) {
-
-  console.log(this.carousel);
-  this.carousel.goTo(1);
+      this.socialmediacarousel.goTo(i);
   }
 
   slideback() {
@@ -63,7 +61,7 @@ class NarrativeCardModal extends Component {
     const {pane, influencerdetaillist} = this.state;
 
     const component1 = <Row>
-      <Col span={17}>
+      <Col span={14}>
 
         <Row>
 
@@ -104,7 +102,7 @@ class NarrativeCardModal extends Component {
 
           <div className={styles["card-container"]}>
             <div className={styles.narrativecarousel}>
-              <Carousel ref={(carousel) => this.carousel = carousel} dots={true}>
+              <Carousel ref={(carousel) => this.socialmediacarousel = carousel} dots={true}>
                 {data.posts.map((post, key) =>
                   <div>
                     {post.type === 'facebook' &&
@@ -122,47 +120,23 @@ class NarrativeCardModal extends Component {
         <Row>
           <Col>
 
-            <div style={{background: '#ECECEC', padding: '1px'}}>
+            <List
+              size="small"
+              header={'Posts'}
+              itemLayout="horizontal"
+              dataSource={data.posts}
+              renderItem={(item, i) => (
+                <PostItem onClick={(e) => {this.jump(i)}} item={item}/>
+              )}
+            />
 
-              <Row>
-                <Col span={24}>
-
-                  <ChartCard
-                    bordered={true}
-                    title={<span><Icon type={'form'}></Icon>Analysis</span>}
-                  >
-                    <a onClick={this.jump.bind(this)}>as we can see</a> facebook has 1B users blah blah blah.
-
-                    Lorem ipsum dolor sit amet, consectetur <a onClick={this.jump.bind(this)}>dolore</a> elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum.
-
-                  </ChartCard>
-                </Col>
-
-              </Row>
-
-            </div>
-
-            <CustomMentionEditor actions={() => {
-            }}></CustomMentionEditor>
-          </Col>
-        </Row>
-
-
-      </Col>
-
-      <Col span={6} push={1}>
-
-        <List
-          header={<span> Influencers {!!influencerdetaillist.length && <Button
-            onClick={this.viewInfluencers.bind(this)}>View {influencerdetaillist.length} selected</Button>} </span>}
-          itemLayout="horizontal"
-          dataSource={data.influencers}
-          renderItem={item => (
-            <span>
+            <List
+              header={<span> Influencers {!!influencerdetaillist.length && <Button
+                onClick={this.viewInfluencers.bind(this)}>View {influencerdetaillist.length} selected</Button>} </span>}
+              itemLayout="horizontal"
+              dataSource={data.influencers}
+              renderItem={item => (
+                <span>
 
               <InfluencerItem
                 item={item}
@@ -172,18 +146,35 @@ class NarrativeCardModal extends Component {
                 }}/>
 
             </span>
-          )}
-        />
+              )}
+            />
 
-        <List
-          size="small"
-          header={'Posts'}
-          itemLayout="horizontal"
-          dataSource={data.posts}
-          renderItem={(item, i) => (
-            <PostItem onClick={(e) => {this.jump(i)}} item={item}/>
-          )}
-        />
+         {/*   <CustomMentionEditor actions={() => {
+            }}></CustomMentionEditor>*/}
+          </Col>
+        </Row>
+
+
+      </Col>
+
+      <Col span={9} push={1}>
+
+        <div style={{background: '#ECECEC', padding: '1px'}}>
+
+          <Row>
+            <Col span={24}>
+
+              <ChartCard
+                bordered={true}
+                title={<span><Icon type={'form'}></Icon>Analysis</span>}
+              >
+                {data.analysis}
+              </ChartCard>
+            </Col>
+
+          </Row>
+
+        </div>
 
       </Col>
     </Row>;
