@@ -55,32 +55,6 @@ class ClassicDashboard extends React.PureComponent {
           <Col span={18}>
 
             <Row gutter={24}>
-              <Col span={8}>
-                {groupedByPos[0] !== undefined ? (
-                  <CardJSONEditor card={groupedByPos[0].card} position={0} dispatch={this.props.dispatch}>
-                    <CardLoader card={groupedByPos[0].card}/>
-                  </CardJSONEditor>) : (<NewCard position={0} {...this.props} />)}
-              </Col>
-
-              <Col span={8}>
-                {groupedByPos[1] !== undefined ? (
-                  <CardJSONEditor card={groupedByPos[1].card} position={1} dispatch={this.props.dispatch}>
-                    <CardLoader card={groupedByPos[1].card}/>
-                  </CardJSONEditor>) : (<NewCard position={1} {...this.props} />)}
-              </Col>
-
-              <Col span={8}>
-                {groupedByPos[2] !== undefined ? (
-                  <CardJSONEditor card={groupedByPos[2].card} position={2} dispatch={this.props.dispatch}>
-                    <CardLoader card={groupedByPos[2].card}/>
-                  </CardJSONEditor>) : (<NewCard position={2} {...this.props} />)}
-              </Col>
-
-            </Row>
-
-            <Divider/>
-
-            <Row gutter={24}>
               <Col {...secondColResponsiveProps}>
                 {groupedByPos[3] !== undefined ? (
                   <CardJSONEditor card={groupedByPos[3].card} position={3} dispatch={this.props.dispatch}>
@@ -107,6 +81,33 @@ class ClassicDashboard extends React.PureComponent {
               </Col>
             </Row>
 
+
+            <Divider/>
+
+            <Row gutter={24}>
+              <Col span={8}>
+                {groupedByPos[0] !== undefined ? (
+                  <CardJSONEditor card={groupedByPos[0].card} position={0} dispatch={this.props.dispatch}>
+                    <CardLoader card={groupedByPos[0].card}/>
+                  </CardJSONEditor>) : (<NewCard position={0} {...this.props} />)}
+              </Col>
+
+              <Col span={8}>
+                {groupedByPos[1] !== undefined ? (
+                  <CardJSONEditor card={groupedByPos[1].card} position={1} dispatch={this.props.dispatch}>
+                    <CardLoader card={groupedByPos[1].card}/>
+                  </CardJSONEditor>) : (<NewCard position={1} {...this.props} />)}
+              </Col>
+
+              <Col span={8}>
+                {groupedByPos[2] !== undefined ? (
+                  <CardJSONEditor card={groupedByPos[2].card} position={2} dispatch={this.props.dispatch}>
+                    <CardLoader card={groupedByPos[2].card}/>
+                  </CardJSONEditor>) : (<NewCard position={2} {...this.props} />)}
+              </Col>
+
+            </Row>
+
             {/*wider cards*/}
             {/*  <CardLoader component={positions[10]} data={data}/>
 
@@ -117,13 +118,17 @@ class ClassicDashboard extends React.PureComponent {
 
           </Col>
 
+
           <Col span={5} push={1}>
-            {/*influencer sidebar*/}
+
+          </Col>
+          {/*<Col span={5} push={1}>
+            influencer sidebar
             {groupedByPos[12] !== undefined ? (
               <CardJSONEditor card={groupedByPos[12].card} position={12} dispatch={this.props.dispatch}>
                 <CardLoader card={groupedByPos[12].card}/>
               </CardJSONEditor>) : (<NewCard position={12} {...this.props} />)}
-          </Col>
+          </Col>*/}
 
         </Row>
 
