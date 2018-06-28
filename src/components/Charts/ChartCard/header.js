@@ -13,8 +13,8 @@ export default class ChartCardHeader extends Component {
 
   render() {
     console.log(this.props);
-    const { text, icon, colorIndex, tooltip } = this.props;
-    return (<div className={styles.header + ' colorIndex_' + colorIndex} >  {icon} { text }
+    const { text, icon, thin, colorIndex, tooltip } = this.props;
+    return (<div style={{'border-bottom-width' : (thin ? '1px' : '4px') }} className={styles.header + ' colorIndex_' + colorIndex} >  {icon} { text }
       <span className={styles.tooltip}>
 
         {

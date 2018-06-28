@@ -24,6 +24,7 @@ import ChartCard from "../../Charts/ChartCard/index";
 import Facebook from "../../Content/Facebook/Facebook";
 import Twitter from "../../Content/Twitter/Twitter";
 import InfluencerDetail from "../../Influencers/InfluencerDetail";
+import ChartCardHeader from "../../Charts/ChartCard/header";
 
 class NarrativeCardModal extends Component {
   constructor(props) {
@@ -61,65 +62,32 @@ class NarrativeCardModal extends Component {
     const {data, toggle} = this.props;
     const {pane, influencerdetaillist} = this.state;
 
-    const component1 = <Row>
+    const component1 =
+      <div>
+      <Row>
       <Col span={14}>
+            <img style={{'marginLeft' : '20px', width : '770px', 'paddingBottom' : '10px'}} src={require('./../../../assets/narrative_charts.png')}/>
+      </Col>
+
+        <Col span={10}>
+          facebookk
+        </Col>
+
+      </Row>
 
         <Row>
+          <Col span={14}>
 
-          <Col span={8}>
+            <ChartCard
+              bordered={false}
+              title={<ChartCardHeader thin text={'Analysis'}/>}
+            >
+              <div> {data.analysis} </div>
 
-            <NarrativeTrend trend={data.trend}
-                            tooltip={data['socialmedia']['posts']['tooltip']}
-                            direction={data['socialmedia']['posts']['direction']}
-                            type={data['socialmedia']['posts']['type']}
-                            absolute={data['socialmedia']['posts']['absolute']}
-                            delta={data['socialmedia']['posts']['delta']}
-                            percent={data['socialmedia']['posts']['percent']}/>
+            </ChartCard>
           </Col>
 
-          <Col span={8}>
-            <NarrativeTrend trend={data.trend}
-                            tooltip={data['socialmedia']['engagement']['tooltip']}
-                            direction={data['socialmedia']['engagement']['direction']}
-                            type={data['socialmedia']['engagement']['type']}
-                            absolute={data['socialmedia']['engagement']['absolute']}
-                            delta={data['socialmedia']['engagement']['delta']}
-                            percent={data['socialmedia']['engagement']['percent']}/>
-          </Col>
-
-          <Col span={8}>
-            <NarrativeTrend trend={data.trend}
-                            tooltip={data['socialmedia']['reach']['tooltip']}
-                            direction={data['socialmedia']['reach']['direction']}
-                            type={data['socialmedia']['reach']['type']}
-                            absolute={data['socialmedia']['reach']['absolute']}
-                            delta={data['socialmedia']['reach']['delta']}
-                            percent={data['socialmedia']['reach']['percent']}/>
-          </Col>
-
-        </Row>
-
-        <Row gutter={10}>
-
-          <div className={styles["card-container"]}>
-            <div className={styles.narrativecarousel}>
-              <Carousel ref={(carousel) => this.socialmediacarousel = carousel} dots={true} arrows={true} accessibility={false} slidesToShow={2} prevArrow={<Button>!!!prev!!!</Button>} nextArrow={<span>Next</span>}>
-                {data.posts.map((post, key) =>
-                  <div>
-                    {post.type === 'facebook' &&
-                    <Facebook key={key} name={post.name} content={post.content} content_en={post.content_en} date={post.date}/>}
-                    {post.type === 'twitter' &&
-                    <Twitter key={key} name={post.name} content={post.content} content_en={post.content_en} date={post.date}/>}
-                  </div>
-                )}
-              </Carousel>
-            </div>
-          </div>
-
-        </Row>
-
-        <Row>
-          <Col>
+          <Col span={10}>
 
             <List
               header={<span> Influencers {!!influencerdetaillist.length && <Button
@@ -140,83 +108,11 @@ class NarrativeCardModal extends Component {
               )}
             />
 
-         {/*   <CustomMentionEditor actions={() => {
-            }}></CustomMentionEditor>*/}
           </Col>
+
         </Row>
 
-
-      </Col>
-
-      <Col span={9} push={1}>
-
-        <div style={{background: '#ECECEC', padding: '1px'}}>
-
-          <Row>
-            <Col span={24}>
-
-              <ChartCard
-                bordered={true}
-                title={<span><Icon type={'form'}></Icon>Analysis</span>}
-              >
-                <div style={{zoom : 1.1}} >{data.analysis} </div>
-
-                <List
-                  size="small"
-                  header={'Posts'}
-                  dataSource={data.posts}
-                  renderItem={(item, i) => (
-                    <PostItem onClick={(e) => {this.jump(i)}} item={item}/>
-                  )}
-                />
-
-              </ChartCard>
-            </Col>
-
-          </Row>
-
-        </div>
-
-      </Col>
-    </Row>;
-
-
-    const bubble = [
-      { x: 95, y: 95, z: 13.8, name: 'BE', country: 'Belgium' },
-      { x: 86.5, y: 102.9, z: 14.7, name: 'DE', country: 'Germany' },
-      { x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland' },
-      { x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands' },
-      { x: 80.3, y: 86.1, z: 11.8, name: 'SE', country: 'Sweden' },
-      { x: 78.4, y: 70.1, z: 16.6, name: 'ES', country: 'Spain' },
-      { x: 74.2, y: 68.5, z: 14.5, name: 'FR', country: 'France' },
-      { x: 73.5, y: 83.1, z: 10, name: 'NO', country: 'Norway' },
-      { x: 71, y: 93.2, z: 24.7, name: 'UK', country: 'United Kingdom' },
-      { x: 69.2, y: 57.6, z: 10.4, name: 'IT', country: 'Italy' },
-      { x: 68.6, y: 20, z: 16, name: 'RU', country: 'Russia' },
-      { x: 65.5, y: 126.4, z: 35.3, name: 'US', country: 'United States' },
-      { x: 65.4, y: 50.8, z: 28.5, name: 'HU', country: 'Hungary' },
-      { x: 63.4, y: 51.8, z: 15.4, name: 'PT', country: 'Portugal' },
-      { x: 64, y: 82.9, z: 31.3, name: 'NZ', country: 'New Zealand' },
-    ];
-    const cols = {
-      x: {
-        alias: 'Daily fat intake', // 定义别名
-        tickInterval: 5, // 自定义刻度间距
-        nice: false, // 不对最大最小值优化
-        max: 96, // 自定义最大值
-        min: 62, // 自定义最小是
-      },
-      y: {
-        alias: 'Daily sugar intake',
-        tickInterval: 50,
-        nice: false,
-        max: 165,
-        min: 0,
-      },
-      z: {
-        alias: 'Obesity(adults) %',
-      },
-    };
+      </div>
 
     const component2 = (<div>
       <Button onClick={this.slideback.bind(this)}>Back to Narrative Summary</Button>
@@ -240,7 +136,7 @@ class NarrativeCardModal extends Component {
 
       </div>);
 
-    return (<Modal pane={pane} toggle={toggle} title={data.title} width={'70%'} footer={[]} component1={component1}
+    return (<Modal pane={pane} toggle={toggle}  title={<ChartCardHeader colorIndex={data.colorIndex} text={data.title}/>} width={'70%'} footer={[]} component1={component1}
                    component2={component2}></Modal>);
   }
 }

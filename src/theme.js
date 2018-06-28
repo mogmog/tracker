@@ -9,8 +9,7 @@ module.exports = {
   'border-radius-base'     : '4px',
   'border-radius-sm' : '4px',
   'font-size-base' : '14pt',
-
-  'text-color' : '#074266'
-
+  'text-color' : '#074266',
+  'line-height-base' : 1.7
 
 };

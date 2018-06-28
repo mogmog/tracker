@@ -30,7 +30,7 @@ class HDModal extends Component {
     const {modalvisible, open} = this.state;
 
     return (
-      <Modal bodyStyle={{'height' : '80vh'}} title={title} visible={modalvisible} width={width} onCancel={this.onCancel.bind(this)} footer={footer}>
+      <Modal className={styles.hdmodal} bodyStyle={{'height' : '80vh'}} title={title} visible={modalvisible} width={width} onCancel={this.onCancel.bind(this)} footer={footer}>
 
         <div className={styles.wrapper}>
 
