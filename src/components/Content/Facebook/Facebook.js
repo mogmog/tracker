@@ -13,9 +13,8 @@ const Facebook = ({name, date, content, content_en , ...rest}) => (
 
           </div>
           <div className="name">
-            <a href="#">
               <Icon style={{ fontSize: 32 }} type={'facebook'}/>
-              <span className="text-name"> {name} </span></a>
+              <span className="text-name"> {name} </span>
             <div className="date">
               <span className="text-when">Posted on {date}  </span> ·
             </div>

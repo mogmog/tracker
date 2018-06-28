@@ -9,6 +9,7 @@ import FacebookProvider, {EmbeddedPost} from 'react-facebook';
 
 const TabPane = Tabs.TabPane;
 
+
 import Modal from "../../Modal/Modal";
 
 import {MiniArea, MiniBar, Field} from 'components/Charts';
@@ -25,6 +26,8 @@ import Facebook from "../../Content/Facebook/Facebook";
 import Twitter from "../../Content/Twitter/Twitter";
 import InfluencerDetail from "../../Influencers/InfluencerDetail";
 import ChartCardHeader from "../../Charts/ChartCard/header";
+import ContentList from "../../Content/List/ContentList";
+import _ from 'lodash';
 
 class NarrativeCardModal extends Component {
   constructor(props) {
@@ -49,6 +52,10 @@ class NarrativeCardModal extends Component {
     this.setState({influencerdetaillist: this.state.influencerdetaillist.concat([item])});
   }
 
+  removeInfluencer(item) {
+    this.setState({influencerdetaillist: _.remove(this.state.influencerdetaillist, (i) => { return i.name === item.name}) });
+  }
+
   render() {
 
     const topColResponsiveProps = {
@@ -70,7 +77,7 @@ class NarrativeCardModal extends Component {
       </Col>
 
         <Col span={10}>
-          facebookk
+          <ContentList posts={data.posts}/>
         </Col>
 
       </Row>
@@ -99,7 +106,7 @@ class NarrativeCardModal extends Component {
 
               <InfluencerItem
                 item={item}
-                extra={<Checkbox onClick={(e) => this.addInfluencer(item)}/>}
+                extra={<Checkbox onClick={(e) => {if (e.target.checked) {this.addInfluencer(item) } else {this.removeInfluencer(item)}}}/>}
                 onClick={(e) => {
                   this.setState({item, visible: true})
                 }}/>

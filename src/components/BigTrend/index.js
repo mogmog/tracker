@@ -20,8 +20,8 @@ const BigTrend = ({ colorful = true, reverseColor = false, flag, children, perce
         <div>
         <Row>
           <Col>
-            <span className={styles[flag]}><Icon type={`caret-${flag}`} /></span>
-            <span className={styles.value}> {percent}% </span>
+            <span className={styles[flag]}><Icon type={`${flag === 'up' ? 'plus' : 'minus'}`} /></span>
+            <span className={styles[flag]}> {percent}% </span>
           </Col>
         </Row>
         <Row>
