@@ -15,6 +15,9 @@ export default class extends Component {
   }
 
    componentDidUpdate() {
+
+     const { geo } = this.props;
+
      if (this.map) {
 
        this.map.fitBounds(geojsonExtent(geo), {

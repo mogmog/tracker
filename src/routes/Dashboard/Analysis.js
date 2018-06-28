@@ -26,10 +26,12 @@ export default class Analysis extends Component {
 
   render() {
 
+    return (<ClassicDashboard {...this.props}/>)
+
     /*TODO make this dynamic maybe*/
 
-    if (this.props.user.currentUser.layout.name === 'ClassicDashboard')   return (<ClassicDashboard {...this.props}/>)
-    if (this.props.user.currentUser.layout.name === 'ScrollingNarrative') return (<ScrollingNarrartive {...this.props}/>)
+    if (this.props.user.currentUser && this.props.user.currentUser.layout  && this.props.user.currentUser.layout.name === 'ClassicDashboard')   return (<ClassicDashboard {...this.props}/>)
+    if (this.props.user.currentUser && this.props.user.currentUser.layout  && this.props.user.currentUser.layout.name === 'ScrollingNarrative') return (<ScrollingNarrartive {...this.props}/>)
 
     return (<div>NO DASHBOARD DEFINED</div>)
   }

@@ -5,6 +5,7 @@ import numeral from 'numeral';
 import {
   ChartCard,
   Field,
+  ChartCardHeader
 } from '../../Charts/index';
 
 import { Row, Col, Modal, Icon , Card, List} from 'antd';
@@ -36,7 +37,7 @@ class HDSuggestionCard extends Component {
 
       <ChartCard
         bordered={false}
-        title={<span><Icon type={'check'} />{data.title}</span>}
+        title={<ChartCardHeader icon={<Icon type={'check'} />} text={data.title}/>}
       >
 
         <Row>
@@ -48,7 +49,7 @@ class HDSuggestionCard extends Component {
               renderItem={item => (
                 <List.Item>
                   <List.Item.Meta
-                    title={<a> <Icon type={'check'} /> {item}</a>}
+                    title={<a> {item}</a>}
                   />
                 </List.Item>
               )}

@@ -96,7 +96,7 @@ export default class GlobalHeader extends PureComponent {
 
         <span>
           <Link to="/problemset/list" className={styles.logo} key="logo">
-            <a>Problem sets</a>
+           <Icon type="left" />
           </Link>
 
         </span>
@@ -159,16 +159,7 @@ export default class GlobalHeader extends PureComponent {
               emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
             />
           </NoticeIcon>*/}
-          {currentUser.name ? (
-            <Dropdown overlay={menu}>
-              <span className={`${styles.action} ${styles.account}`}>
-                <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
-                <span className={styles.name}>{currentUser.name}</span>
-              </span>
-            </Dropdown>
-          ) : (
-            <Spin size="small" style={{ marginLeft: 8 }} />
-          )}
+          <img style={{height : '40px'}} src={require('./../../assets/hd.png')}/>
         </div>
       </div>
     );

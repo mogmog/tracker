@@ -1,6 +1,7 @@
 import numeral from 'numeral';
 import './g2';
 import ChartCard from './ChartCard';
+import ChartCardHeader from './ChartCard/header';
 import Bar from './Bar';
 import Pie from './Pie';
 import Radar from './Radar';
@@ -25,6 +26,7 @@ const Charts = {
   MiniArea,
   MiniProgress,
   ChartCard,
+  ChartCardHeader,
   Field,
   WaterWave,
   TagCloud,
@@ -42,6 +44,7 @@ export {
   MiniArea,
   MiniProgress,
   ChartCard,
+  ChartCardHeader,
   Field,
   WaterWave,
   TagCloud,

@@ -12,6 +12,7 @@ import { Modal, Icon , List} from 'antd';
 import {
   ChartCard,
   Field,
+  ChartCardHeader
 } from '../../Charts/index';
 
 import styles from './NarrativeCard.less';
@@ -36,9 +37,7 @@ class NarrativeCard extends Component {
     //
     return (<div><ChartCard
       bordered={true}
-      style={{ border: data.color  }}
-      title={<span> <Icon type={'message'}/> {data.title}</span>}
-      footer={<Field style={{'height' : '130px' }} label={data.subtitle}  />}
+      title={<ChartCardHeader tooltip={data.subtitle} colorIndex={data.colorIndex} text={data.title}/>}
       contentHeight={80}
       onClick={this.toggleModal.bind(this)}
     >

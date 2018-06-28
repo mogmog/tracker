@@ -8,6 +8,7 @@ import InfluencerListCardModal from "./InfluencerListCardModal";
 
 import sample from './sample.json';
 import schema from './schema.json';
+import ChartCardHeader from "../../Charts/ChartCard/header";
 
 class InfluencerListCard extends Component {
 
@@ -25,7 +26,7 @@ class InfluencerListCard extends Component {
 
     return (
 
-      <ChartCard bordered={true} title={<span > <Icon type="notification" /> {data.title} </span>} >
+      <ChartCard bordered={true} title={<ChartCardHeader text={data.title}/>} >
 
       <List
         itemLayout="horizontal"

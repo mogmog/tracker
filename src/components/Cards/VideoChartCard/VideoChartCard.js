@@ -71,10 +71,9 @@ class VideoChartCard extends Component {
     return (<ChartCard
       bordered={false}
       title={data.title}
-      footer={<Field label="Blah" value={`${numeral(12423).format('0,0')}`} />}
-      contentHeight={250}
+      contentHeight={400}
     >
-      <Chart height={250}  scale={cols} forceFit >
+      <Chart height={400}  scale={cols} forceFit >
 
         <View data={dv} scale={cols} >
 

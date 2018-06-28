@@ -4,6 +4,7 @@ import numeral from 'numeral';
 
 import {
   ChartCard,
+  ChartCardHeader,
   Field,
 } from '../../Charts/index';
 
@@ -36,7 +37,7 @@ class HDSuggestionCard extends Component {
 
       <ChartCard
         bordered={false}
-        title={<span><Icon type={'eye'} />{data.title}</span>}
+        title={<ChartCardHeader icon={<Icon type={'eye'} />} text={data.title}/>}
       >
 
         <Row>
@@ -49,7 +50,7 @@ class HDSuggestionCard extends Component {
               renderItem={item => (
                 <List.Item>
                   <List.Item.Meta
-                    title={<a> <Icon type={'eye'} /> {item}</a>}
+                    title={<a> {item}</a>}
                   />
                 </List.Item>
               )}
