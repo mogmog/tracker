@@ -26,7 +26,7 @@ class InfluencerListCard extends Component {
 
     return (
 
-      <ChartCard bordered={true} title={<ChartCardHeader text={data.title}/>} >
+      <ChartCard bordered={true} title={<ChartCardHeader icon={<Icon type={'user'} />} text={data.title}/>} >
 
       <List
         itemLayout="horizontal"

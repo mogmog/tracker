@@ -37,7 +37,7 @@ class HDSuggestionCard extends Component {
 
       <ChartCard
         bordered={false}
-        contentHeight={220}
+        contentHeight={252}
         title={<ChartCardHeader icon={<Icon type={'eye'} />} text={data.title}/>}
       >
 

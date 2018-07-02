@@ -3,8 +3,8 @@ module.exports = {
 
   'link-color': '#1DA57A',
   'border-radius-base': '20px',
-  'font-family-no-number' : 'gidole-regular',
-  'font-family' : 'gidole-regular',
+  'font-family-no-number' : 'myriad-regular',
+  'font-family' : 'myriad-regular',
   'layout-body-background' : '#E7E9EB',
   'border-radius-base'     : '4px',
   'border-radius-sm' : '6px',

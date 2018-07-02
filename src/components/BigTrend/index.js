@@ -19,14 +19,15 @@ const BigTrend = ({ colorful = true, reverseColor = false, flag, children, perce
       {flag && (
         <div>
         <Row>
-          <Col>
+
+          <Col span={8}>
+            <span className={styles.label}>Post Volume</span>
+          </Col>
+
+          <Col span={16}>
             <span className={styles[flag]}><Icon type={`${flag === 'up' ? 'plus' : 'minus'}`} /></span>
             <span className={styles[flag]}> {percent}% </span>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            {graph}
+            <div className={styles.sublabel}>from last month</div>
           </Col>
         </Row>
         </div>

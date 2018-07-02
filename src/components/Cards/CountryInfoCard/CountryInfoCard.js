@@ -168,7 +168,7 @@ class CountryInfoCard extends Component {
 
     return (<ChartCard
       bordered={false}
-      title={<ChartCardHeader text={data.title}/>}
+      title={<ChartCardHeader icon={<Icon type={'global'} />} text={data.title}/>}
       footer={data.fields.map((field) => <Field label={field.title} value={field.value}/>)}
       contentHeight={150}
     >
@@ -180,7 +180,7 @@ class CountryInfoCard extends Component {
       <Modal
         visible={modal}
         width={'70%'}
-        title={<ChartCardHeader text={data.title}/>}
+        title={<ChartCardHeader icon={<Icon type={'global'} />} text={data.title + ' - Estonia'}/>}
         onCancel={this.toggleModal.bind(this)}
         footer={[]}
       >

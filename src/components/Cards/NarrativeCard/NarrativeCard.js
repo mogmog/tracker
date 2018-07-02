@@ -38,14 +38,13 @@ class NarrativeCard extends Component {
     return (<div><ChartCard
       bordered={true}
       title={<ChartCardHeader tooltip={data.subtitle} colorIndex={data.colorIndex} text={data.title}/>}
-      contentHeight={80}
-      style={{backgroundColor : '#d9d9d9'}}
+      contentHeight={60}
       onClick={this.toggleModal.bind(this)}
     >
 
-      {data.direction === 'up' && (<BigTrend reverseColor percent={data.percent} flag={data.direction}  />) }
+      {data.direction === 'up' && (<BigTrend  percent={data.percent} flag={data.direction}  />) }
 
-      {data.direction === 'down' && (<BigTrend reverseColor percent={data.percent} flag={data.direction}  />) }
+      {data.direction === 'down' && (<BigTrend  percent={data.percent} flag={data.direction}  />) }
 
 
     </ChartCard>
