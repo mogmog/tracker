@@ -7,7 +7,7 @@ module.exports = {
   'font-family' : 'gidole-regular',
   'layout-body-background' : '#E7E9EB',
   'border-radius-base'     : '4px',
-  'border-radius-sm' : '4px',
+  'border-radius-sm' : '6px',
   'font-size-base' : '14pt',
   'text-color' : '#074266',
   'line-height-base' : 1.7

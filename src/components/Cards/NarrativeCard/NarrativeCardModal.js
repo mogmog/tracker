@@ -73,7 +73,7 @@ class NarrativeCardModal extends Component {
       <div>
       <Row>
       <Col span={14}>
-            <img style={{'marginLeft' : '20px', width : '770px', 'paddingBottom' : '10px'}} src={require('./../../../assets/narrative_charts.png')}/>
+            <img style={{'marginLeft' : '20px', width : '90%', 'paddingBottom' : '10px'}} src={require('./../../../assets/narrative_charts.png')}/>
       </Col>
 
         <Col span={10}>

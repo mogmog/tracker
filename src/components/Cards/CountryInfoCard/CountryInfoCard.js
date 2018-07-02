@@ -68,19 +68,38 @@ class CountryInfoCard extends Component {
             <WorldMap geo={data.map} zoomTo={this.state.zoomto}/>
           </Col>
 
-          <Col span={12}>
-
-            <List
-              grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
-              dataSource={data.modal}
-              renderItem={item => (
-                <List.Item>
-                  <Card title={item.title}>Card content</Card>
-                </List.Item>
-              )}
-            />
+          {data.countryinfo && data.countryinfo.col1 && <Col span={6}>
+            <Card title={data.countryinfo.col1.title}>
+              <List
+                grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
+                dataSource={data.countryinfo.col1.items}
+                renderItem={item => (
+                  <List.Item>
+                    {item}
+                  </List.Item>
+                )}
+              />
+            </Card>
 
           </Col>
+          }
+
+
+          {data.countryinfo && data.countryinfo.col2 && <Col span={6}>
+            <Card title={data.countryinfo.col2.title}>
+              <List
+                grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
+                dataSource={data.countryinfo.col2.items}
+                renderItem={item => (
+                  <List.Item>
+                    {item}
+                  </List.Item>
+                )}
+              />
+            </Card>
+
+          </Col>
+          }
 
         </Row>
 
