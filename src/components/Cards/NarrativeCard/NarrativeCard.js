@@ -39,6 +39,7 @@ class NarrativeCard extends Component {
       bordered={true}
       title={<ChartCardHeader tooltip={data.subtitle} colorIndex={data.colorIndex} text={data.title}/>}
       contentHeight={80}
+      style={{backgroundColor : '#d9d9d9'}}
       onClick={this.toggleModal.bind(this)}
     >
 

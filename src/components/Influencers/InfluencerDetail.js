@@ -5,6 +5,7 @@ import PlatformGrid from "../PlatformGrid/PlatformGrid";
 import styles from './InfluencerDetail.less';
 import DescriptionList from "../DescriptionList/DescriptionList";
 import Description from "../DescriptionList/Description";
+import ContentList from "../Content/List/ContentList";
 
 class InfluencerDetail extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class InfluencerDetail extends Component {
     const {item} = this.props;
 
     const detail = (
-
+<div>
 
       <Row>
         <Col span={12}>
@@ -31,17 +32,25 @@ class InfluencerDetail extends Component {
                   src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
                 />
 
-                {item.name}</div>
+                {item.name}
+
+                <span style={{display: 'inline-block', width : '100px', transform: 'translate(8px, 8px)'}}>
+                <PlatformGrid twitter={item.twitter} facebook={item.facebook} instagram={item.instagram}/>
+                </span>
+                </div>
             </div>
           </div>
 
         </Col>
 
-        <Col span={6} push={6} >
-          <PlatformGrid twitter={item.twitter} facebook={item.facebook} instagram={item.instagram}/>
-        </Col>
-
       </Row>
+
+      <Row>
+        <Col span={4}>
+
+        </Col>
+        </Row>
+</div>
 
 
     );
@@ -55,17 +64,29 @@ class InfluencerDetail extends Component {
             <Description term="Language"> {item.language}</Description>
             <Description term="City/Country">{item.country}</Description>
             <Description term="Category">{item.category}</Description>
-            <Description term="Notes">{item.notes}</Description>
           </DescriptionList>
 
+          <DescriptionList size="large" style={{marginBottom: 32}}>
+            <Description term="Notes" style={{display  : 'block', 'width' : '200%'}}>{item.notes}</Description>
+          </DescriptionList>
         </Col>
         {/* <Col span={6}>
           <PlatformGrid twitter={item.twitter} facebook={item.facebook} instagram={item.instagram}/>
         </Col>*/}
       </Row>
 
+      <Row>
+        <Col span={22} pull={2}>
+          {item.posts && <ContentList posts={item.posts}/>}
+        </Col>
+      </Row>
+
     </Card>)
   }
+}
+
+InfluencerDetail.defaultProps = {
+
 }
 
 export default InfluencerDetail;

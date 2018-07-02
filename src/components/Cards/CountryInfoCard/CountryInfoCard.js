@@ -47,7 +47,7 @@ class CountryInfoCard extends Component {
       bordered={false}
       title={<ChartCardHeader text={data.title}/>}
       footer={data.fields.map((field) => <Field label={field.title} value={field.value}/>)}
-      contentHeight={198}
+      contentHeight={150}
     >
 
       <div onClick={this.toggleModal.bind(this)}>

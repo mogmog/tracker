@@ -126,8 +126,8 @@ class NarrativeCardModal extends Component {
 
       <Row>
         {influencerdetaillist.length ===1 && <Col span={24}><span><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></span></Col>}
-        {influencerdetaillist.length ===2 && <span><Col span={10}><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></Col><Col push={2} span={10}><InfluencerDetail item={influencerdetaillist[1]}></InfluencerDetail></Col></span>}
-        {influencerdetaillist.length ===3 && <span><Col span={8}><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></Col><Col span={8}><InfluencerDetail item={influencerdetaillist[1]}></InfluencerDetail></Col><Col span={8}><InfluencerDetail item={influencerdetaillist[2]}></InfluencerDetail></Col></span>}
+        {influencerdetaillist.length ===2 && <span><Col span={11}><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></Col><Col push={2} span={11}><InfluencerDetail item={influencerdetaillist[1]}></InfluencerDetail></Col></span>}
+        {influencerdetaillist.length >=3 && <span> You can currently compare 2 influencers</span>}
 
 
       </Row>
