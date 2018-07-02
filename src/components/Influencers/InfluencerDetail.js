@@ -76,7 +76,7 @@ class InfluencerDetail extends Component {
       </Row>
 
       <Row>
-        <Col span={22} pull={2}>
+        <Col span={22} >
           {item.posts && <ContentList posts={item.posts}/>}
         </Col>
       </Row>
