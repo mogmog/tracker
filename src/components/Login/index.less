@@ -1,6 +1,9 @@
 @import '~antd/lib/style/themes/default.less';
 
 .login {
+
+  font-size: 12px;
+
   .tabs {
     padding: 0 2px;
     margin: 0 -2px;
@@ -16,6 +19,39 @@
   }
 
   :global {
+    .ant-input {
+      color : white;
+      border: none;
+      border-bottom : 1px solid white;
+      border-radius: 0px;
+      font-size : 16px;
+    }
+
+    .has-error {
+      color:white;
+    }
+
+    .ant-form-explain {
+      color: white;
+    }
+
+    input:-webkit-autofill {
+      box-shadow: 0 50px #525659 inset;
+      -webkit-text-fill-color: white;
+    }
+
+    input:-webkit-autofill:focus {
+      -webkit-box-shadow: #525659;
+      -webkit-text-fill-color: white;
+    }
+
+    .ant-input-affix-wrapper {
+      :hover {
+        color : white;
+        border: none;
+      }
+    }
+
     .ant-tabs .ant-tabs-bar {
       border-bottom: 0;
       margin-bottom: 24px;
@@ -24,6 +60,17 @@
 
     .ant-form-item {
       margin-bottom: 24px;
+    }
+
+    .ant-input {
+      background-color: #525659;
+    }
+
+    .has-error {
+      .ant-input {
+        border-color: #53575A;
+        border-bottom: 1px solid white;
+      }
     }
   }
 
@@ -40,5 +87,9 @@
   .submit {
     width: 100%;
     margin-top: 24px;
+    border-radius : 36px;
+    text-transform: uppercase;
+    background-color: #9FA1A3;
+    border-color: white;
   }
 }

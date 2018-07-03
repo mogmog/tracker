@@ -7,7 +7,7 @@ import styles from './Modal.less';
 class HDModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {modalvisible: true, open: false};
+    this.state = { open: false};
   }
 
   componentDidUpdate(oldprops) {
@@ -26,11 +26,11 @@ class HDModal extends Component {
 
   render() {
 
-    const {title, width, footer, component1, component2 } = this.props;
+    const {title, width, footer, component1, component2, onCancel, visible } = this.props;
     const {modalvisible, open} = this.state;
 
     return (
-      <Modal className={styles.hdmodal} bodyStyle={{'height' : '80vh'}} title={title} visible={modalvisible} width={width} onCancel={this.onCancel.bind(this)} footer={footer}>
+      <Modal className={styles.hdmodal} bodyStyle={{'height' : '80vh'}} title={title} visible={visible} width={width} onCancel={onCancel.bind(this)} footer={footer}>
 
         <div className={styles.wrapper}>
 
@@ -65,7 +65,7 @@ HDModal.propTypes = {
 HDModal.defaultProps = {
   title: 'Modal Title',
   width: '70%',
-  footer: []
+  footer: null
 
 };
 

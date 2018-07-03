@@ -51,18 +51,12 @@ export default class LoginPage extends Component {
       <div className={styles.main}>
         <Login defaultActiveKey={type} onTabChange={this.onTabChange} onSubmit={this.handleSubmit}>
           <div>
-            {login.status === 'error' &&
-              login.type === 'account' &&
-              !submitting &&
-              this.renderMessage('Invalid login（admin/888888）')}
-            <UserName name="userName" placeholder="admin/user" />
-            <Password name="password" placeholder="888888/123456" />
+
+            <UserName name="userName" placeholder="USERNAME" />
+            <Password name="password" placeholder="PASSWORD" />
           </div>
 
           <div>
-            <Checkbox checked={this.state.autoLogin} onChange={this.changeAutoLogin}>
-              Save password
-            </Checkbox>
 
           </div>
           <Submit loading={submitting}>Login</Submit>

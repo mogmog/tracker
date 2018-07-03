@@ -11,9 +11,12 @@ import {
 
 import WorldMap from './../../Maps/WorldMap';
 
-import {Table, Row, Col, Modal, Icon, Card, List, Divider} from 'antd';
+import {Table, Row, Col, Icon, Card, List, Divider} from 'antd';
 
 import styles from './styles.less';
+
+
+import Modal from "../../Modal/Modal";
 
 import CountryInfoModalCard from './CountryInfoModalCard';
 import GeoJSONThumbnail from '../../Maps/GeoJSONThumbnail';
@@ -35,7 +38,6 @@ class CountryInfoCard extends Component {
   }
 
   toggleModal(e) {
-    e.preventDefault();
     this.setState({modal: !this.state.modal});
   }
 
@@ -166,6 +168,56 @@ class CountryInfoCard extends Component {
       }
     ];
 
+    const countryCardModal = (<Row>
+
+      <Col span={16}>
+        <WorldMap markers={data.markers} geo={data.map} zoomTo={this.state.zoomto}/>
+
+        <Divider></Divider>
+
+        <Row>
+          <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+            <Demographic/>
+          </Col>
+
+          <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+            <Pie
+              title="29.3% Russian speaking"
+              subTitle={<span><h2>29.3%</h2><h5> Russian speaking </h5></span>}
+              data={salesPieData}
+              height={270}
+            />
+          </Col>
+        </Row>
+
+
+      </Col>
+
+      {data.countryinfo && data.countryinfo.col1 && <Col span={7} push={1}>
+
+        <h3>Top websites by traffic</h3>
+        <Table className={styles.websitetable} bordered={false} pagination={false} size='small' columns={columns} dataSource={sitedata} />
+
+        <Divider/>
+
+        <h3>Top social media sites by traffic</h3>
+        <Table className={styles.websitetable} bordered={false} pagination={false} size='small' columns={columns} dataSource={socialmediadata} />
+
+        {/*<List
+                grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
+                dataSource={data.countryinfo.col1.items}
+                renderItem={item => (
+                  <List.Item>
+                    {item}
+                  </List.Item>
+                )}
+              />*/}
+
+      </Col>
+      }
+
+    </Row>);
+
     return (<ChartCard
       bordered={false}
       title={<ChartCardHeader icon={<Icon type={'global'} />} text={data.title}/>}
@@ -178,65 +230,14 @@ class CountryInfoCard extends Component {
       </div>
 
       <Modal
+        pane={1}
         visible={modal}
         width={'70%'}
         title={<ChartCardHeader icon={<Icon type={'global'} />} text={data.title + ' - Estonia'}/>}
+        component1={countryCardModal}
         onCancel={this.toggleModal.bind(this)}
-        footer={[]}
       >
-
-        <Row>
-
-          <Col span={16}>
-            <WorldMap markers={data.markers} geo={data.map} zoomTo={this.state.zoomto}/>
-
-            <Divider></Divider>
-
-            <Row>
-              <Col span={12}>
-                <Demographic/>
-              </Col>
-
-              <Col span={12}>
-                <Pie
-                  title="29.3% Russian speaking"
-                  subTitle={<span><h2>29.3%</h2><h5> Russian speaking </h5></span>}
-                  data={salesPieData}
-                  height={270}
-                />
-              </Col>
-            </Row>
-
-
-          </Col>
-
-          {data.countryinfo && data.countryinfo.col1 && <Col span={7} push={1}>
-
-              <h3>Top websites by traffic</h3>
-              <Table className={styles.websitetable} bordered={false} pagination={false} size='small' columns={columns} dataSource={sitedata} />
-
-            <Divider/>
-
-            <h3>Top social media sites by traffic</h3>
-            <Table className={styles.websitetable} bordered={false} pagination={false} size='small' columns={columns} dataSource={socialmediadata} />
-
-              {/*<List
-                grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
-                dataSource={data.countryinfo.col1.items}
-                renderItem={item => (
-                  <List.Item>
-                    {item}
-                  </List.Item>
-                )}
-              />*/}
-
-          </Col>
-          }
-
-        </Row>
-
       </Modal>
-
 
     </ChartCard>);
   }

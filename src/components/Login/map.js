@@ -7,13 +7,12 @@ const map = {
     component: Input,
     props: {
       size: 'large',
-      prefix: <Icon type="user" className={styles.prefixIcon} />,
       placeholder: 'admin',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter username!',
+        message: 'Please enter username',
       },
     ],
   },
@@ -21,7 +20,6 @@ const map = {
     component: Input,
     props: {
       size: 'large',
-      prefix: <Icon type="lock" className={styles.prefixIcon} />,
       type: 'password',
       placeholder: '888888',
     },

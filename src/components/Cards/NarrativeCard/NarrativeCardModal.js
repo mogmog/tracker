@@ -66,7 +66,7 @@ class NarrativeCardModal extends Component {
       xl: 8
     };
 
-    const {data, toggle} = this.props;
+    const {data, onCancel, visible} = this.props;
     const {pane, influencerdetaillist} = this.state;
 
     const component1 =
@@ -128,22 +128,11 @@ class NarrativeCardModal extends Component {
         {influencerdetaillist.length ===1 && <Col span={24}><span><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></span></Col>}
         {influencerdetaillist.length ===2 && <span><Col span={11}><InfluencerDetail item={influencerdetaillist[0]}></InfluencerDetail></Col><Col push={2} span={11}><InfluencerDetail item={influencerdetaillist[1]}></InfluencerDetail></Col></span>}
         {influencerdetaillist.length >=3 && <span> You can currently compare 2 influencers</span>}
-
-
-      </Row>
-
-
-      <Row>
-        <Col>
-
-
-
-        </Col>
       </Row>
 
       </div>);
 
-    return (<Modal pane={pane} toggle={toggle}  title={<ChartCardHeader colorIndex={data.colorIndex} text={data.title}/>} width={'70%'} footer={[]} component1={component1}
+    return (<Modal visible={visible} pane={pane} onCancel={onCancel}  title={<ChartCardHeader colorIndex={data.colorIndex} text={data.title}/>} width={'70%'} footer={[]} component1={component1}
                    component2={component2}></Modal>);
   }
 }
