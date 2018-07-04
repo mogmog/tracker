@@ -22,8 +22,12 @@ class CardJSONEditor extends Component {
 
   async componentDidMount() {
     /*get the schema for the appropriate card */
-    const schema = await import('./../Cards/' + this.props.card.component + '/schema');
-    this.setState({ schema  });
+    try {
+      const schema = await import('./../Cards/' + this.props.card.component + '/schema');
+      this.setState({schema});
+    } catch (e) {
+
+    }
   }
 
   updateCode(newCode) {

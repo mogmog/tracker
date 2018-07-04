@@ -81,9 +81,14 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, [ ], () => import('../routes/Influencers/List')),
     },
 
-    '/dashboard/analysis': {
+    '/dashboard/analysis/:id': {
       component: dynamicWrapper(app, ['chart', 'card'], () => import('../routes/Dashboard/Analysis')),
     },
+
+    '/compare/:id': {
+      component: dynamicWrapper(app, [], () => import('../routes/Battleground/Battleground')),
+    },
+
     '/dashboard/monitor': {
       component: dynamicWrapper(app, ['monitor'], () => import('../routes/Dashboard/Monitor')),
     },

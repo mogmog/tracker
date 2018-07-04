@@ -21,7 +21,7 @@ export default class FilterCardList extends PureComponent {
       { title: 'Engagement', dataIndex: 'engagement', key: 'engagement' },
 
       { title: 'Reach', dataIndex: 'reach', key: 'reach' },
-      { title: 'Action', dataIndex: '', key: 'x', render: () => <div><Link to="/dashboard/analysis"> <Button> <Icon type={'eye'}/> View</Button> </Link>  <Link to="/influencers/list"> <Button> <Icon type="notification" /> Influencers </Button> </Link> </div>},
+      { title: 'Action', dataIndex: '', key: 'x', render: (item) => {console.log(item); return <div><Link to={`/dashboard/analysis/${item.id}`}> <Button> <Icon type={'eye'}/> View</Button> </Link> <Link to={`/compare/${item.id}`}> <Button> <Icon type={'global'}/> Map</Button> </Link>   <Link to="/influencers/list"> <Button> <Icon type="notification" /> Influencers </Button> </Link> </div>} },
     ];
 
 

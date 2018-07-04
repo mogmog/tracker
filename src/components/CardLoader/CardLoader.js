@@ -8,6 +8,8 @@ import VideoChartCard from './../Cards/VideoChartCard/VideoChartCard';
 import HDObservationCard from './../Cards/HDObservationCard/HDObservationCard'
 import HDRecommendationCard from './../Cards/HDRecommendationCard/HDRecommendationCard';
 
+import SocialMediaReachCard from './../Cards/SocialMediaReachCard/SocialMediaReachCard';
+
 const mappings = {
   'CountryInfoCard' : CountryInfoCard,
   'NarrativeSummaryCard' : NarrativeSummaryCard,
@@ -15,7 +17,8 @@ const mappings = {
   'InfluencerListCard' : InfluencerListCard,
   'VideoChartCard' : VideoChartCard,
   'HDObservationCard' : HDObservationCard,
-  'HDRecommendationCard' : HDRecommendationCard
+  'HDRecommendationCard' : HDRecommendationCard,
+  'SocialMediaReachCard' : SocialMediaReachCard
 
 }
 
@@ -29,12 +32,14 @@ class CardLoader extends Component {
   render() {
 
     const Card = mappings[this.props.card.component];
+    const extra = this.props.extra;
+    const clickevents = this.props.clickevents;
 
     if (!Card) return <span>No card defined in card loader</span>;
 
     return (
       <div>
-        <Card data={this.props.card.data }/>
+        <Card clickevents={clickevents} extra={extra} data={this.props.card.data }/>
       </div>
     );
   }

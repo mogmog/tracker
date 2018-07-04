@@ -18,10 +18,13 @@ export default class Analysis extends Component {
 
     const {dispatch} = this.props;
 
-    dispatch({
-      type: 'card/fetchquestioncards',
-      payload: {'type': 'question', 'id': 1}
+    const problemset = window.parseInt(this.props.match.params.id);
+
+    this.props.dispatch({
+      type: 'cardpositions/fetchcardpositions',
+      payload : {userId : 1, problemset : problemset}
     });
+
   }
 
   render() {

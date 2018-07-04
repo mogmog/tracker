@@ -102,6 +102,9 @@ class BasicLayout extends React.PureComponent {
   }
 
   componentDidMount() {
+
+    console.log(this.props);
+
     this.enquireHandler = enquireScreen(mobile => {
       this.setState({
         isMobile: mobile,
@@ -109,35 +112,24 @@ class BasicLayout extends React.PureComponent {
     });
     this.props.dispatch({
       type: 'user/fetchCurrent',
-    }).then(user => {
-
-      this.props.dispatch({
-        type: 'cardpositions/fetchcardpositions',
-        payload : {userId : 1}
-      });
-
-
-    });
-
-
-
+    })
 
   }
 
-  componentDidUpdate(oldprops, oldstate) {
-
-    try {
-
-      if (oldprops.location.pathname !== this.props.location.pathname) {
-        this.props.dispatch({
-          type: 'cardpositions/fetchcardpositions',
-          payload : {userId : this.props.currentUser.userid}
-        });
-      }
-
-    } catch (e) {
-    }
-  }
+  // componentDidUpdate(oldprops, oldstate) {
+  //
+  //   try {
+  //
+  //     if (oldprops.location.pathname !== this.props.location.pathname) {
+  //       this.props.dispatch({
+  //         type: 'cardpositions/fetchcardpositions',
+  //         payload : {userId : this.props.currentUser.userid}
+  //       });
+  //     }
+  //
+  //   } catch (e) {
+  //   }
+  // }
 
 
   componentWillUnmount() {

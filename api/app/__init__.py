@@ -99,18 +99,21 @@ def create_app(config_name):
     def getCardPositions():
       url = request.data.get('url', "/dashboard/analysis")
       userId = request.data.get('userId', 0)
+      problemsetId = request.data.get('problemset', 0)
 
       position = request.data.get('position', None)
 
       page = Page.query.filter(Page.url == url).first()
 
+      records = CardPosition.query.filter( CardPosition.key["id"].astext == str(problemsetId) ).all()
+
+      print (records)
+
       #get all cards for this page, with optional position parameter
       if position == None:
-        cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId)
+        cardpositions = CardPosition.query.filter(CardPosition.userId == userId).filter( CardPosition.key["type"].astext == "problemset" ).filter( CardPosition.key["id"].astext == str(problemsetId) )
       else :
-        cardpositions = CardPosition.query.filter(CardPosition.pageId == page.id).filter(CardPosition.userId == userId).filter(CardPosition.position == position)
-
-      print (cardpositions)
+        cardpositions = CardPosition.query.filter(CardPosition.userId == userId).filter(CardPosition.position == position).filter( CardPosition.key["type"].astext == "problemset" ).filter( CardPosition.key["id"].astext == str(problemsetId) )
 
       results = []
       for cardposition in cardpositions.all():
