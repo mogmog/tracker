@@ -74,16 +74,15 @@ export default class CustomMentionEditor extends Component {
           </div>
         );
 
-
         return (
 
           <Popover placement="topLeft" content={content} title="Title" trigger="hover">
-         <span
-           className={mentionProps.className}
-           onClick={props.clickevents}
-         >
-          {mentionProps.children}
-        </span>
+             <span
+               className={mentionProps.className}
+               onClick={props.clickevents}
+             >
+              {mentionProps.children}
+            </span>
           </Popover>
       )},
     });
@@ -139,6 +138,7 @@ export default class CustomMentionEditor extends Component {
           ref={(element) => { this.editor = element; }}
         />
         <MentionSuggestions
+
           onSearchChange={this.onSearchChange}
           suggestions={this.state.suggestions}
           entryComponent={Entry}

@@ -124,7 +124,7 @@ class ClassicDashboard extends React.PureComponent {
               </Col>
 
           <Col span={7} push={1}>
-                {groupedByPos[1] !== undefined ? (
+                {groupedByPos[12] !== undefined ? (
                   <CardJSONEditor card={groupedByPos[12].card} position={12} dispatch={this.props.dispatch}>
                     <CardLoader card={groupedByPos[12].card}/>
                   </CardJSONEditor>) : (<NewCard position={12} {...this.props} />)}

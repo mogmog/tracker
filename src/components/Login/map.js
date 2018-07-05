@@ -10,10 +10,7 @@ const map = {
       placeholder: 'admin',
     },
     rules: [
-      {
-        required: true,
-        message: 'Please enter username',
-      },
+
     ],
   },
   Password: {
@@ -24,10 +21,7 @@ const map = {
       placeholder: '888888',
     },
     rules: [
-      {
-        required: true,
-        message: 'Please enter password!',
-      },
+
     ],
   },
   Mobile: {

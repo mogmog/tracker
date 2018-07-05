@@ -74,7 +74,7 @@ class CardJSONEditor extends Component {
 
   render() {
 
-    //return (this.props.children);
+    return (this.props.children);
 
     const { isEmpty } = this.props;
     const { formData, activeKey, editvisible, checksvisible, card, schema } = this.state;

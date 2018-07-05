@@ -11,7 +11,7 @@ const links = [];
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> 2018
+    Copyright <Icon type="copyright" /> Human Digital
   </Fragment>
 );
 
@@ -26,13 +26,14 @@ class UserLayout extends React.PureComponent {
     return title;
   }
   render() {
+
     const { routerData, match } = this.props;
     return (
       <DocumentTitle title={this.getPageTitle()}>
         <div className={styles.container}>
           <div className={styles.content}>
             <div className={styles.top}>
-              <div className={styles.desc}> Tracker Insights  </div>
+              <img style={{width: '25%'}} src={require('./../assets/hd2.png')}/>
             </div>
             <Switch>
               {getRoutes(match.path, routerData).map(item => (
