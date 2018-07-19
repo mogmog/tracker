@@ -325,29 +325,29 @@ export default class Base extends PureComponent {
               navCoords: [linePoints[0][0], linePoints[0][1], linePoints[0][2] + 50],
               heightMode: 'float',
               rotation: [0, 0, 0],
-              scale: [180, 180, 180],
+              scale: [18, 18, 18],
               ambientLight: [90, 90, 90]
             })
 
 
-            // pinModel.draw({
-            //   navCoords: linePoints[6],
-            //   heightMode: 'float',
-            //   rotation: [0,0,0],
-            //   scale: [18, 18, 18],
-            //   ambientLight: [90,90,90]
-            // })
+            pinModelSelected.draw({
+              navCoords: linePoints[6],
+              heightMode: 'float',
+              rotation: [0,0,0],
+              scale: [18, 18, 18],
+              ambientLight: [90,90,90]
+            })
 
 
 
 
-            // pinModel.draw({
-            //   navCoords: linePoints[13],
-            //   heightMode: 'float',
-            //   rotation: [0,0,0],
-            //   scale: [18, 18, 18],
-            //   ambientLight: [90,90,90]
-            // })
+            pinModel.draw({
+              navCoords: linePoints[13],
+              heightMode: 'float',
+              rotation: [0,0,0],
+              scale: [18, 18, 18],
+              ambientLight: [90,90,90]
+            })
 
           }
 
