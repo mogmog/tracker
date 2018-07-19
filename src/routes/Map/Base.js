@@ -118,7 +118,7 @@ export default class Base extends PureComponent {
       console.log(mtl);
 
       //ModelOBJ is the separate modelObj.js library
-      houseModel = new ModelOBJ(map, renderer, { path: require('./../../assets/markers/alpine.obj') });
+      houseModel = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin.obj?token=AA5AudR1-p3vgWk6rr4o64M2rx1mFcwKks5bWerSwA%3D%3D' });
 
 
       // create ui control with info pointers
