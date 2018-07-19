@@ -121,7 +121,7 @@ export default class Base extends PureComponent {
       //console.log(mtl);
 
       //ModelOBJ is the separate modelObj.js library
-      pinModel          = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin.obj' });
+      pinModel          = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin-selected.obj' });
       pinModelSelected  = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin-selected.obj' });
 
       // create ui control with info pointers
@@ -293,9 +293,8 @@ export default class Base extends PureComponent {
 
         for (var i = 0; i < smaller.length; i++) {
           points[i] = map.convertCoordsFromNavToCanvas(smaller[i], 'float');
-
-
         }
+
         var speed = 0.4;
 
         thing+=speed;
@@ -307,54 +306,48 @@ export default class Base extends PureComponent {
 //console.log(houseModel.ready);
 
           //draw models when all model resources are ready
-          if (pinModel && pinModel.ready) {
+          if (pinModel && pinModel.ready && pinModelSelected && pinModelSelected.ready) {
 
             //console.log("housemodel");
             //console.log(houseModel);
+
+         /*   // pinModel.draw({
+            //   navCoords: [linePoints[0][0], linePoints[0][1], linePoints[0][2] + 50],
+            //   heightMode: 'float',
+            //   rotation: [0, 0, 0],
+            //   scale: [18, 18, 18],
+            //   ambientLight: [90,90,90]
+            // })
+*/
+
 
             pinModel.draw({
               navCoords: [linePoints[0][0], linePoints[0][1], linePoints[0][2] + 50],
               heightMode: 'float',
               rotation: [0, 0, 0],
-              scale: [18, 18, 18],
-              ambientLight: [90,90,90]
+              scale: [180, 180, 180],
+              ambientLight: [90, 90, 90]
             })
 
 
-setInterval(function() {
-
-  pinModelSelected.draw({
-    navCoords: [linePoints[0][0], linePoints[0][1], linePoints[0][2] + 50],
-    heightMode: 'float',
-    rotation: [0, 0, 0],
-    scale: [18, 18, 18],
-    ambientLight: [90,90,90]
-  })
+            // pinModel.draw({
+            //   navCoords: linePoints[6],
+            //   heightMode: 'float',
+            //   rotation: [0,0,0],
+            //   scale: [18, 18, 18],
+            //   ambientLight: [90,90,90]
+            // })
 
 
 
 
-}, 5000)
-
-
-            pinModel.draw({
-              navCoords: linePoints[6],
-              heightMode: 'float',
-              rotation: [0,0,0],
-              scale: [18, 18, 18],
-              ambientLight: [90,90,90]
-            })
-
-
-
-
-            pinModel.draw({
-              navCoords: linePoints[13],
-              heightMode: 'float',
-              rotation: [0,0,0],
-              scale: [18, 18, 18],
-              ambientLight: [90,90,90]
-            })
+            // pinModel.draw({
+            //   navCoords: linePoints[13],
+            //   heightMode: 'float',
+            //   rotation: [0,0,0],
+            //   scale: [18, 18, 18],
+            //   ambientLight: [90,90,90]
+            // })
 
           }
 

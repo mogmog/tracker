@@ -6,7 +6,7 @@ mtllib pin-selected.mtl
 
 g Mesh1 Simple_Template___Feet_and_Inches1 Model
 
-usemtl Color_E03
+usemtl Color_E04
 v 2.08712 5.73523 -2.65505
 vt -119.191 263.6
 vn -3.79149e-15 -2.0679e-12 -1
