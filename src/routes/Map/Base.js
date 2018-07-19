@@ -112,7 +112,7 @@ export default class Base extends PureComponent {
       map.moveRenderSlotAfter('after-map-render', 'custom-render');
 
       //setInterval(function() {
-        browser.autopilot.setAutorotate(10);
+        //browser.autopilot.setAutorotate(10);
       //}, 2000);
 
 
@@ -121,7 +121,7 @@ export default class Base extends PureComponent {
       //console.log(mtl);
 
       //ModelOBJ is the separate modelObj.js library
-      pinModel          = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin-selected.obj' });
+      pinModel          = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin.obj' });
       pinModelSelected  = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin-selected.obj' });
 
       // create ui control with info pointers
