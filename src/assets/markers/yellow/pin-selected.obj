@@ -2,7 +2,7 @@
 # Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
 # File units = meters
 
-mtllib pin.mtl
+mtllib pin-selected.mtl
 
 g Mesh1 Simple_Template___Feet_and_Inches1 Model
 

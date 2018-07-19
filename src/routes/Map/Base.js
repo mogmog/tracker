@@ -17,7 +17,8 @@ export default class Base extends PureComponent {
     var browser = null;
     var renderer = null;
     var map = null;
-    var houseModel = null;
+    var pinModel = null;
+    var pinModelSelected = null;
     var geodata = null;
 
     var canvas, canvasCtx;
@@ -69,6 +70,8 @@ export default class Base extends PureComponent {
 
       renderer = browser.renderer;
 
+      browser.mapMobileMode = true;
+
       //callback once is map config loaded
       browser.on('map-loaded', onMapLoaded);
 
@@ -108,18 +111,18 @@ export default class Base extends PureComponent {
       map.addRenderSlot('custom-render', onCustomRender, true);
       map.moveRenderSlotAfter('after-map-render', 'custom-render');
 
-      setInterval(function() {
+      //setInterval(function() {
         browser.autopilot.setAutorotate(10);
-      }, 2000);
+      //}, 2000);
 
 
       let mtl = require('./../../assets/markers/alpine.mtl');
 
-      console.log(mtl);
+      //console.log(mtl);
 
       //ModelOBJ is the separate modelObj.js library
-      houseModel = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin.obj?token=AA5AudR1-p3vgWk6rr4o64M2rx1mFcwKks5bWerSwA%3D%3D' });
-
+      pinModel          = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin.obj' });
+      pinModelSelected  = new ModelOBJ(map, renderer, { path: 'https://raw.githubusercontent.com/mogmog/tracker/map/src/assets/markers/yellow/pin-selected.obj' });
 
       // create ui control with info pointers
       var infoPointers = browser.ui.addControl('info-pointers',
@@ -304,37 +307,52 @@ export default class Base extends PureComponent {
 //console.log(houseModel.ready);
 
           //draw models when all model resources are ready
-          if (houseModel && houseModel.ready) {
+          if (pinModel && pinModel.ready) {
 
-            //console.log(123);
+            //console.log("housemodel");
+            //console.log(houseModel);
 
-            houseModel.draw({
+            pinModel.draw({
               navCoords: [linePoints[0][0], linePoints[0][1], linePoints[0][2] + 50],
               heightMode: 'float',
               rotation: [0, 0, 0],
-              scale: [25, 25, 25],
+              scale: [18, 18, 18],
               ambientLight: [90,90,90]
             })
 
 
+setInterval(function() {
+
+  pinModelSelected.draw({
+    navCoords: [linePoints[0][0], linePoints[0][1], linePoints[0][2] + 50],
+    heightMode: 'float',
+    rotation: [0, 0, 0],
+    scale: [18, 18, 18],
+    ambientLight: [90,90,90]
+  })
 
 
-            houseModel.draw({
+
+
+}, 5000)
+
+
+            pinModel.draw({
               navCoords: linePoints[6],
               heightMode: 'float',
               rotation: [0,0,0],
-              scale: [25, 25, 25],
+              scale: [18, 18, 18],
               ambientLight: [90,90,90]
             })
 
 
 
 
-            houseModel.draw({
+            pinModel.draw({
               navCoords: linePoints[13],
               heightMode: 'float',
               rotation: [0,0,0],
-              scale: [25, 25, 25],
+              scale: [18, 18, 18],
               ambientLight: [90,90,90]
             })
 
